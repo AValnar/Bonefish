@@ -35,9 +35,14 @@ class Container
      */
     public function add($className, $obj)
     {
+        if ($className == '\Bonefish\DependencyInjection\Container') {
+            throw new \Exception('You can no add the Container!');
+        }
+
         if (isset($this->objects[$className])) {
             throw new \Exception('Duplicate entry for key ' . $className);
         }
+
         $this->objects[$className] = $obj;
     }
 
@@ -63,6 +68,10 @@ class Container
     {
         $className = $this->getAliasForClass($className);
 
+        if ($className == '\Bonefish\DependencyInjection\Container') {
+            return $this;
+        }
+
         if (!isset($this->objects[$className])) {
             $this->objects[$className] = $this->create($className);
         }
@@ -81,6 +90,10 @@ class Container
 
     public function create($className, $parameters = array())
     {
+        if ($className == '\Bonefish\DependencyInjection\Container') {
+            return $this;
+        }
+
         $className = $this->getAliasForClass($className);
         return $this->finalizeObject($className, true, $parameters);
     }

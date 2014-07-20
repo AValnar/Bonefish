@@ -44,6 +44,14 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @expectedException \Exception
+     */
+    public function testAddThrowsExceptionIfTryingToAddContainer()
+    {
+        $this->container->add('\Bonefish\DependencyInjection\Container', new \stdClass());
+    }
+
+    /**
      * @depends testAdd
      */
     public function testTearDown()
@@ -52,6 +60,16 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array('foo'), $this->container->getSingletons());
         $this->container->tearDown();
         $this->assertEquals(array(), $this->container->getSingletons());
+    }
+
+    public function testCreateContainer()
+    {
+        $this->assertEquals($this->container,$this->container->create('\Bonefish\DependencyInjection\Container'));
+    }
+
+    public function testGetContainer()
+    {
+        $this->assertEquals($this->container,$this->container->get('\Bonefish\DependencyInjection\Container'));
     }
 
     public function testCreateWithoutAlias()
