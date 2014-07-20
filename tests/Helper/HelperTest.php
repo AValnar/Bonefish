@@ -7,7 +7,7 @@
  * @version    1.0
  * @date       2014-05-06
  * @package    Bonefish
- * @subpackage Helper
+ * @subpackage Tests\Helper
  */
 
 namespace Bonefish\Tests\Helper;

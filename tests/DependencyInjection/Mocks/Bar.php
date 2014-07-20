@@ -7,7 +7,7 @@
  * @version    1.0
  * @date       2014-07-20
  * @package    Bonefish
- * @subpackage DependencyInjection\Mocks
+ * @subpackage Tests\DependencyInjection\Mocks
  */
 
 namespace Bonefish\Tests\DependencyInjection\Mocks;

@@ -7,7 +7,7 @@
  * @version    1.0
  * @date       2014-07-20
  * @package    Bonefish
- * @subpackage DependencyInjection
+ * @subpackage Tests\DependencyInjection
  */
 
 namespace Bonefish\Tests\DependencyInjection;
