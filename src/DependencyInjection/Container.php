@@ -36,7 +36,7 @@ class Container
     public function add($className, $obj)
     {
         if ($className == '\Bonefish\DependencyInjection\Container') {
-            throw new \Exception('You can no add the Container!');
+            throw new \Exception('You can not add the Container!');
         }
 
         if (isset($this->objects[$className])) {
