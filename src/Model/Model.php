@@ -15,56 +15,35 @@
 
 namespace Bonefish\Model;
 
+use Bonefish\Repository\Repository;
+
 abstract class Model
 {
-    /**
-     * @var \Bonefish\Database\MySqlIWrapper
-     * @inject
-     */
-    protected $db;
-
-    /**
-     * @var array
-     */
-    protected $changeSet = array();
-
-    /**
-     * @var string
-     */
-    protected $tableName;
-
-    /**
-     * @var string
-     */
-    protected $uidName = 'ID';
-
     /**
      * @var bool
      */
     protected $isNew;
 
     /**
+     * @var Repository
+     */
+    protected $repository;
+
+    /**
      * Enable fetch_object
      */
-    public function __construct($new = true)
+    public function __construct(Repository $repository,$new = true)
     {
         $this->isNew = $new;
+        $this->repository = $repository;
     }
 
     /**
-     * @return string
+     * @return \Bonefish\Repository\Repository
      */
-    public function getTableName()
+    public function getRepository()
     {
-        return $this->tableName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUidName()
-    {
-        return $this->uidName;
+        return $this->repository;
     }
 
     /**
@@ -76,118 +55,27 @@ abstract class Model
     }
 
     /**
-     * @return bool
-     */
-    public function save()
-    {
-        if (empty($this->changeSet)) {
-            return false;
-        }
-
-        if (!$this->validate()) {
-            return false;
-        }
-
-        $this->preSave();
-
-        $this->db->autocommit(false);
-
-        if (!$this->isNew) {
-            $sql = 'UPDATE `' . $this->tableName . '` SET ';
-
-            $updated = array();
-
-            foreach ($this->changeSet as $key) {
-                if (!isset($updated[$key])) {
-                    $updated[$key] = TRUE;
-
-                    $sql .= ' `' . $key . '` = "' . $this->{$key} . '",';
-                }
-            }
-
-            $sql = substr($sql, 0, -1);
-
-            $id = $this->uidName;
-
-            $sql .= ' WHERE ' . $id . ' = ' . $this->{$id} . ' LIMIT 1';
-        } else {
-
-            $rows = array();
-            $values = array();
-
-            foreach ($this->changeSet as $key) {
-                if (!isset($updated[$key])) {
-                    $updated[$key] = TRUE;
-                    $rows[] = '`'.$key.'`';
-                    $values[] = '"'.$this->{$key}.'"';
-                }
-            }
-            $sql = 'INSERT INTO `'.$this->tableName.'` ('.implode(',',$rows).') VALUES ('.implode(',',$values).')';
-        }
-
-        $result = $this->db->query($sql);
-
-        if (!$result) {
-            $this->db->rollback();
-            $this->db->autocommit(TRUE);
-            return false;
-        } else {
-            $this->db->commit();
-        }
-
-        $this->db->autocommit(TRUE);
-
-        $this->postSave();
-
-        return TRUE;
-    }
-
-    /**
-     * Update an object property
-     *
-     * @param string $key
-     * @param mixed $value
-     * @param bool $escape
-     * @throws \Exception
-     */
-
-    public function update($key, $value, $escape = false)
-    {
-        if ($key == 'tableName' || $key == 'uidName' || $key == 'changeSet') {
-            throw new \Exception('You cannot update tableName,uidName or changeSet');
-        }
-
-        $this->changeSet[] = $key;
-
-        if ($escape) {
-            $value = $this->db->escape($value);
-        }
-
-        $this->{$key} = $value;
-    }
-
-    /**
-     * @return array
-     */
-    public function getChangeHistory()
-    {
-        return $this->changeSet;
-    }
-
-    protected function preSave()
-    {
-    }
-
-    protected function postSave()
-    {
-    }
-
-    /**
-     * @return bool
+     * @void
      * @codeCoverageIgnore
      */
-    protected function validate()
+    abstract protected function preSave();
+
+    /**
+     * @void
+     * @codeCoverageIgnore
+     */
+    abstract protected function postSave();
+
+    /**
+     * @return bool
+     */
+    public function validate()
     {
         return true;
+    }
+
+    public function save()
+    {
+        $this->repository->save($this);
     }
 } 
