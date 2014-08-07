@@ -43,6 +43,36 @@ abstract class Basic
         return $this->object;
     }
 
+    protected function convertModel()
+    {
+        $coloumns = array();
+        $model = $this->getObject();
+
+        $r = new \ReflectionClass($model);
+
+        $properties = $r->getProperties();
+
+        foreach ($properties as $property) {
+            if (!in_array($property->getName(), $this->getExclude())) {
+                $property->setAccessible(true);
+                $coloumns[$property->getName()] = $property->getValue($model);
+            }
+        }
+
+        if ($model->getIsNew()) {
+            $added = $this->getAdd();
+
+            foreach ($added as $key => $value) {
+                if (isset($coloumns[$key])) {
+                    throw new \InvalidArgumentException('Invalid CRUD Configuration. Duplicate Key: ' . $key);
+                }
+                $coloumns[$key] = $value;
+            }
+        }
+
+        return $coloumns;
+    }
+
     /**
      * @return array
      */

@@ -9,6 +9,7 @@
 namespace Bonefish\Repository;
 
 use Bonefish\Model\Model;
+use Bonefish\CRUD;
 
 abstract class Repository
 {
