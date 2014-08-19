@@ -13,7 +13,18 @@ use Bonefish\CRUD;
 
 abstract class Repository
 {
+    /**
+     * @var string
+     */
     protected $tableName;
+
+    /**
+     * @return string
+     */
+    public function getTableName()
+    {
+        return $this->tableName;
+    }
 
     /**
      * @param Model $Model
