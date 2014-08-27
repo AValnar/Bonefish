@@ -2,6 +2,6 @@
     "name": "av/bonefish",
     "description": "",
     "require": {
-        "av/bonefish-core": "*"
+        "av/bonefish-core": "dev-master"
     }
 }
