@@ -10,6 +10,7 @@
         "nette/reflection": "dev-master",
         "nette/php-generator" : "dev-master",
         "respect/validation": "0.7.*@dev",
-        "respect/relational": "dev-master"
+        "respect/relational": "dev-master",
+        "swiftmailer/swiftmailer": "dev-master"
     }
 }
