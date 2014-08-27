@@ -1,0 +1,7 @@
+{
+    "name": "av/bonefish",
+    "description": "",
+    "require": {
+        "av/bonefish-core": "*"
+    }
+}
