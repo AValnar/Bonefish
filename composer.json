@@ -2,6 +2,14 @@
     "name": "av/bonefish",
     "description": "",
     "require": {
-        "av/bonefish-core": "dev-master"
+        "av/bonefish-core": "dev-master",
+        "respect/config": "dev-master",
+        "latte/latte": "dev-master",
+        "cocur/slugify": "dev-master",
+        "tracy/tracy": "dev-master",
+        "nette/reflection": "dev-master",
+        "nette/php-generator" : "dev-master",
+        "respect/validation": "0.7.*@dev",
+        "respect/relational": "dev-master"
     }
 }

@@ -38,3 +38,7 @@ Thumbs.db
 
 phpunit-lts.phar
 .idea
+
+# Composer #
+vendor
+composer.lock
