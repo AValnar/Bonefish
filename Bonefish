@@ -1,0 +1,20 @@
+#!/usr/bin/env php_cli
+<?php
+if (!isset($argv[1])) {
+    echo 'Please define an action or use ./bonefish help' . PHP_EOL;
+    exit(0);
+}
+
+$baseDir = dirname(__FILE__);
+$composerAutoload = $baseDir . '/vendor/autoload.php';
+
+if (!file_exists($composerAutoload))
+    die('Please run Composer install first!');
+
+require $baseDir . '/vendor/autoload.php';
+
+$cli = new Bonefish\CLI\CLI($argv,$baseDir);
+$cli->execute();
+
+exit(0);
+?>

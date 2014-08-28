@@ -1,6 +1,6 @@
 {
     "name": "av/bonefish",
-    "description": "",
+    "description": "Bonefish Framework",
     "require": {
         "av/bonefish-core": "dev-master",
         "respect/config": "dev-master",
@@ -11,6 +11,12 @@
         "nette/php-generator" : "dev-master",
         "respect/validation": "0.7.*@dev",
         "respect/relational": "dev-master",
-        "swiftmailer/swiftmailer": "dev-master"
+        "swiftmailer/swiftmailer": "dev-master",
+        "joetannenbaum/climate": "0.1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bonefish\\": "src"
+        }
     }
 }

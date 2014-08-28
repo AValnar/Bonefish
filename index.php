@@ -10,5 +10,12 @@
  * @package    Bonefish
  */
 
-require __DIR__ . '/vendor/autoload.php';
+$baseDir = dirname(__FILE__);
+$composerAutoload = $baseDir . '/vendor/autoload.php';
+
+if (!file_exists($composerAutoload))
+    die('Please run Composer install first!');
+
+require $baseDir . '/vendor/autoload.php';
+
 

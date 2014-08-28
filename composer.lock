@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1b1ab19cf3123e0f7d81f46f564488a6",
+    "hash": "026bf774e7048ffc391227c31270e6b5",
     "packages": [
         {
             "name": "av/bonefish-core",
@@ -89,6 +89,101 @@
                 "slugify"
             ],
             "time": "2014-08-26 19:17:51"
+        },
+        {
+            "name": "illuminate/support",
+            "version": "v4.2.8",
+            "target-dir": "Illuminate/Support",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/support.git",
+                "reference": "8702d655da1f7502037a2206df38399656ff35ae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/8702d655da1f7502037a2206df38399656ff35ae",
+                "reference": "8702d655da1f7502037a2206df38399656ff35ae",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "jeremeamia/superclosure": "~1.0",
+                "patchwork/utf8": "1.1.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Illuminate\\Support": ""
+                },
+                "files": [
+                    "Illuminate/Support/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                }
+            ],
+            "time": "2014-08-05 12:08:34"
+        },
+        {
+            "name": "joetannenbaum/climate",
+            "version": "0.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joetannenbaum/climate.git",
+                "reference": "e9ef908066e9ea89fcf724b92220c660b1e8cc36"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joetannenbaum/climate/zipball/e9ef908066e9ea89fcf724b92220c660b1e8cc36",
+                "reference": "e9ef908066e9ea89fcf724b92220c660b1e8cc36",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.2.*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JoeTannenbaum\\CLImate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joe Tannenbaum",
+                    "email": "hey@joe.codes"
+                }
+            ],
+            "description": "PHP's best friend for the terminal. CLImate allows you to easily output colored text, special formats, and more.",
+            "keywords": [
+                "cli",
+                "colors",
+                "command",
+                "php",
+                "terminal"
+            ],
+            "time": "2014-08-29 18:50:24"
         },
         {
             "name": "latte/latte",
@@ -366,16 +461,16 @@
         },
         {
             "name": "nette/utils",
-            "version": "v2.2.1",
+            "version": "v2.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/utils.git",
-                "reference": "918a80c857ae0856f908084b02e9b9ff3f02c11f"
+                "reference": "9166030811103af7101630bddc0bb1b91a7e36f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/utils/zipball/918a80c857ae0856f908084b02e9b9ff3f02c11f",
-                "reference": "918a80c857ae0856f908084b02e9b9ff3f02c11f",
+                "url": "https://api.github.com/repos/nette/utils/zipball/9166030811103af7101630bddc0bb1b91a7e36f7",
+                "reference": "9166030811103af7101630bddc0bb1b91a7e36f7",
                 "shasum": ""
             },
             "require": {
@@ -416,7 +511,7 @@
             ],
             "description": "Nette Utility Classes",
             "homepage": "http://nette.org",
-            "time": "2014-05-25 06:15:25"
+            "time": "2014-08-24 23:29:12"
         },
         {
             "name": "respect/config",
@@ -716,12 +811,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "8587074cb4dbe062274ada3ca6adc50cd1be078c"
+                "reference": "7d7178c0442a437cf62cea11dfff06f8301b3348"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/8587074cb4dbe062274ada3ca6adc50cd1be078c",
-                "reference": "8587074cb4dbe062274ada3ca6adc50cd1be078c",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/7d7178c0442a437cf62cea11dfff06f8301b3348",
+                "reference": "7d7178c0442a437cf62cea11dfff06f8301b3348",
                 "shasum": ""
             },
             "require": {
@@ -767,7 +862,7 @@
                 "debugger",
                 "nette"
             ],
-            "time": "2014-08-24 23:36:10"
+            "time": "2014-08-29 19:30:32"
         }
     ],
     "packages-dev": [
