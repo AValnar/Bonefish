@@ -80,11 +80,16 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
 
         $this->out('The following commands are present in your system:');
 
-        $dir = new \RecursiveDirectoryIterator($path);
-        foreach (new \RecursiveIteratorIterator($dir) as $file) {
-            if ($file->isDir()) continue;
-            if (stristr($file->__toString(), 'Controller/Command.php')) {
-                $this->parseCommandsFromFile($file->__toString());
+        $vendorIterator = new \DirectoryIterator($path);
+        foreach ($vendorIterator as $vendor) {
+            if (!$vendor->isDir() || $vendor->isDot()) continue;
+            $packageIterator = new \DirectoryIterator($this->baseDir . self::MODULE_PATH.'/'.$vendor);
+            foreach ($packageIterator as $package) {
+                if (!$package->isDir() || $package->isDot()) continue;
+                $path = $this->getCommandControllerPath($vendor->__toString(),$package->__toString());
+                if (file_exists($path)) {
+                    $this->parseCommandsFromFile($path);
+                }
             }
         }
 

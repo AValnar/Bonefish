@@ -9,8 +9,16 @@ class Command extends \Bonefish\Controller\Command
 	 */
 	function mainCommand()
 	{
-
+        echo 'Run mainCommand'.PHP_EOL;
 	}
+
+    /**
+     * TODO: implement mainCommand
+     */
+    function testCommand()
+    {
+        echo 'Run testCommand'.PHP_EOL;
+    }
 
 }
 
