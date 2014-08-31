@@ -54,7 +54,9 @@ class Router
     protected $parameter = array();
 
     /**
-     * @var \stdClass
+     * @var \Respect\Config\Container
+     * @property string $vendor
+     * @property string $package
      */
     protected $config;
 

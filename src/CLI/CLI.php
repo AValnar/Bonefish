@@ -308,9 +308,9 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
     }
 
     /**
-     * @param \Nette\Reflection\Parameter $parameter
+     * @param \ReflectionParameter $parameter
      * @param array $annotations
-     * @param int|string $key
+     * @param int $key
      * @return string
      */
     protected function getDocForParameter($parameter, $annotations, $key)
