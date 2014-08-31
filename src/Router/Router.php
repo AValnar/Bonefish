@@ -54,7 +54,7 @@ class Router
     protected $parameter = array();
 
     /**
-     * @var \Respect\Config\Container
+     * @var \stdClass
      */
     protected $config;
 

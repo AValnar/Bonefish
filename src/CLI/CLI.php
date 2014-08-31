@@ -277,7 +277,7 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
 
         $parameters = $r->getParameters();
         $this->out('Method Parameters:');
-        $annotations = $r->hasAnnotation('param') ? $r->getAnnotations() : FALSE;
+        $annotations = $r->hasAnnotation('param') ? $r->getAnnotations() : array();
         foreach ($parameters as $key => $parameter) {
             $doc = $this->getDocForParameter($parameter, $annotations, $key);
             $default = $this->getDefaultValueForParameter($parameter);
@@ -295,7 +295,7 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
     }
 
     /**
-     * @param \Nette\Reflection\Parameter $parameter
+     * @param \ReflectionParameter $parameter
      * @return string
      */
     protected function getDefaultValueForParameter($parameter)
