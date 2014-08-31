@@ -89,13 +89,14 @@ class Router
 
     public function route()
     {
-        $path = $this->resolveRoute();
+        try {
+            $this->resolveRoute();
+            $package = $this->$environment->createPackage($this->vendor,$this->package);
+            $controller = $package->getController(\Bonefish\Core\Package::TYPE_CONTROLLER);
+        } catch (\Exception $e) {
+            die('No Route found!');
+        }
 
-        $this->includeControllerBootstrap($path);
-
-        $controllerClass =  '\\'.$this->vendor.'\\'.$this->package.'\Controller\Controller';
-
-        $controller = $this->container->create($controllerClass);
         $action = $this->action.'Action';
         $this->callControllerAction($action,$controller);
     }
@@ -115,23 +116,6 @@ class Router
     }
 
     /**
-     * @param string $path
-     */
-    protected function includeControllerBootstrap($path)
-    {
-        if (file_exists($path)) {
-            $bootstrap = require $path;
-        } else {
-            // Show 404
-            die('No Route found.');
-        }
-
-        if (isset($bootstrap['autoloader'])) {
-            $this->autoloader->addNamespace($bootstrap['autoloader'][0],$this->environment->getBasePath().$bootstrap['autoloader'][1]);
-        }
-    }
-
-    /**
      * @return string
      */
     protected function resolveRoute()
@@ -145,8 +129,6 @@ class Router
 
         $this->setDefault('vendor');
         $this->setDefault('package');
-
-        return $this->environment->getBasePath().'/modules/'.$this->vendor.'/'.$this->package.'/bootstrap.php';
     }
 
     protected function setVendorPackageAndActionFromUrl($part)

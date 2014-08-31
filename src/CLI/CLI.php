@@ -38,12 +38,12 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
     protected $vendor;
 
     /**
-     * @var string|bool
+     * @var string
      */
     protected $package;
 
     /**
-     * @var string|bool
+     * @var string
      */
     protected $action;
 
@@ -67,8 +67,8 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
         parent::__construct();
         $this->args = $args;
         $this->vendor = $args[1];
-        $this->package = isset($args[2]) ? $args[2] : FALSE;
-        $this->action = isset($args[3]) ? $args[3] : FALSE;
+        $this->package = isset($args[2]) ? $args[2] : '';
+        $this->action = isset($args[3]) ? $args[3] : '';
     }
 
     /**
