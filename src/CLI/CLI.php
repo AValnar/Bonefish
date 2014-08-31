@@ -92,6 +92,10 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
         }
     }
 
+    /**
+     * @param string $package
+     * @return string
+     */
     protected function getPathForCommandList($package)
     {
         $path = $this->baseDir . self::MODULE_PATH;

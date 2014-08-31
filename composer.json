@@ -2,7 +2,8 @@
     "name": "av/bonefish",
     "description": "Bonefish Framework",
     "require": {
-        "av/bonefish-core": "dev-master",
+        "av/bonefish-autoloader": "dev-master",
+        "av/bonefish-di": "dev-master",
         "respect/config": "dev-master",
         "latte/latte": "dev-master",
         "cocur/slugify": "dev-master",

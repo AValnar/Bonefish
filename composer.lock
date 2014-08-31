@@ -4,20 +4,20 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9c83d8028d4f13eed0959c4f77e448f5",
+    "hash": "5bcc8d1277990aea52350b22a8669149",
     "packages": [
         {
-            "name": "av/bonefish-core",
+            "name": "av/bonefish-autoloader",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/AValnar/Bonefish-Core.git",
-                "reference": "cb25eefff415ee8e4290dcb1fc59bd34769fc7b0"
+                "url": "https://github.com/AValnar/Bonefish-Autoloader.git",
+                "reference": "1f77586469d9a2fab611bac8f6c9aada5621c627"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AValnar/Bonefish-Core/zipball/cb25eefff415ee8e4290dcb1fc59bd34769fc7b0",
-                "reference": "cb25eefff415ee8e4290dcb1fc59bd34769fc7b0",
+                "url": "https://api.github.com/repos/AValnar/Bonefish-Autoloader/zipball/1f77586469d9a2fab611bac8f6c9aada5621c627",
+                "reference": "1f77586469d9a2fab611bac8f6c9aada5621c627",
                 "shasum": ""
             },
             "require": {
@@ -30,8 +30,35 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
-            "description": "This Project maintains the Bonefish PSR-4 Autoloader,Mysqli Database Wrapper and Dependency Injection Container",
-            "time": "2014-08-31 11:00:00"
+            "description": "This Project maintains the Bonefish PSR-4 Autoloader",
+            "time": "2014-08-31 16:40:49"
+        },
+        {
+            "name": "av/bonefish-di",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AValnar/Bonefish-DI.git",
+                "reference": "1ae42f2d23d83a04f04f5f8ac587cb82281fddc5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AValnar/Bonefish-DI/zipball/1ae42f2d23d83a04f04f5f8ac587cb82281fddc5",
+                "reference": "1ae42f2d23d83a04f04f5f8ac587cb82281fddc5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bonefish\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "This Project maintains the Bonefish Dependency Injection Container",
+            "time": "2014-08-31 16:35:35"
         },
         {
             "name": "cocur/slugify",
@@ -868,12 +895,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "f85d3610ab8a62d9201e7e736e1091db171c6030"
+                "reference": "c7a380d25dee6328d096bd70ba91dcccaae464c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/f85d3610ab8a62d9201e7e736e1091db171c6030",
-                "reference": "f85d3610ab8a62d9201e7e736e1091db171c6030",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/c7a380d25dee6328d096bd70ba91dcccaae464c6",
+                "reference": "c7a380d25dee6328d096bd70ba91dcccaae464c6",
                 "shasum": ""
             },
             "require": {
@@ -919,7 +946,7 @@
                 "debugger",
                 "nette"
             ],
-            "time": "2014-08-31 09:48:06"
+            "time": "2014-08-31 16:40:18"
         },
         {
             "name": "true/punycode",
@@ -977,7 +1004,8 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "av/bonefish-core": 20,
+        "av/bonefish-autoloader": 20,
+        "av/bonefish-di": 20,
         "respect/config": 20,
         "latte/latte": 20,
         "cocur/slugify": 20,

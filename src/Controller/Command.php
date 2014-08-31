@@ -11,8 +11,14 @@ namespace Bonefish\Controller;
 
 class Command extends \JoeTannenbaum\CLImate\CLImate
 {
+    /**
+     * @var string
+     */
     protected $baseDir;
 
+    /**
+     * @param string $baseDir
+     */
     public function __construct($baseDir)
     {
         parent::__construct();

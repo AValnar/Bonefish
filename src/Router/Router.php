@@ -139,7 +139,7 @@ class Router
     protected function setVendorPackageAndActionFromUrl($part)
     {
         $ex = explode(':',$part,2);
-        if (isset($ex[1])) {
+        if (!isset($ex[1])) {
             return;
         }
         switch($ex[0]) {
