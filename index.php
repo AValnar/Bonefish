@@ -32,14 +32,20 @@ require $baseDir . '/vendor/autoload.php';
 Tracy\Debugger::enable(Tracy\Debugger::DEVELOPMENT);
 Tracy\Debugger::$strictMode = TRUE;
 
+$container = new Bonefish\DependencyInjection\Container();
+
 $autoloader = new Bonefish\Autoloader\Autoloader();
 $autoloader->register();
+$container->add('\Bonefish\Autoloader\Autoloader',$autoloader);
 
-$container = new Bonefish\DependencyInjection\Container();
+/** @var \Bonefish\Core\Environment $environment */
+$environment = $container->get('\Bonefish\Core\Environment')
+                ->setBasePath($baseDir)
+                ->setModulePath('/modules');
 
 $url = League\Url\UrlImmutable::createFromServer($_SERVER);
 $routeConfig = new Respect\Config\Container($baseDir.'/configuration/route.ini');
-$router = $container->create('Bonefish\Router\Router',array($url,$baseDir,$autoloader,$routeConfig));
+$router = $container->create('Bonefish\Router\Router',array($url,$routeConfig));
 $router->route();
 
 

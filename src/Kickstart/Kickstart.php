@@ -29,9 +29,10 @@ class Kickstart
 {
 
     /**
-     * @var string
+     * @var \Bonefish\Core\Environment
+     * @inject
      */
-    protected $baseDir;
+    public $environment;
 
     /**
      * @var string
@@ -43,17 +44,9 @@ class Kickstart
      */
     protected $vendor;
 
-    const MODULE_DIR = '/modules';
     const TYPE_CONTROLLER = 'Controller';
     const TYPE_COMMAND = 'Command';
 
-    /**
-     * @param string $baseDir
-     */
-    public function __construct($baseDir)
-    {
-        $this->baseDir = $baseDir;
-    }
 
     /**
      * Kickstart a module
@@ -67,7 +60,7 @@ class Kickstart
         $this->vendor = $vendor;
 
         // Create module directory
-        $path = $this->baseDir . self::MODULE_DIR . '/' . $this->vendor . '/' . $this->name;
+        $path = $this->environment->getFullModulePath() . '/' . $this->vendor . '/' . $this->name;
         $this->createDirectoryIfNotExist($path);
 
         $this->createController($path, self::TYPE_CONTROLLER);
@@ -102,7 +95,7 @@ class Kickstart
     {
         $boostrap = new p\PhpFile();
         $content = 'return array(
-    \'autoloader\' => array(\'' . $this->vendor . '\\' . $this->name . '\',\'/modules/' . $this->vendor . '/' . $this->name . '\')
+    \'autoloader\' => array(\'' . $this->vendor . '\\' . $this->name . '\',\'' . $this->vendor . '/' . $this->name . '\')
 );';
         return $boostrap->__toString() . PHP_EOL . $content;
     }

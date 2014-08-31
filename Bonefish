@@ -15,7 +15,12 @@ require $baseDir . '/vendor/autoload.php';
 
 $container = new Bonefish\DependencyInjection\Container();
 
-$cli = $container->create('Bonefish\CLI\CLI',array($argv,$baseDir));
+/** @var \Bonefish\Core\Environment $environment */
+$environment = $container->get('\Bonefish\Core\Environment')
+    ->setBasePath($baseDir)
+    ->setModulePath('/modules');
+
+$cli = $container->create('Bonefish\CLI\CLI',array($argv));
 $cli->execute();
 
 exit(0);

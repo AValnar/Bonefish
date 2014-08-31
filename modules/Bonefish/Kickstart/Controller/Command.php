@@ -4,12 +4,18 @@ namespace Bonefish\Kickstart\Controller;
 class Command extends \Bonefish\Controller\Command
 {
 
+    /**
+     * @var \Bonefish\DependencyInjection\Container
+     * @inject
+     */
+    public $container;
+
 	/**
 	 * TODO: implement mainCommand
 	 */
 	function moduleCommand($name,$vendor)
 	{
-        $kickstarter = new \Bonefish\Kickstart\Kickstart($this->baseDir);
+        $kickstarter = $this->container->get('\Bonefish\Kickstart\Kickstart');
         $kickstarter->module($name,$vendor);
 	}
 

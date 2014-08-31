@@ -1,5 +1,5 @@
 <?php
 
 return array(
-    'autoloader' => array('Bonefish\HelloWorld','/modules/Bonefish/HelloWorld')
+    'autoloader' => array('Bonefish\HelloWorld','Bonefish/HelloWorld')
 );

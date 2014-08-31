@@ -33,14 +33,16 @@ class Router
     protected $url;
 
     /**
-     * @var string
+     * @var \Bonefish\Core\Environment
+     * @inject
      */
-    protected $baseDir;
+    public $environment;
 
     /**
      * @var \Bonefish\Autoloader\Autoloader
+     * @inject
      */
-    protected $autoloader;
+    public $autoloader;
 
     /**
      * @var \Bonefish\DependencyInjection\Container
@@ -77,15 +79,11 @@ class Router
 
     /**
      * @param \League\Url\UrlImmutable $url
-     * @param string $baseDir
-     * @param \Bonefish\Autoloader\Autoloader $autoloader
      * @param \Respect\Config\Container $config
      */
-    public function __construct($url,$baseDir,$autoloader,$config)
+    public function __construct($url,$config)
     {
         $this->url = $url;
-        $this->baseDir = $baseDir;
-        $this->autoloader = $autoloader;
         $this->config = $config;
     }
 
@@ -129,7 +127,7 @@ class Router
         }
 
         if (isset($bootstrap['autoloader'])) {
-            $this->autoloader->addNamespace($bootstrap['autoloader'][0],$this->baseDir.$bootstrap['autoloader'][1]);
+            $this->autoloader->addNamespace($bootstrap['autoloader'][0],$this->environment->getBasePath().$bootstrap['autoloader'][1]);
         }
     }
 
@@ -148,7 +146,7 @@ class Router
         $this->setDefault('vendor');
         $this->setDefault('package');
 
-        return $this->baseDir.'/modules/'.$this->vendor.'/'.$this->package.'/bootstrap.php';
+        return $this->environment->getBasePath().'/modules/'.$this->vendor.'/'.$this->package.'/bootstrap.php';
     }
 
     protected function setVendorPackageAndActionFromUrl($part)

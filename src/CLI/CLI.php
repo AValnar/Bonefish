@@ -35,11 +35,6 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
     /**
      * @var string
      */
-    protected $baseDir;
-
-    /**
-     * @var string
-     */
     protected $vendor;
 
     /**
@@ -52,7 +47,11 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
      */
     protected $action;
 
-    const MODULE_PATH = '/modules';
+    /**
+     * @var \Bonefish\Core\Environment
+     * @inject
+     */
+    public $environment;
 
     /**
      * @var \Bonefish\DependencyInjection\Container
@@ -62,16 +61,14 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
 
     /**
      * @param array $args
-     * @param string $baseDir
      */
-    public function __construct(array $args, $baseDir)
+    public function __construct(array $args)
     {
         parent::__construct();
         $this->args = $args;
         $this->vendor = $args[1];
         $this->package = isset($args[2]) ? $args[2] : FALSE;
         $this->action = isset($args[3]) ? $args[3] : FALSE;
-        $this->baseDir = $baseDir;
     }
 
     /**
@@ -82,67 +79,30 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
         $this->lightGreen()->out('Welcome to Bonefish!')->br();
 
         if (strtolower($this->vendor) == 'help') {
-            $this->listCommands();
+            $this->listAllCommands();
         } else {
-            if ($this->validateVendorPackageArgs()) {
+            if ($this->validateArgs()) {
                 $this->executeCommand();
             }
         }
     }
 
-    /**
-     * @param string $package
-     */
-    protected function listCommands($package = '')
+    protected function listAllCommands()
     {
-        $path = $this->getPathForCommandList($package);
+        $packages = $this->environment->getAllPackages();
 
         $this->out('The following commands are present in your system:');
 
-        $vendors = $this->getVendorsOrPackagesFromPath($path);
-        foreach ($vendors as $vendor) {
-            $packages = $this->getVendorsOrPackagesFromPath($path . '/' . $vendor);
-            foreach ($packages as $package) {
-                $commandControllerPath = $this->getCommandControllerPath($vendor, $package);
-                $this->parseCommandsFromFile($commandControllerPath);
-            }
+        /** \Bonefish\Core\Package $package */
+        foreach ($packages as $package) {
+            $this->loadPackageAndDisplayActions($package);
         }
-    }
-
-    /**
-     * @param string $package
-     * @return string
-     */
-    protected function getPathForCommandList($package)
-    {
-        $path = $this->baseDir . self::MODULE_PATH;
-
-        if ($package != '') {
-            $path .= $package;
-        }
-
-        return $path;
-    }
-
-    /**
-     * @param string $path
-     * @return array
-     */
-    protected function getVendorsOrPackagesFromPath($path)
-    {
-        $return = array();
-        $iterator = new \DirectoryIterator($path);
-        foreach ($iterator as $element) {
-            if (!$element->isDir() || $element->isDot()) continue;
-            $return[] = $element->__toString();
-        }
-        return $return;
     }
 
     protected function executeCommand()
     {
-        if ($this->action == 'help') {
-            $this->listCommands('/' . $this->vendor . '/' . $this->package);
+        if (strtolower($this->action) == 'help') {
+            $this->loadPackageAndDisplayActions($this->environment->createPackage($this->vendor, $this->package));
             return;
         }
 
@@ -182,29 +142,28 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
      */
     protected function checkIfActionExists()
     {
-        require_once $this->getCommandControllerPath();
-        $name = $this->getCommandClassForVendorPackage($this->args[1], $this->args[2]);
-        $obj = $this->container->create($name, array($this->baseDir));
+        $controller = $this->getCommandController();;
         $action = $this->args[3] . 'Command';
-        if (!is_callable(array($obj, $action))) {
+        if (!is_callable(array($controller, $action))) {
             $this->out('Invalid action!');
             return false;
         }
-        return array($obj, $action);
+        return array($controller, $action);
     }
 
     /**
      * @return bool
      */
-    protected function validateVendorPackageArgs()
+    protected function validateArgs()
     {
         if (!isset($this->args[2]) || !isset($this->args[3])) {
             $this->out('Incomplete command!');
             return false;
         }
 
-        // check if controller exists
-        if (!file_exists($this->getCommandControllerPath())) {
+        try {
+            $this->getCommandController();
+        } catch (\Exception $e) {
             $this->out('Invalid command!');
             return false;
         }
@@ -213,88 +172,30 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
     }
 
     /**
-     * @param string $path
+     * @param \Bonefish\Core\Package $package
      */
-    protected function parseCommandsFromFile($path)
+    protected function loadPackageAndDisplayActions($package)
     {
-        if (file_exists($path)) {
-            return;
-        }
-        require_once $path;
-        $vendor = $this->getVendorFromControllerFromPath($path);
-        $package = $this->getPackageFromControllerFromPath($path);
-        $r = new \ReflectionClass($this->getCommandClassForVendorPackage($vendor, $package));
-        $this->out('<light_red>Vendor</light_red>: ' . $vendor . ' <light_red>Module</light_red>: ' . $package);
+        $this->out('<light_red>Vendor</light_red>: ' . $package->getVendor() . ' <light_red>Module</light_red>: ' . $package->getName());
         $this->border();
-        $this->getActionsFromController($r, $vendor, $package);
+        $this->displayActionsFromPackage($package);
         $this->br();
     }
 
     /**
-     * @param bool|string $vendor
-     * @param bool|string $package
-     * @return string
+     * @param \Bonefish\Core\Package $package
      */
-    protected function getCommandControllerPath($vendor = FALSE, $package = FALSE)
+    protected function displayActionsFromPackage($package)
     {
-        if (!$vendor && !$package) {
-            $vendor = $this->vendor;
-            $package = $this->package;
-        }
+        $controller = $package->getController(\Bonefish\Core\Package::TYPE_COMMAND);
+        $reflection = new \ReflectionClass($controller);
 
-        return $this->baseDir . self::MODULE_PATH . '/' . $vendor . '/' . $package . '/Controller/Command.php';
-    }
-
-    /**
-     * @param \ReflectionClass $reflection
-     * @param string $vendor
-     * @param string $package
-     */
-    protected function getActionsFromController(\ReflectionClass $reflection, $vendor, $package)
-    {
         foreach ($reflection->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
             preg_match('/([a-zA-Z]*)Command/', $method->getName(), $match);
             if (isset($match[1])) {
-                $this->out($vendor . ' ' . $package . ' ' . $match[1]);
+                $this->out($package->getVendor() . ' ' . $package->getName() . ' ' . $match[1]);
             }
         }
-    }
-
-    /**
-     * @param string $path
-     * @return string
-     */
-    protected function getVendorFromControllerFromPath($path)
-    {
-        return $this->getParts($path)[1];
-    }
-
-    /**
-     * @param string $path
-     * @return string
-     */
-    protected function getPackageFromControllerFromPath($path)
-    {
-        return $this->getParts($path)[2];
-    }
-
-    /**
-     * @param string $path
-     * @return array
-     */
-    private function getParts($path)
-    {
-        return explode('/', str_replace($this->baseDir . self::MODULE_PATH, '', $path));
-    }
-
-    /**
-     * @param string $vendor
-     * @param string $package
-     * @return string
-     */
-    protected function getCommandClassForVendorPackage($vendor, $package)
-    {
-        return '\\' . $vendor . '\\' . $package . '\Controller\Command';
     }
 
     /**
@@ -352,4 +253,14 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
         }
         return $parameter->getName();
     }
+
+    /**
+     * @return \Bonefish\Controller\Command
+     */
+    protected function getCommandController()
+    {
+        $package = $this->environment->createPackage($this->vendor, $this->package);
+        return $package->getController(\Bonefish\Core\Package::TYPE_COMMAND);
+    }
+
 } 
