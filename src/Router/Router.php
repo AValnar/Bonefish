@@ -33,16 +33,37 @@ class Router
      */
     public $container;
 
+    /**
+     * @var bool|string
+     */
     protected $vendor = FALSE;
 
+    /**
+     * @var bool|string
+     */
     protected $package = FALSE;
 
+    /**
+     * @var string
+     */
     protected $action;
 
+    /**
+     * @var array
+     */
     protected $parameter = array();
 
+    /**
+     * @var \Respect\Config\Container
+     */
     protected $config;
 
+    /**
+     * @param \League\Url\UrlImmutable $url
+     * @param string $baseDir
+     * @param \Bonefish\Autoloader\Autoloader $autoloader
+     * @param \Respect\Config\Container $config
+     */
     public function __construct($url,$baseDir,$autoloader,$config)
     {
         $this->url = $url;
@@ -78,6 +99,9 @@ class Router
         }
     }
 
+    /**
+     * @return string
+     */
     protected function resolveRoute()
     {
         $path = urldecode($this->url->getPath());
@@ -114,6 +138,10 @@ class Router
         return $this->baseDir.'/modules/'.$this->vendor.'/'.$this->package.'/bootstrap.php';
     }
 
+    /**
+     * @param mixed $controller
+     * @param string $action
+     */
     protected function sortParameters($controller,$action)
     {
         $r = \Nette\Reflection\Method::from($controller,$action);

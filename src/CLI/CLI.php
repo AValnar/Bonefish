@@ -86,10 +86,10 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
 
         $this->out('The following commands are present in your system:');
 
-        $vendors = $this->getVendors($path);
-        foreach($vendors as $vendor) {
-            $packages = $this->getPackages($path.'/' . $vendor);
-            foreach($packages as $package) {
+        $vendors = $this->getVendorsOrPackagesFromPath($path);
+        foreach ($vendors as $vendor) {
+            $packages = $this->getVendorsOrPackagesFromPath($path . '/' . $vendor);
+            foreach ($packages as $package) {
                 $commandControllerPath = $this->getCommandControllerPath($vendor, $package);
                 if (file_exists($commandControllerPath)) {
                     $this->parseCommandsFromFile($commandControllerPath);
@@ -98,26 +98,19 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
         }
     }
 
-    protected function getVendors($path)
+    /**
+     * @param string $path
+     * @return array
+     */
+    protected function getVendorsOrPackagesFromPath($path)
     {
-        $vendors = array();
-        $vendorIterator = new \DirectoryIterator($path);
-        foreach ($vendorIterator as $vendor) {
-            if (!$vendor->isDir() || $vendor->isDot()) continue;
-            $vendors[] = $vendor->__toString();
+        $return = array();
+        $iterator = new \DirectoryIterator($path);
+        foreach ($iterator as $element) {
+            if (!$element->isDir() || $element->isDot()) continue;
+            $return[] = $element->__toString();
         }
-        return $vendors;
-    }
-
-    protected function getPackages($path)
-    {
-        $packages = array();
-        $packageIterator = new \DirectoryIterator($path);
-        foreach ($packageIterator as $package) {
-            if (!$package->isDir() || $package->isDot()) continue;
-            $packages[] = $package->__toString();
-        }
-        return $packages;
+        return $return;
     }
 
     protected function executeCommand()
@@ -133,36 +126,42 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
             return;
         }
 
-        list($obj,$action) = $list;
+        list($obj, $action) = $list;
 
         if (isset($this->args[4]) && $this->args[4] == 'help') {
             $this->prettyPrint($obj, $action);
         } else {
-            call_user_func_array(array($obj,$action),array($this->buildParameterList()));
+            call_user_func_array(array($obj, $action), array($this->buildParameterList()));
         }
     }
 
+    /**
+     * @return array
+     */
     protected function buildParameterList()
     {
         $parameters = count($this->args) - 4;
         $params = array();
-        for($i = 0;$i < $parameters;$i++) {
-            $params[] = $this->args[(4+$i)];
+        for ($i = 0; $i < $parameters; $i++) {
+            $params[] = $this->args[(4 + $i)];
         }
         return $params;
     }
 
+    /**
+     * @return array|bool
+     */
     protected function checkIfActionExists()
     {
         require_once $this->getCommandControllerPath();
         $name = $this->getCommandClassForVendorPackage($this->args[1], $this->args[2]);
-        $obj = $this->container->create($name,array($this->baseDir));
+        $obj = $this->container->create($name, array($this->baseDir));
         $action = $this->args[3] . 'Command';
         if (!is_callable(array($obj, $action))) {
             $this->out('Invalid action!');
             return false;
         }
-        return array($obj,$action);
+        return array($obj, $action);
     }
 
     /**
@@ -266,9 +265,13 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
         return '\\' . $vendor . '\\' . $package . '\Controller\Command';
     }
 
-    protected function prettyPrint($oject, $action)
+    /**
+     * @param mixed $object
+     * @param string $action
+     */
+    protected function prettyPrint($object, $action)
     {
-        $r = \Nette\Reflection\Method::from($oject, $action);
+        $r = \Nette\Reflection\Method::from($object, $action);
 
         $this->printMethodSignatureAndDoc($r);
 
@@ -276,18 +279,25 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
         $this->out('Method Parameters:');
         $annotations = $r->hasAnnotation('param') ? $r->getAnnotations() : FALSE;
         foreach ($parameters as $key => $parameter) {
-            $doc = $this->getDocForParameter($parameter,$annotations,$key);
+            $doc = $this->getDocForParameter($parameter, $annotations, $key);
             $default = $this->getDefaultValueForParameter($parameter);
             $this->out('<light_blue>' . $doc . '</light_blue>' . $default);
         }
     }
 
+    /**
+     * @param \Nette\Reflection\Method $r
+     */
     protected function printMethodSignatureAndDoc($r)
     {
         $this->lightGray()->out($r->getDescription());
         $this->out($r->__toString())->br();
     }
 
+    /**
+     * @param \Nette\Reflection\Parameter $parameter
+     * @return string
+     */
     protected function getDefaultValueForParameter($parameter)
     {
         $default = '';
@@ -297,11 +307,17 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
         return $default;
     }
 
-    protected function getDocForParameter($parameter,$annotations,$key)
+    /**
+     * @param \Nette\Reflection\Parameter $parameter
+     * @param array $annotations
+     * @param int|string $key
+     * @return string
+     */
+    protected function getDocForParameter($parameter, $annotations, $key)
     {
-       if (isset($annotations['param'][$key])) {
-           return $annotations['param'][$key];
-       }
-       return $parameter->getName();
+        if (isset($annotations['param'][$key])) {
+            return $annotations['param'][$key];
+        }
+        return $parameter->getName();
     }
 } 
