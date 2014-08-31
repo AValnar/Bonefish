@@ -4,12 +4,12 @@ namespace Bonefish\HelloWorld\Controller;
 class Command extends \Bonefish\Controller\Command
 {
 
-    /**
-     * Print 'Hello World'
-     */
-    function helloCommand()
+	/**
+	 * TODO: implement mainCommand
+	 */
+	function mainCommand()
 	{
-        $this->out('Hello World!');
+
 	}
 
 }

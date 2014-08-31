@@ -7,10 +7,18 @@ class Controller extends \Bonefish\Controller\Base
 	/**
 	 * TODO: implement indexAction
 	 */
-	function indexAction()
+	public function indexAction()
 	{
-
+        echo 'Hello World';
 	}
+
+    /**
+     * @param $name
+     */
+    public function helloAction($name)
+    {
+        echo 'Hello '.$name.'!';
+    }
 
 }
 

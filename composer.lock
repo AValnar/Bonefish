@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "026bf774e7048ffc391227c31270e6b5",
+    "hash": "9c83d8028d4f13eed0959c4f77e448f5",
     "packages": [
         {
             "name": "av/bonefish-core",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/AValnar/Bonefish-Core.git",
-                "reference": "e87dc67d168d26169d07b544ef049228b66e5ca9"
+                "reference": "cb25eefff415ee8e4290dcb1fc59bd34769fc7b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AValnar/Bonefish-Core/zipball/e87dc67d168d26169d07b544ef049228b66e5ca9",
-                "reference": "e87dc67d168d26169d07b544ef049228b66e5ca9",
+                "url": "https://api.github.com/repos/AValnar/Bonefish-Core/zipball/cb25eefff415ee8e4290dcb1fc59bd34769fc7b0",
+                "reference": "cb25eefff415ee8e4290dcb1fc59bd34769fc7b0",
                 "shasum": ""
             },
             "require": {
@@ -31,7 +31,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "This Project maintains the Bonefish PSR-4 Autoloader,Mysqli Database Wrapper and Dependency Injection Container",
-            "time": "2014-08-27 18:43:10"
+            "time": "2014-08-31 11:00:00"
         },
         {
             "name": "cocur/slugify",
@@ -244,6 +244,63 @@
                 "twig"
             ],
             "time": "2014-08-24 18:16:06"
+        },
+        {
+            "name": "league/url",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/url.git",
+                "reference": "e74554df45ed7d2a66b2dea3bf37f03c9a92048a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/url/zipball/e74554df45ed7d2a66b2dea3bf37f03c9a92048a",
+                "reference": "e74554df45ed7d2a66b2dea3bf37f03c9a92048a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.3.0",
+                "true/punycode": "~1.0"
+            },
+            "replace": {
+                "bakame/url": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "2.0.*@dev"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Url\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ignace Nyamagana Butera",
+                    "email": "nyamsprod@gmail.com",
+                    "homepage": "https://github.com/nyamsprod/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "League/url is a lightweight PHP Url manipulating library",
+            "keywords": [
+                "parse_url",
+                "php",
+                "url"
+            ],
+            "time": "2014-07-30 10:09:17"
         },
         {
             "name": "nette/caching",
@@ -811,12 +868,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "7d7178c0442a437cf62cea11dfff06f8301b3348"
+                "reference": "f85d3610ab8a62d9201e7e736e1091db171c6030"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/7d7178c0442a437cf62cea11dfff06f8301b3348",
-                "reference": "7d7178c0442a437cf62cea11dfff06f8301b3348",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/f85d3610ab8a62d9201e7e736e1091db171c6030",
+                "reference": "f85d3610ab8a62d9201e7e736e1091db171c6030",
                 "shasum": ""
             },
             "require": {
@@ -862,7 +919,54 @@
                 "debugger",
                 "nette"
             ],
-            "time": "2014-08-29 19:30:32"
+            "time": "2014-08-31 09:48:06"
+        },
+        {
+            "name": "true/punycode",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/true/php-punycode.git",
+                "reference": "59dca474914324763397be2ea3d6ad3bc48f4688"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/true/php-punycode/zipball/59dca474914324763397be2ea3d6ad3bc48f4688",
+                "reference": "59dca474914324763397be2ea3d6ad3bc48f4688",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.x",
+                "satooshi/php-coveralls": "dev-master",
+                "squizlabs/php_codesniffer": "2.0.x-dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "True\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Renan Gonçalves",
+                    "email": "renan.saddam@gmail.com"
+                }
+            ],
+            "description": "A Bootstring encoding of Unicode for Internationalized Domain Names in Applications (IDNA)",
+            "homepage": "https://github.com/true/php-punycode",
+            "keywords": [
+                "idna",
+                "punycode"
+            ],
+            "time": "2014-08-26 14:21:01"
         }
     ],
     "packages-dev": [
@@ -882,7 +986,8 @@
         "nette/php-generator": 20,
         "respect/validation": 20,
         "respect/relational": 20,
-        "swiftmailer/swiftmailer": 20
+        "swiftmailer/swiftmailer": 20,
+        "league/url": 20
     },
     "prefer-stable": false,
     "platform": [

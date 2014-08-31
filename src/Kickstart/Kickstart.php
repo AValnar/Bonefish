@@ -59,6 +59,15 @@ class Kickstart {
         return $header;
     }
 
+    protected function createBootstrap()
+    {
+        $boostrap = new p\PhpFile();
+        $content = 'return array(
+    \'autoloader\' => array(\''.$this->vendor.'\\'.$this->name.'\',\'/modules/'.$this->vendor.'/'.$this->name.'\')
+);';
+        return $boostrap->__toString().PHP_EOL.$content;
+    }
+
     protected function createController($path,$type)
     {
         // Create Controller
@@ -69,5 +78,6 @@ class Kickstart {
         $this->createDirectoryIfNotExist($controllerPath);
         $content = $header->__toString().PHP_EOL.$controller->__toString().PHP_EOL;
         file_put_contents($controllerFilename,$content);
+        file_put_contents($path.'/bootstrap.php',$this->createBootstrap());
     }
 } 

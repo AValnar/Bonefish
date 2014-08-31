@@ -7,9 +7,10 @@ class Command extends \Bonefish\Controller\Command
 	/**
 	 * TODO: implement mainCommand
 	 */
-	function mainCommand()
+	function moduleCommand($name,$vendor)
 	{
-        echo 'Main command called'.PHP_EOL;
+        $kickstarter = new \Bonefish\Kickstart\Kickstart($this->baseDir);
+        $kickstarter->module($name,$vendor);
 	}
 
 }

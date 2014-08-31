@@ -111,7 +111,7 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
         // check if action exists
         require_once $this->getCommandControllerPath();
         $name = $this->getCommandClassForVendorPackage($this->args[1], $this->args[2]);
-        $obj = $this->container->create($name);
+        $obj = $this->container->create($name,array($this->baseDir));
         $action = $this->args[3] . 'Command';
         if (!is_callable(array($obj, $action))) {
             $this->out('Invalid action!');
