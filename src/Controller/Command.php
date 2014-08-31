@@ -9,6 +9,8 @@
 namespace Bonefish\Controller;
 
 
-class Command {
+class Command extends \JoeTannenbaum\CLImate\CLImate
+{
+
 
 } 

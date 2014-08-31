@@ -13,7 +13,9 @@ if (!file_exists($composerAutoload))
 
 require $baseDir . '/vendor/autoload.php';
 
-$cli = new Bonefish\CLI\CLI($argv,$baseDir);
+$container = new Bonefish\DependencyInjection\Container();
+
+$cli = $container->create('Bonefish\CLI\CLI',array($argv,$baseDir));
 $cli->execute();
 
 exit(0);

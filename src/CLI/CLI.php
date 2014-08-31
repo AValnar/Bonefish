@@ -38,6 +38,12 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
     const MODULE_PATH = '/modules';
 
     /**
+     * @var \Bonefish\DependencyInjection\Container
+     * @inject
+     */
+    public $container;
+
+    /**
      * @param array $args
      * @param string $baseDir
      */
@@ -83,10 +89,10 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
         $vendorIterator = new \DirectoryIterator($path);
         foreach ($vendorIterator as $vendor) {
             if (!$vendor->isDir() || $vendor->isDot()) continue;
-            $packageIterator = new \DirectoryIterator($this->baseDir . self::MODULE_PATH.'/'.$vendor);
+            $packageIterator = new \DirectoryIterator($this->baseDir . self::MODULE_PATH . '/' . $vendor);
             foreach ($packageIterator as $package) {
                 if (!$package->isDir() || $package->isDot()) continue;
-                $path = $this->getCommandControllerPath($vendor->__toString(),$package->__toString());
+                $path = $this->getCommandControllerPath($vendor->__toString(), $package->__toString());
                 if (file_exists($path)) {
                     $this->parseCommandsFromFile($path);
                 }
@@ -105,19 +111,36 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
         // check if action exists
         require_once $this->getCommandControllerPath();
         $name = $this->getCommandClassForVendorPackage($this->args[1], $this->args[2]);
-        $obj = new $name;
+        $obj = $this->container->create($name);
         $action = $this->args[3] . 'Command';
         if (!is_callable(array($obj, $action))) {
             $this->out('Invalid action!');
             return;
         }
         if (isset($this->args[4]) && $this->args[4] == 'help') {
-            $r = new \ReflectionClass($obj);
-            $method = $r->getMethod($action);
-            // TODO: prettify
-            $this->out($method->__toString());
+            $this->prettyPrint($obj, $action);
         } else {
-            $obj->{$action}();
+            $parameters = count($this->args) - 4;
+            switch ($parameters) {
+                case 0:
+                    $obj->{$action}();
+                    break;
+                case 1:
+                    $obj->{$action}($this->args[4]);
+                    break;
+                case 2:
+                    $obj->{$action}($this->args[4], $this->args[5]);
+                    break;
+                case 3:
+                    $obj->{$action}($this->args[4], $this->args[5], $this->args[6]);
+                    break;
+                case 4:
+                    $obj->{$action}($this->args[4], $this->args[5], $this->args[6], $this->args[7]);
+                    break;
+                case 5:
+                    $obj->{$action}($this->args[4], $this->args[5], $this->args[6], $this->args[7], $this->args[8]);
+                    break;
+            }
         }
     }
 
@@ -220,5 +243,25 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
     protected function getCommandClassForVendorPackage($vendor, $package)
     {
         return '\\' . $vendor . '\\' . $package . '\Controller\Command';
+    }
+
+    protected function prettyPrint($oject, $action)
+    {
+        $r = \Nette\Reflection\Method::from($oject, $action);
+
+        $this->lightGray($r->getDescription());
+        $this->out($r->__toString())->br();
+
+        $parameters = $r->getParameters();
+        $this->out('Method Parameters:');
+        $annotations = $r->hasAnnotation('param') ? $r->getAnnotations() : FALSE;
+        foreach ($parameters as $key => $parameter) {
+            $text = isset($annotations['param'][$key]) ? $annotations['param'][$key] : $parameter->getName();
+            unset($default);
+            if ($parameter->isDefaultValueAvailable()) {
+                $default = ' = ' . var_export($parameter->getDefaultValue(), true);
+            }
+            $this->out('<light_blue>' . $text . '</light_blue>' . (isset($default) ? $default : ''));
+        }
     }
 } 
