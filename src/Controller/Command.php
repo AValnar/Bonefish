@@ -18,4 +18,13 @@ class Command extends \JoeTannenbaum\CLImate\CLImate
         parent::__construct();
         $this->baseDir = $baseDir;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getBaseDir()
+    {
+        return $this->baseDir;
+    }
+
 } 

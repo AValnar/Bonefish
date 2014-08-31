@@ -78,11 +78,7 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
      */
     protected function listCommands($package = '')
     {
-        $path = $this->baseDir . self::MODULE_PATH;
-
-        if ($package != '') {
-            $path .= $package;
-        }
+        $path = $this->getPathForCommandList($package);
 
         $this->out('The following commands are present in your system:');
 
@@ -91,11 +87,20 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
             $packages = $this->getVendorsOrPackagesFromPath($path . '/' . $vendor);
             foreach ($packages as $package) {
                 $commandControllerPath = $this->getCommandControllerPath($vendor, $package);
-                if (file_exists($commandControllerPath)) {
-                    $this->parseCommandsFromFile($commandControllerPath);
-                }
+                $this->parseCommandsFromFile($commandControllerPath);
             }
         }
+    }
+
+    protected function getPathForCommandList($package)
+    {
+        $path = $this->baseDir . self::MODULE_PATH;
+
+        if ($package != '') {
+            $path .= $package;
+        }
+
+        return $path;
     }
 
     /**
@@ -120,13 +125,16 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
             return;
         }
 
-        $list = $this->checkIfActionExists();
-
-        if (!$list) {
+        if (!$this->checkIfActionExists()) {
             return;
         }
 
-        list($obj, $action) = $list;
+        $this->callAction();
+    }
+
+    protected function callAction()
+    {
+        list($obj, $action) = $this->checkIfActionExists();
 
         if (isset($this->args[4]) && $this->args[4] == 'help') {
             $this->prettyPrint($obj, $action);
@@ -188,6 +196,9 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
      */
     protected function parseCommandsFromFile($path)
     {
+        if (file_exists($path)) {
+            return;
+        }
         require_once $path;
         $vendor = $this->getVendorFromControllerFromPath($path);
         $package = $this->getPackageFromControllerFromPath($path);
