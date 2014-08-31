@@ -9,7 +9,7 @@ class Command extends \Bonefish\Controller\Command
 	 */
 	function mainCommand()
 	{
-
+        $this->out('Hello World');
 	}
 
 }
