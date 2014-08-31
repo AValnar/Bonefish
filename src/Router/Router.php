@@ -39,18 +39,6 @@ class Router
     public $environment;
 
     /**
-     * @var \Bonefish\Autoloader\Autoloader
-     * @inject
-     */
-    public $autoloader;
-
-    /**
-     * @var \Bonefish\DependencyInjection\Container
-     * @inject
-     */
-    public $container;
-
-    /**
      * @var bool|string
      */
     protected $vendor = FALSE;
@@ -91,7 +79,7 @@ class Router
     {
         try {
             $this->resolveRoute();
-            $package = $this->$environment->createPackage($this->vendor,$this->package);
+            $package = $this->environment->createPackage($this->vendor,$this->package);
             $controller = $package->getController(\Bonefish\Core\Package::TYPE_CONTROLLER);
         } catch (\Exception $e) {
             die('No Route found!');
