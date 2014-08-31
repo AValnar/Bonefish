@@ -68,7 +68,7 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
             $this->listCommands();
         } else {
             if ($this->validateVendorPackageArgs()) {
-                $this->executeCommand($this->vendor);
+                $this->executeCommand();
             }
         }
     }
@@ -121,26 +121,11 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
             $this->prettyPrint($obj, $action);
         } else {
             $parameters = count($this->args) - 4;
-            switch ($parameters) {
-                case 0:
-                    $obj->{$action}();
-                    break;
-                case 1:
-                    $obj->{$action}($this->args[4]);
-                    break;
-                case 2:
-                    $obj->{$action}($this->args[4], $this->args[5]);
-                    break;
-                case 3:
-                    $obj->{$action}($this->args[4], $this->args[5], $this->args[6]);
-                    break;
-                case 4:
-                    $obj->{$action}($this->args[4], $this->args[5], $this->args[6], $this->args[7]);
-                    break;
-                case 5:
-                    $obj->{$action}($this->args[4], $this->args[5], $this->args[6], $this->args[7], $this->args[8]);
-                    break;
+            $params = array();
+            for($i = 0;$i < $parameters;$i++) {
+                $params[] = $this->args[(4+$i)];
             }
+            call_user_func_array(array($obj,$action),array($params));
         }
     }
 
@@ -249,7 +234,7 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
     {
         $r = \Nette\Reflection\Method::from($oject, $action);
 
-        $this->lightGray($r->getDescription());
+        $this->lightGray()->out($r->getDescription());
         $this->out($r->__toString())->br();
 
         $parameters = $r->getParameters();
