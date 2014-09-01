@@ -22,6 +22,11 @@ class Environment {
     protected $modulePath;
 
     /**
+     * @var string
+     */
+    protected $configurationPath;
+
+    /**
      * @var \Bonefish\DependencyInjection\Container
      * @inject
      */
@@ -69,6 +74,32 @@ class Environment {
     public function getFullModulePath()
     {
         return $this->basePath.$this->modulePath;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullConfigurationPath()
+    {
+        return $this->basePath.$this->configurationPath;
+    }
+
+    /**
+     * @param string $configurationPath
+     * @return self
+     */
+    public function setConfigurationPath($configurationPath)
+    {
+        $this->configurationPath = $configurationPath;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getConfigurationPath()
+    {
+        return $this->configurationPath;
     }
 
     /**

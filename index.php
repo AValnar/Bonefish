@@ -41,11 +41,11 @@ $container->add('\Bonefish\Autoloader\Autoloader',$autoloader);
 /** @var \Bonefish\Core\Environment $environment */
 $environment = $container->get('\Bonefish\Core\Environment')
                 ->setBasePath($baseDir)
-                ->setModulePath('/modules');
+                ->setModulePath('/modules')
+                ->setConfigurationPath('/configuration');
 
 $url = League\Url\UrlImmutable::createFromServer($_SERVER);
-$routeConfig = new Respect\Config\Container($baseDir.'/configuration/route.ini');
-$router = $container->create('Bonefish\Router\Router',array($url,$routeConfig));
+$router = $container->create('Bonefish\Router\Router',array($url));
 $router->route();
 
 

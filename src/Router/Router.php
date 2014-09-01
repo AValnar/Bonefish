@@ -39,14 +39,14 @@ class Router
     public $environment;
 
     /**
-     * @var bool|string
+     * @var string
      */
-    protected $vendor = FALSE;
+    protected $vendor = '';
 
     /**
-     * @var bool|string
+     * @var string
      */
-    protected $package = FALSE;
+    protected $package = '';
 
     /**
      * @var string
@@ -66,13 +66,22 @@ class Router
     protected $config;
 
     /**
-     * @param \League\Url\UrlImmutable $url
-     * @param \Respect\Config\Container $config
+     * @var \Bonefish\Core\ConfigurationManager
+     * @inject
      */
-    public function __construct($url,$config)
+    public $configurationManager;
+
+    /**
+     * @param \League\Url\UrlImmutable $url
+     */
+    public function __construct($url)
     {
         $this->url = $url;
-        $this->config = $config;
+    }
+
+    public function __init()
+    {
+        $this->config = $this->configurationManager->getConfiguration('route.ini');
     }
 
     public function route()
@@ -146,7 +155,7 @@ class Router
      */
     protected function setDefault($value)
     {
-        if (!$this->{$value}) {
+        if ($this->{$value} == '') {
             $this->{$value} = $this->config->{$value};
         }
     }
