@@ -8,7 +8,7 @@
 
 namespace Bonefish\Tests\Router;
 
-include '/modules/Bonefish/Kickstart/Controller/Controller.php';
+include __DIR__.'../../modules/Bonefish/Kickstart/Controller/Controller.php';
 
 class RouterTest extends \PHPUnit_Framework_TestCase {
 
