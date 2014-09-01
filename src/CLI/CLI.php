@@ -66,7 +66,7 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
     {
         parent::__construct();
         $this->args = $args;
-        $this->vendor = $args[1];
+        $this->vendor = isset($args[1]) ? $args[1] : '';
         $this->package = isset($args[2]) ? $args[2] : '';
         $this->action = isset($args[3]) ? $args[3] : '';
     }
@@ -120,7 +120,7 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
         if (isset($this->args[4]) && $this->args[4] == 'help') {
             $this->prettyPrint($obj, $action);
         } else {
-            call_user_func_array(array($obj, $action), array($this->buildParameterList()));
+            call_user_func_array(array($obj, $action), $this->buildParameterList());
         }
     }
 

@@ -20,6 +20,11 @@ class ConfigurationManager
      */
     public $environment;
 
+    /**
+     * @param string $name
+     * @return \Respect\Config\Container
+     * @throws \InvalidArgumentException
+     */
     public function getConfiguration($name)
     {
         if (!isset($this->configurations[$name])) {

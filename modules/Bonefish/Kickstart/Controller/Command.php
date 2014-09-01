@@ -10,14 +10,23 @@ class Command extends \Bonefish\Controller\Command
      */
     public $container;
 
-	/**
-	 * TODO: implement mainCommand
-	 */
-	function moduleCommand($name,$vendor)
+    /**
+     * @param string $name
+     * @param string $vendor
+     */
+    function moduleCommand($name,$vendor)
 	{
         $kickstarter = $this->container->get('\Bonefish\Kickstart\Kickstart');
         $kickstarter->module($name,$vendor);
 	}
+
+    /**
+     * @param string $test
+     */
+    public function unitCommand($test = '',$var)
+    {
+
+    }
 
 }
 

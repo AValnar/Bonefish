@@ -91,7 +91,7 @@ class Router
             $package = $this->environment->createPackage($this->vendor,$this->package);
             $controller = $package->getController(\Bonefish\Core\Package::TYPE_CONTROLLER);
         } catch (\Exception $e) {
-            die('No Route found!');
+            throw new \Exception('No Route found!');
         }
 
         $action = $this->action.'Action';
