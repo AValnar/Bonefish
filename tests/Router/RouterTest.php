@@ -8,8 +8,6 @@
 
 namespace Bonefish\Tests\Router;
 
-include __DIR__.'../../modules/Bonefish/Kickstart/Controller/Controller.php';
-
 class RouterTest extends \PHPUnit_Framework_TestCase {
 
     public function testInit()

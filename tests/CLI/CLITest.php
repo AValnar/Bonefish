@@ -8,8 +8,6 @@
 
 namespace Bonefish\Tests\CLI;
 
-include __DIR__.'../../modules/Bonefish/Kickstart/Controller/Command.php';
-
 class CLITest extends \PHPUnit_Framework_TestCase
 {
 

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5bcc8d1277990aea52350b22a8669149",
+    "hash": "5c149dcfd40fee1b5fe770c47d38539a",
     "packages": [
         {
             "name": "av/bonefish-autoloader",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/AValnar/Bonefish-Autoloader.git",
-                "reference": "1f77586469d9a2fab611bac8f6c9aada5621c627"
+                "reference": "736cc175a6a71fb653191c25351ed32b672be429"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AValnar/Bonefish-Autoloader/zipball/1f77586469d9a2fab611bac8f6c9aada5621c627",
-                "reference": "1f77586469d9a2fab611bac8f6c9aada5621c627",
+                "url": "https://api.github.com/repos/AValnar/Bonefish-Autoloader/zipball/736cc175a6a71fb653191c25351ed32b672be429",
+                "reference": "736cc175a6a71fb653191c25351ed32b672be429",
                 "shasum": ""
             },
             "require": {
@@ -31,7 +31,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "This Project maintains the Bonefish PSR-4 Autoloader",
-            "time": "2014-08-31 16:40:49"
+            "time": "2014-09-01 20:18:12"
         },
         {
             "name": "av/bonefish-di",
@@ -39,12 +39,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/AValnar/Bonefish-DI.git",
-                "reference": "1ae42f2d23d83a04f04f5f8ac587cb82281fddc5"
+                "reference": "a7e538344d011dbb29c4384ba087c9a8098878b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AValnar/Bonefish-DI/zipball/1ae42f2d23d83a04f04f5f8ac587cb82281fddc5",
-                "reference": "1ae42f2d23d83a04f04f5f8ac587cb82281fddc5",
+                "url": "https://api.github.com/repos/AValnar/Bonefish-DI/zipball/a7e538344d011dbb29c4384ba087c9a8098878b5",
+                "reference": "a7e538344d011dbb29c4384ba087c9a8098878b5",
                 "shasum": ""
             },
             "require": {
@@ -58,7 +58,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "This Project maintains the Bonefish Dependency Injection Container",
-            "time": "2014-08-31 16:35:35"
+            "time": "2014-09-01 20:17:08"
         },
         {
             "name": "cocur/slugify",
@@ -66,12 +66,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cocur/slugify.git",
-                "reference": "69c2d2db3b5212a3a449ea8d01fae34d4438ca43"
+                "reference": "d71060f966a2632ce1db00b1511f66d5cd6931ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cocur/slugify/zipball/69c2d2db3b5212a3a449ea8d01fae34d4438ca43",
-                "reference": "69c2d2db3b5212a3a449ea8d01fae34d4438ca43",
+                "url": "https://api.github.com/repos/cocur/slugify/zipball/d71060f966a2632ce1db00b1511f66d5cd6931ea",
+                "reference": "d71060f966a2632ce1db00b1511f66d5cd6931ea",
                 "shasum": ""
             },
             "require": {
@@ -115,7 +115,7 @@
                 "slug",
                 "slugify"
             ],
-            "time": "2014-08-26 19:17:51"
+            "time": "2014-09-01 12:18:56"
         },
         {
             "name": "illuminate/support",
@@ -278,12 +278,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/url.git",
-                "reference": "e74554df45ed7d2a66b2dea3bf37f03c9a92048a"
+                "reference": "2ededbb687e8eb3c55f3f31dc8385b61193f310a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/url/zipball/e74554df45ed7d2a66b2dea3bf37f03c9a92048a",
-                "reference": "e74554df45ed7d2a66b2dea3bf37f03c9a92048a",
+                "url": "https://api.github.com/repos/thephpleague/url/zipball/2ededbb687e8eb3c55f3f31dc8385b61193f310a",
+                "reference": "2ededbb687e8eb3c55f3f31dc8385b61193f310a",
                 "shasum": ""
             },
             "require": {
@@ -327,7 +327,7 @@
                 "php",
                 "url"
             ],
-            "time": "2014-07-30 10:09:17"
+            "time": "2014-09-01 10:37:53"
         },
         {
             "name": "nette/caching",
@@ -895,12 +895,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "c7a380d25dee6328d096bd70ba91dcccaae464c6"
+                "reference": "56a61a54ff8461a4b2d76cb4e63448bfb55b00f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/c7a380d25dee6328d096bd70ba91dcccaae464c6",
-                "reference": "c7a380d25dee6328d096bd70ba91dcccaae464c6",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/56a61a54ff8461a4b2d76cb4e63448bfb55b00f3",
+                "reference": "56a61a54ff8461a4b2d76cb4e63448bfb55b00f3",
                 "shasum": ""
             },
             "require": {
@@ -946,7 +946,7 @@
                 "debugger",
                 "nette"
             ],
-            "time": "2014-08-31 16:40:18"
+            "time": "2014-09-01 11:17:14"
         },
         {
             "name": "true/punycode",
