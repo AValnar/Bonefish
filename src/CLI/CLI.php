@@ -66,9 +66,9 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
     {
         parent::__construct();
         $this->args = $args;
-        $this->vendor = isset($args[1]) ? $args[1] : '';
-        $this->package = isset($args[2]) ? $args[2] : '';
-        $this->action = isset($args[3]) ? $args[3] : '';
+        $this->vendor = $this->setArgIfIsset(1);
+        $this->package = $this->setArgIfIsset(2);
+        $this->action = $this->setArgIfIsset(3);
     }
 
     /**
@@ -261,6 +261,11 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
     {
         $package = $this->environment->createPackage($this->vendor, $this->package);
         return $package->getController(\Bonefish\Core\Package::TYPE_COMMAND);
+    }
+
+    protected function setArgIfIsset($key)
+    {
+        return isset($this->args[$key]) ? $this->args[$key] : '';
     }
 
 } 

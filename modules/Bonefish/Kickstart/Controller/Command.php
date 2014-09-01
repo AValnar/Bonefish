@@ -25,7 +25,7 @@ class Command extends \Bonefish\Controller\Command
      */
     public function unitCommand($test = '',$var)
     {
-
+        return $test.$var;
     }
 
 }

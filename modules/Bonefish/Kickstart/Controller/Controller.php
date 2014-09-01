@@ -18,7 +18,7 @@ class Controller extends \Bonefish\Controller\Base
      */
     public function unitAction($foo,$bar)
     {
-
+        return $foo.$bar;
     }
 
 }
