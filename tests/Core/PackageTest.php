@@ -61,11 +61,9 @@ class PackageTest extends \PHPUnit_Framework_TestCase
             ->getMock();
         $enviormentMock->expects($this->once())
             ->method('getFullModulePath')
-            ->will($this->returnValue(__DIR__ . '\..\..\modules'));
+            ->will($this->returnValue(''));
         $this->package->environment = $enviormentMock;
         $autoloader = $this->getMock('\Bonefish\Autoloader\Autoloader');
-        $autoloader->expects($this->once())
-            ->method('addNamespace');
         $this->package->autoloader = $autoloader;
         $this->package->mapAutoloader();
         $this->package->mapAutoloader();
