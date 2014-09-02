@@ -8,7 +8,8 @@
 
 namespace Bonefish\Tests\Router;
 
-class RouterTest extends \PHPUnit_Framework_TestCase {
+class RouterTest extends \PHPUnit_Framework_TestCase
+{
 
     public function testInit()
     {
@@ -55,7 +56,7 @@ class RouterTest extends \PHPUnit_Framework_TestCase {
             ->getMock();
         $enviormentMock->expects($this->once())
             ->method('createPackage')
-            ->with('foo','bar')
+            ->with('foo', 'bar')
             ->will($this->throwException(new \Exception()));
 
         $url = \League\Url\UrlImmutable::createFromUrl('');
@@ -76,7 +77,7 @@ class RouterTest extends \PHPUnit_Framework_TestCase {
             ->getMock();
         $enviormentMock->expects($this->once())
             ->method('createPackage')
-            ->with('foo','bar')
+            ->with('foo', 'bar')
             ->will($this->throwException(new \Exception()));
 
         $url = \League\Url\UrlImmutable::createFromUrl('bonefish.com/v:foo/p:bar');
@@ -92,7 +93,7 @@ class RouterTest extends \PHPUnit_Framework_TestCase {
             array()
         );
         $controllerMock->expects($this->once())
-        ->method('indexAction');
+            ->method('indexAction');
 
         $packageMock = $this->getMock(
             '\Bonefish\Core\Package',
@@ -108,7 +109,7 @@ class RouterTest extends \PHPUnit_Framework_TestCase {
             ->getMock();
         $enviormentMock->expects($this->once())
             ->method('createPackage')
-            ->with('Bonefish','Kickstart')
+            ->with('Bonefish', 'Kickstart')
             ->will($this->returnValue($packageMock));
 
         $url = \League\Url\UrlImmutable::createFromUrl('bonefish.com/v:Bonefish/p:Kickstart');
@@ -125,7 +126,7 @@ class RouterTest extends \PHPUnit_Framework_TestCase {
         );
         $controllerMock->expects($this->once())
             ->method('unitAction')
-            ->with('foo','bar');
+            ->with('foo', 'bar');
 
         $packageMock = $this->getMock(
             '\Bonefish\Core\Package',
@@ -141,7 +142,7 @@ class RouterTest extends \PHPUnit_Framework_TestCase {
             ->getMock();
         $enviormentMock->expects($this->once())
             ->method('createPackage')
-            ->with('Bonefish','Kickstart')
+            ->with('Bonefish', 'Kickstart')
             ->will($this->returnValue($packageMock));
 
         $url = \League\Url\UrlImmutable::createFromUrl('bonefish.com/v:Bonefish/p:Kickstart/a:unit/foo:foo/bar:bar');

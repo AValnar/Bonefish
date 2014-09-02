@@ -28,7 +28,7 @@ class ConfigurationManager
     public function getConfiguration($name)
     {
         if (!isset($this->configurations[$name])) {
-            $path = $this->environment->getFullConfigurationPath().'/'.$name;
+            $path = $this->environment->getFullConfigurationPath() . '/' . $name;
             if (!file_exists($path)) {
                 throw new \InvalidArgumentException('Configuration does not exist!');
             }

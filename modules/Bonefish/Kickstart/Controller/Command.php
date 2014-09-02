@@ -14,18 +14,18 @@ class Command extends \Bonefish\Controller\Command
      * @param string $name
      * @param string $vendor
      */
-    function moduleCommand($name,$vendor)
-	{
+    public function moduleCommand($name, $vendor)
+    {
         $kickstarter = $this->container->get('\Bonefish\Kickstart\Kickstart');
-        $kickstarter->module($name,$vendor);
-	}
+        $kickstarter->module($name, $vendor);
+    }
 
     /**
      * @param string $test
      */
-    public function unitCommand($test = '',$var)
+    public function unitCommand($test = '', $var)
     {
-        return $test.$var;
+        return $test . $var;
     }
 
 }

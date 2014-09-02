@@ -88,25 +88,25 @@ class Router
     {
         try {
             $this->resolveRoute();
-            $package = $this->environment->createPackage($this->vendor,$this->package);
+            $package = $this->environment->createPackage($this->vendor, $this->package);
             $controller = $package->getController(\Bonefish\Core\Package::TYPE_CONTROLLER);
         } catch (\Exception $e) {
             throw new \Exception('No Route found!');
         }
 
-        $action = $this->action.'Action';
-        $this->callControllerAction($action,$controller);
+        $action = $this->action . 'Action';
+        $this->callControllerAction($action, $controller);
     }
 
     /**
      * @param string $action
      * @param mixed $controller
      */
-    protected function callControllerAction($action,$controller)
+    protected function callControllerAction($action, $controller)
     {
-        if (is_callable(array($controller,$action))) {
-            $this->sortParameters($controller,$action);
-            call_user_func_array(array($controller,$action),$this->parameter);
+        if (is_callable(array($controller, $action))) {
+            $this->sortParameters($controller, $action);
+            call_user_func_array(array($controller, $action), $this->parameter);
         } else {
             $controller->indexAction();
         }
@@ -118,9 +118,9 @@ class Router
     protected function resolveRoute()
     {
         $path = urldecode($this->url->getPath());
-        $parts = explode('/',$path);
+        $parts = explode('/', $path);
 
-        foreach($parts as $part) {
+        foreach ($parts as $part) {
             $this->setVendorPackageAndActionFromUrl($part);
         }
 
@@ -130,11 +130,11 @@ class Router
 
     protected function setVendorPackageAndActionFromUrl($part)
     {
-        $ex = explode(':',$part,2);
+        $ex = explode(':', $part, 2);
         if (!isset($ex[1])) {
             return;
         }
-        switch($ex[0]) {
+        switch ($ex[0]) {
             case 'v':
                 $this->vendor = $ex[1];
                 break;
@@ -164,12 +164,12 @@ class Router
      * @param mixed $controller
      * @param string $action
      */
-    protected function sortParameters($controller,$action)
+    protected function sortParameters($controller, $action)
     {
-        $r = \Nette\Reflection\Method::from($controller,$action);
+        $r = \Nette\Reflection\Method::from($controller, $action);
         $userParams = array();
         $methodParams = $r->getParameters();
-        foreach($methodParams as $key => $parameter) {
+        foreach ($methodParams as $key => $parameter) {
             if (isset($this->parameter[$parameter->getName()])) {
                 $userParams[$key] = $this->parameter[$parameter->getName()];
             }

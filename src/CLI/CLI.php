@@ -142,7 +142,7 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
      */
     protected function checkIfActionExists()
     {
-        $controller = $this->getCommandController();;
+        $controller = $this->getCommandController();
         $action = $this->args[3] . 'Command';
         if (!is_callable(array($controller, $action))) {
             $this->out('Invalid action!');

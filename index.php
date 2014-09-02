@@ -36,16 +36,16 @@ $container = new Bonefish\DependencyInjection\Container();
 
 $autoloader = new Bonefish\Autoloader\Autoloader();
 $autoloader->register();
-$container->add('\Bonefish\Autoloader\Autoloader',$autoloader);
+$container->add('\Bonefish\Autoloader\Autoloader', $autoloader);
 
 /** @var \Bonefish\Core\Environment $environment */
 $environment = $container->get('\Bonefish\Core\Environment')
-                ->setBasePath($baseDir)
-                ->setModulePath('/modules')
-                ->setConfigurationPath('/configuration');
+    ->setBasePath($baseDir)
+    ->setModulePath('/modules')
+    ->setConfigurationPath('/configuration');
 
 $url = League\Url\UrlImmutable::createFromServer($_SERVER);
-$router = $container->create('Bonefish\Router\Router',array($url));
+$router = $container->create('Bonefish\Router\Router', array($url));
 $router->route();
 
 

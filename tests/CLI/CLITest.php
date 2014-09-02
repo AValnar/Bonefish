@@ -126,10 +126,10 @@ class CLITest extends \PHPUnit_Framework_TestCase
             ->getMock();
         $enviormentMock->expects($this->any())
             ->method('createPackage')
-            ->with('Bonefish','Kickstart')
+            ->with('Bonefish', 'Kickstart')
             ->will($this->returnValue($packageMock));
 
-        $cli = new \Bonefish\CLI\CLI(array('','Bonefish','Kickstart', 'help'));
+        $cli = new \Bonefish\CLI\CLI(array('', 'Bonefish', 'Kickstart', 'help'));
         $cli->environment = $enviormentMock;
         $cli->execute();
     }
@@ -151,10 +151,10 @@ class CLITest extends \PHPUnit_Framework_TestCase
             ->getMock();
         $enviormentMock->expects($this->any())
             ->method('createPackage')
-            ->with('Bonefish','Kickstart')
+            ->with('Bonefish', 'Kickstart')
             ->will($this->returnValue($packageMock));
 
-        $cli = new \Bonefish\CLI\CLI(array('', 'Bonefish','Kickstart','unit','help'));
+        $cli = new \Bonefish\CLI\CLI(array('', 'Bonefish', 'Kickstart', 'unit', 'help'));
         $cli->environment = $enviormentMock;
         $cli->execute();
     }
@@ -170,10 +170,10 @@ class CLITest extends \PHPUnit_Framework_TestCase
             ->getMock();
         $enviormentMock->expects($this->any())
             ->method('createPackage')
-            ->with('Bonefish','Kickstart')
+            ->with('Bonefish', 'Kickstart')
             ->will($this->returnValue($packageMock));
 
-        $cli = new \Bonefish\CLI\CLI(array('', 'Bonefish','Kickstart','unit','test','foo'));
+        $cli = new \Bonefish\CLI\CLI(array('', 'Bonefish', 'Kickstart', 'unit', 'test', 'foo'));
         $cli->environment = $enviormentMock;
         $cli->execute();
     }

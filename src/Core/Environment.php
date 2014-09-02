@@ -9,7 +9,8 @@
 namespace Bonefish\Core;
 
 
-class Environment {
+class Environment
+{
 
     /**
      * @var string
@@ -73,7 +74,7 @@ class Environment {
      */
     public function getFullModulePath()
     {
-        return $this->basePath.$this->modulePath;
+        return $this->basePath . $this->modulePath;
     }
 
     /**
@@ -81,7 +82,7 @@ class Environment {
      */
     public function getFullConfigurationPath()
     {
-        return $this->basePath.$this->configurationPath;
+        return $this->basePath . $this->configurationPath;
     }
 
     /**
@@ -108,12 +109,12 @@ class Environment {
     public function getAllPackages()
     {
         $return = array();
-        $path = $this->basePath.$this->modulePath;
+        $path = $this->getFullModulePath();
         $vendors = $this->getVendorsOrPackageNamesFromPath($path);
         foreach ($vendors as $vendor) {
             $packages = $this->getVendorsOrPackageNamesFromPath($path . '/' . $vendor);
             foreach ($packages as $package) {
-                $return[] = $this->createPackage($vendor,$package);
+                $return[] = $this->createPackage($vendor, $package);
             }
         }
         return $return;
@@ -124,9 +125,9 @@ class Environment {
      * @param string $package
      * @return \Bonefish\Core\Package
      */
-    public function createPackage($vendor,$package)
+    public function createPackage($vendor, $package)
     {
-        return $this->container->create('\Bonefish\Core\Package',array($vendor,$package));
+        return $this->container->create('\Bonefish\Core\Package', array($vendor, $package));
     }
 
     /**

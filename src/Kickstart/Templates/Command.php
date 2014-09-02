@@ -24,7 +24,8 @@
 namespace Bonefish\Kickstart\Templates;
 
 
-class Command extends \Bonefish\Controller\Command {
+class Command extends \Bonefish\Controller\Command
+{
 
     /**
      * TODO: implement mainCommand

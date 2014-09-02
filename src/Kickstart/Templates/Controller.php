@@ -24,7 +24,8 @@
 namespace Bonefish\Kickstart\Templates;
 
 
-class Controller extends \Bonefish\Controller\Base {
+class Controller extends \Bonefish\Controller\Base
+{
 
     /**
      * TODO: implement indexAction

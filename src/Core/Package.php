@@ -126,5 +126,6 @@ class Package
         if (isset($bootstrap['autoloader'])) {
             $this->autoloader->addNamespace($bootstrap['autoloader'][0], $this->environment->getFullModulePath() . '/' . $bootstrap['autoloader'][1]);
         }
+        $this->mapped = true;
     }
 } 

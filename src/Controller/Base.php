@@ -24,6 +24,7 @@
 namespace Bonefish\Controller;
 
 
-class Base {
+class Base
+{
 
 } 
