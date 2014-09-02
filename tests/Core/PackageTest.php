@@ -59,7 +59,7 @@ class PackageTest extends \PHPUnit_Framework_TestCase
         $enviormentMock = $this->getMockBuilder('\Bonefish\Core\Environment')
             ->disableOriginalConstructor()
             ->getMock();
-        $enviormentMock->expects($this->exactly(2))
+        $enviormentMock->expects($this->once())
             ->method('getFullModulePath')
             ->will($this->returnValue(__DIR__ . '\..\..\modules'));
         $this->package->environment = $enviormentMock;
