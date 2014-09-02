@@ -92,6 +92,22 @@ class PackageTest extends \PHPUnit_Framework_TestCase
         $this->package->getController(\Bonefish\Core\Package::TYPE_COMMAND);
     }
 
+    public function testBootstrapIsIncludedAndMapped()
+    {
+        $enviormentMock = $this->getMockBuilder('\Bonefish\Core\Environment')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $enviormentMock->expects($this->exactly(2))
+            ->method('getFullModulePath')
+            ->will($this->returnValue(__DIR__.'/../../modules'));
+        $this->package->environment = $enviormentMock;
+        $autoloader = $this->getMock('\Bonefish\Autoloader\Autoloader');
+        $autoloader->expects($this->once())
+            ->method('addNamespace');
+        $this->package->autoloader = $autoloader;
+        $this->package->mapAutoloader();
+    }
+
     public function getterAndSetterProvider()
     {
         return array(
