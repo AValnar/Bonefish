@@ -90,6 +90,16 @@ class Package
         return $this->vendor;
     }
 
+    public function getPackagePath()
+    {
+        return  $this->environment->getFullModulePath() . '/' . $this->vendor . '/' . $this->name;
+    }
+
+    public function getPackageUrlPath()
+    {
+        return  $this->environment->getModulePath() . '/' . $this->vendor . '/' . $this->name;
+    }
+
     /**
      * @param string $type
      * @return string
@@ -106,7 +116,7 @@ class Package
 
     public function includeBootstrap()
     {
-        $path = $this->environment->getFullModulePath() . '/' . $this->vendor . '/' . $this->name . '/bootstrap.php';
+        $path = $this->getPackagePath() . '/bootstrap.php';
 
         if (file_exists($path)) {
             return require $path;

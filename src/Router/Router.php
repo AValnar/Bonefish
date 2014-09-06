@@ -94,6 +94,7 @@ class Router
             throw new \Exception('No Route found!');
         }
 
+        $this->environment->setPackage($package);
         $action = $this->action . 'Action';
         $this->callControllerAction($action, $controller);
     }

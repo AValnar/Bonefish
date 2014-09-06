@@ -28,10 +28,20 @@ class Environment
     protected $configurationPath;
 
     /**
+     * @var string
+     */
+    protected $cachePath;
+
+    /**
      * @var \Bonefish\DependencyInjection\Container
      * @inject
      */
     public $container;
+
+    /**
+     * @var \Bonefish\Core\Package
+     */
+    protected $package;
 
     /**
      * @param string $basePath
@@ -101,6 +111,50 @@ class Environment
     public function getConfigurationPath()
     {
         return $this->configurationPath;
+    }
+
+    /**
+     * @param string $cachePath
+     * @return self
+     */
+    public function setCachePath($cachePath)
+    {
+        $this->cachePath = $cachePath;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCachePath()
+    {
+        return $this->cachePath;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullCachePath()
+    {
+        return $this->basePath . $this->cachePath;
+    }
+
+    /**
+     * @param \Bonefish\Core\Package $package
+     * @return self
+     */
+    public function setPackage($package)
+    {
+        $this->package = $package;
+        return $this;
+    }
+
+    /**
+     * @return \Bonefish\Core\Package
+     */
+    public function getPackage()
+    {
+        return $this->package;
     }
 
     /**

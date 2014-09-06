@@ -18,6 +18,7 @@ class Command extends \Bonefish\Controller\Command
     {
         $kickstarter = $this->container->get('\Bonefish\Kickstart\Kickstart');
         $kickstarter->module($name, $vendor);
+        $this->red()->out($vendor.':'.$name.' created!');
     }
 
     /**

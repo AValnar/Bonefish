@@ -26,5 +26,9 @@ namespace Bonefish\Controller;
 
 class Base
 {
-
+    /**
+     * @var \Bonefish\View\View
+     * @inject
+     */
+    public $view;
 } 
