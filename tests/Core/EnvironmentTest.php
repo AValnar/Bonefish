@@ -47,7 +47,7 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             array('getBasePath', 'setBasePath', 'foo'),
-            array('getModulePath', 'setModulePath', 'foo'),
+            array('getPackagePath', 'setPackagePath', 'foo'),
             array('getCachePath', 'setCachePath', 'foo'),
             array('getConfigurationPath', 'setConfigurationPath', 'foo'),
             array('getPackage', 'setPackage', 'foo')
@@ -66,22 +66,10 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
         $this->assertThat($return, $this->equalTo('foobar'));
     }
 
-    public function testGetAllPackages()
-    {
-        $expected = array('foobar', 'foobar','foobar');
-        $this->container->expects($this->exactly(count($expected)))
-            ->method('create')
-            ->with('\Bonefish\Core\Package')
-            ->will($this->returnValue('foobar'));
-        $this->environment->setBasePath(__DIR__ . '/../../modules');
-        $return = $this->environment->getAllPackages();
-        $this->assertThat($return, $this->equalTo($expected));
-    }
-
     public function fullGetterAndSetterProvider()
     {
         return array(
-            array('getFullModulePath', 'setModulePath'),
+            array('getFullPackagePath', 'setPackagePath'),
             array('getFullConfigurationPath', 'setConfigurationPath'),
             array('getFullCachePath', 'setCachePath')
         );
