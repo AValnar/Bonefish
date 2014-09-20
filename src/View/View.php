@@ -87,18 +87,4 @@ class View
     {
         return '<base href="' . $this->parameters['config']->baseUrl . $this->environment->getPackage()->getPackageUrlPath() . '/Layouts/" />';
     }
-
-    public function navigation($id = 1)
-    {
-        $navigationBuilder = $this->container->get('\Bonefish\Viewhelper\Builder\NavigationBuilder');
-        $navigationBuilder->setId($id);
-        return $navigationBuilder->build();
-    }
-
-    public function content($id)
-    {
-        $contentBuilder = $this->container->get('\Bonefish\Viewhelper\Builder\ContentBuilder');
-        $contentBuilder->setId($id);
-        return $contentBuilder->build();
-    }
 } 
