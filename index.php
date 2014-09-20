@@ -33,33 +33,8 @@ Tracy\Debugger::enable(Tracy\Debugger::DEVELOPMENT);
 Tracy\Debugger::$strictMode = TRUE;
 
 $container = new Bonefish\DependencyInjection\Container();
-
-$autoloader = new Bonefish\Autoloader\Autoloader();
-$autoloader->register();
-$container->add('\Bonefish\Autoloader\Autoloader', $autoloader);
-
-/** @var \Bonefish\Core\Environment $environment */
-$environment = $container->get('\Bonefish\Core\Environment')
-    ->setBasePath($baseDir)
-    ->setModulePath('/modules')
-    ->setConfigurationPath('/configuration')
-    ->setCachePath('/cache');
-
-$latte = $container->get('Latte\Engine');
-$latte->setTempDirectory($environment->getFullCachePath().'/latte');
-
-try {
-    $dbConfig = $container->get('\Bonefish\Core\ConfigurationManager')->getConfiguration('db.ini');
-    $dbh = new PDO($dbConfig->db_dsn, $dbConfig->db_user, $dbConfig->db_pw);
-} catch (PDOException $e) {
-    echo 'Connection failed: ' . $e->getMessage();
-}
-
-$mapper = new \Respect\Relational\Mapper($dbh);
-$container->add('\Respect\Relational\Mapper',$mapper);
-
-$url = League\Url\UrlImmutable::createFromServer($_SERVER);
-$router = $container->create('Bonefish\Router\Router', array($url));
-$router->route();
+/** @var \Bonefish\Core\Kernel $kernel */
+$kernel = $container->create('\Bonefish\Core\Kernel',array($baseDir));
+$kernel->start();
 
 

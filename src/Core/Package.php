@@ -41,6 +41,17 @@ class Package
     public $autoloader;
 
     /**
+     * @var \Bonefish\Core\ConfigurationManager
+     * @inject
+     */
+    public $configurationManager;
+
+    /**
+     * @var null|\Respect\Config\Container
+     */
+    protected $configuration = NULL;
+
+    /**
      * @var bool
      */
     protected $mapped = false;
@@ -92,12 +103,12 @@ class Package
 
     public function getPackagePath()
     {
-        return  $this->environment->getFullModulePath() . '/' . $this->vendor . '/' . $this->name;
+        return  $this->environment->getFullPackagePath() . '/' . $this->vendor . '/' . $this->name;
     }
 
     public function getPackageUrlPath()
     {
-        return  $this->environment->getModulePath() . '/' . $this->vendor . '/' . $this->name;
+        return  $this->environment->getPackagePath() . '/' . $this->vendor . '/' . $this->name;
     }
 
     /**
@@ -114,15 +125,20 @@ class Package
         return $this->container->get($class);
     }
 
-    public function includeBootstrap()
+    public function getConfiguration()
     {
-        $path = $this->getPackagePath() . '/bootstrap.php';
-
-        if (file_exists($path)) {
-            return require $path;
+        if ($this->configuration != NULL) {
+            return $this->configuration;
         }
 
-        return array();
+        try {
+            $path = $this->getPackagePath() . '/Configuration/Configuration.ini';
+            $this->configuration = $this->configurationManager->getConfiguration($path, true);
+        } catch (\Exception $e) {
+            $this->configuration = false;
+        }
+
+        return $this->configuration;
     }
 
     public function mapAutoloader()
@@ -131,11 +147,12 @@ class Package
             return;
         }
 
-        $bootstrap = $this->includeBootstrap();
+        $config = $this->getConfiguration();
 
-        if (isset($bootstrap['autoloader'])) {
-            $this->autoloader->addNamespace($bootstrap['autoloader'][0], $this->environment->getFullModulePath() . '/' . $bootstrap['autoloader'][1]);
+        if ($config && isset($config->autoload) && $config->autoload) {
+            $this->autoloader->addNamespace($config->classPrefix, $this->environment->getFullPackagePath() . '/' . $config->classPath);
         }
+
         $this->mapped = true;
     }
 } 

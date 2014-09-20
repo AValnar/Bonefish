@@ -3,22 +3,18 @@
     "description": "Bonefish Framework",
     "require": {
         "av/bonefish-autoloader": "dev-master",
-        "av/bonefish-di": "dev-master",
+        "av/bonefish-di2": "dev-master",
         "respect/config": "dev-master",
         "latte/latte": "dev-master",
-        "cocur/slugify": "dev-master",
         "tracy/tracy": "dev-master",
         "nette/reflection": "dev-master",
-        "nette/php-generator" : "dev-master",
-        "respect/validation": "0.7.*@dev",
-        "respect/relational": "dev-master",
-        "swiftmailer/swiftmailer": "dev-master",
         "joetannenbaum/climate": "0.1.*",
-        "league/url": "3.0.*@dev"
+        "league/url": "3.0.*@dev",
+        "uestla/yetorm": "dev-master"
     },
     "autoload": {
         "psr-4": {
-            "Bonefish\\": ["src","modules/Bonefish"]
+            "Bonefish\\": ["src"]
         }
     }
 }

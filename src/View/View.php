@@ -48,7 +48,7 @@ class View
 
     public function __init()
     {
-        $config = $this->configurationManager->getConfiguration('config.ini');
+        $config = $this->configurationManager->getConfiguration('Basic.ini');
         $this->setLayout('Default.latte');
         $this->assign('config', $config);
         $this->assign('env', $this->environment);
@@ -93,5 +93,12 @@ class View
         $navigationBuilder = $this->container->get('\Bonefish\Viewhelper\Builder\NavigationBuilder');
         $navigationBuilder->setId($id);
         return $navigationBuilder->build();
+    }
+
+    public function content($id)
+    {
+        $contentBuilder = $this->container->get('\Bonefish\Viewhelper\Builder\ContentBuilder');
+        $contentBuilder->setId($id);
+        return $contentBuilder->build();
     }
 } 

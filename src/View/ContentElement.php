@@ -43,4 +43,18 @@ abstract class ContentElement
     {
         return !empty($this->children);
     }
+
+    public function setParameters($parameters)
+    {
+        if ($parameters == '') {
+            return;
+        }
+
+        $parameters = unserialize($parameters);
+
+        foreach($parameters as $parameter => $value)
+        {
+            $this->{$parameter} = $value;
+        }
+    }
 } 

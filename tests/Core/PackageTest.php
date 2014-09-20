@@ -108,6 +108,19 @@ class PackageTest extends \PHPUnit_Framework_TestCase
         $this->package->mapAutoloader();
     }
 
+    public function testGetPackageUrlPath()
+    {
+        $enviormentMock = $this->getMockBuilder('\Bonefish\Core\Environment')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $enviormentMock->expects($this->once())
+            ->method('getModulePath')
+            ->will($this->returnValue(__DIR__));
+        $this->package->environment = $enviormentMock;
+        $path = $this->package->getPackageUrlPath();
+        $this->assertThat($path,$this->equalTo(__DIR__.'/Bonefish/Kickstart'));
+    }
+
     public function getterAndSetterProvider()
     {
         return array(

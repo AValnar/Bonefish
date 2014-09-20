@@ -20,7 +20,7 @@ class Environment
     /**
      * @var string
      */
-    protected $modulePath;
+    protected $packagePath;
 
     /**
      * @var string
@@ -41,7 +41,7 @@ class Environment
     /**
      * @var \Bonefish\Core\Package
      */
-    protected $package;
+    protected $currentPackage;
 
     /**
      * @param string $basePath
@@ -62,37 +62,29 @@ class Environment
     }
 
     /**
-     * @param string $modulePath
+     * @param string $packagePath
      * @return self
      */
-    public function setModulePath($modulePath)
+    public function setPackagePath($packagePath)
     {
-        $this->modulePath = $modulePath;
+        $this->packagePath = $packagePath;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getModulePath()
+    public function getPackagePath()
     {
-        return $this->modulePath;
+        return $this->packagePath;
     }
 
     /**
      * @return string
      */
-    public function getFullModulePath()
+    public function getFullPackagePath()
     {
-        return $this->basePath . $this->modulePath;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFullConfigurationPath()
-    {
-        return $this->basePath . $this->configurationPath;
+        return $this->basePath . $this->packagePath;
     }
 
     /**
@@ -111,6 +103,14 @@ class Environment
     public function getConfigurationPath()
     {
         return $this->configurationPath;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullConfigurationPath()
+    {
+        return $this->basePath . $this->configurationPath;
     }
 
     /**
@@ -140,12 +140,12 @@ class Environment
     }
 
     /**
-     * @param \Bonefish\Core\Package $package
+     * @param \Bonefish\Core\Package $currentPackage
      * @return self
      */
-    public function setPackage($package)
+    public function setPackage($currentPackage)
     {
-        $this->package = $package;
+        $this->currentPackage = $currentPackage;
         return $this;
     }
 
@@ -154,24 +154,7 @@ class Environment
      */
     public function getPackage()
     {
-        return $this->package;
-    }
-
-    /**
-     * @return array
-     */
-    public function getAllPackages()
-    {
-        $return = array();
-        $path = $this->getFullModulePath();
-        $vendors = $this->getVendorsOrPackageNamesFromPath($path);
-        foreach ($vendors as $vendor) {
-            $packages = $this->getVendorsOrPackageNamesFromPath($path . '/' . $vendor);
-            foreach ($packages as $package) {
-                $return[] = $this->createPackage($vendor, $package);
-            }
-        }
-        return $return;
+        return $this->currentPackage;
     }
 
     /**
@@ -184,18 +167,4 @@ class Environment
         return $this->container->create('\Bonefish\Core\Package', array($vendor, $package));
     }
 
-    /**
-     * @param string $path
-     * @return array
-     */
-    protected function getVendorsOrPackageNamesFromPath($path)
-    {
-        $return = array();
-        $iterator = new \DirectoryIterator($path);
-        foreach ($iterator as $element) {
-            if (!$element->isDir() || $element->isDot()) continue;
-            $return[] = $element->__toString();
-        }
-        return $return;
-    }
 } 

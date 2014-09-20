@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5c149dcfd40fee1b5fe770c47d38539a",
+    "hash": "5e2be110e5c96503b6a74c102ac5bef1",
     "packages": [
         {
             "name": "av/bonefish-autoloader",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/AValnar/Bonefish-Autoloader.git",
-                "reference": "736cc175a6a71fb653191c25351ed32b672be429"
+                "reference": "0669917b29befc58fd3c545fbda2311fe41aba6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AValnar/Bonefish-Autoloader/zipball/736cc175a6a71fb653191c25351ed32b672be429",
-                "reference": "736cc175a6a71fb653191c25351ed32b672be429",
+                "url": "https://api.github.com/repos/AValnar/Bonefish-Autoloader/zipball/0669917b29befc58fd3c545fbda2311fe41aba6f",
+                "reference": "0669917b29befc58fd3c545fbda2311fe41aba6f",
                 "shasum": ""
             },
             "require": {
@@ -31,23 +31,24 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "This Project maintains the Bonefish PSR-4 Autoloader",
-            "time": "2014-09-01 20:18:12"
+            "time": "2014-09-01 21:14:24"
         },
         {
-            "name": "av/bonefish-di",
+            "name": "av/bonefish-di2",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/AValnar/Bonefish-DI.git",
-                "reference": "a7e538344d011dbb29c4384ba087c9a8098878b5"
+                "url": "https://github.com/AValnar/Bonefish-DI2.git",
+                "reference": "f1e50971b251e45a8e49d1283698847bedf63074"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AValnar/Bonefish-DI/zipball/a7e538344d011dbb29c4384ba087c9a8098878b5",
-                "reference": "a7e538344d011dbb29c4384ba087c9a8098878b5",
+                "url": "https://api.github.com/repos/AValnar/Bonefish-DI2/zipball/f1e50971b251e45a8e49d1283698847bedf63074",
+                "reference": "f1e50971b251e45a8e49d1283698847bedf63074",
                 "shasum": ""
             },
             "require": {
+                "nette/reflection": "dev-master",
                 "php": ">=5.3.0"
             },
             "type": "library",
@@ -58,7 +59,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "This Project maintains the Bonefish Dependency Injection Container",
-            "time": "2014-09-01 20:17:08"
+            "time": "2014-09-06 21:16:21"
         },
         {
             "name": "cocur/slugify",
@@ -66,12 +67,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cocur/slugify.git",
-                "reference": "d71060f966a2632ce1db00b1511f66d5cd6931ea"
+                "reference": "56b8981e5ea194c1033eabcadcf6004679d54c23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cocur/slugify/zipball/d71060f966a2632ce1db00b1511f66d5cd6931ea",
-                "reference": "d71060f966a2632ce1db00b1511f66d5cd6931ea",
+                "url": "https://api.github.com/repos/cocur/slugify/zipball/56b8981e5ea194c1033eabcadcf6004679d54c23",
+                "reference": "56b8981e5ea194c1033eabcadcf6004679d54c23",
                 "shasum": ""
             },
             "require": {
@@ -115,7 +116,7 @@
                 "slug",
                 "slugify"
             ],
-            "time": "2014-09-01 12:18:56"
+            "time": "2014-09-01 21:06:00"
         },
         {
             "name": "illuminate/support",
@@ -278,12 +279,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/url.git",
-                "reference": "2ededbb687e8eb3c55f3f31dc8385b61193f310a"
+                "reference": "9eb98ff2745b1d4f0b9a9d8e1fdb408ab5035ea4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/url/zipball/2ededbb687e8eb3c55f3f31dc8385b61193f310a",
-                "reference": "2ededbb687e8eb3c55f3f31dc8385b61193f310a",
+                "url": "https://api.github.com/repos/thephpleague/url/zipball/9eb98ff2745b1d4f0b9a9d8e1fdb408ab5035ea4",
+                "reference": "9eb98ff2745b1d4f0b9a9d8e1fdb408ab5035ea4",
                 "shasum": ""
             },
             "require": {
@@ -327,7 +328,7 @@
                 "php",
                 "url"
             ],
-            "time": "2014-09-01 10:37:53"
+            "time": "2014-09-05 10:33:58"
         },
         {
             "name": "nette/caching",
@@ -380,6 +381,58 @@
             "description": "Nette Caching Component",
             "homepage": "http://nette.org",
             "time": "2014-06-24 11:38:03"
+        },
+        {
+            "name": "nette/database",
+            "version": "v2.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nette/database.git",
+                "reference": "5b7bf41ba57f1f809823555e4630030f4ebc2a05"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nette/database/zipball/5b7bf41ba57f1f809823555e4630030f4ebc2a05",
+                "reference": "5b7bf41ba57f1f809823555e4630030f4ebc2a05",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pdo": "*",
+                "nette/caching": "~2.2",
+                "nette/utils": "~2.2",
+                "php": ">=5.3.1"
+            },
+            "conflict": {
+                "nette/nette": "<2.2"
+            },
+            "require-dev": {
+                "nette/tester": "~1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0",
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "homepage": "http://davidgrudl.com"
+                },
+                {
+                    "name": "Nette Community",
+                    "homepage": "http://nette.org/contributors"
+                }
+            ],
+            "description": "Nette Database Component",
+            "homepage": "http://nette.org",
+            "time": "2014-08-24 22:56:02"
         },
         {
             "name": "nette/finder",
@@ -671,120 +724,6 @@
             "time": "2013-08-21 00:17:18"
         },
         {
-            "name": "respect/data",
-            "version": "0.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Respect/Data.git",
-                "reference": "7da4b3bd9f4bf584de632f50d58a692ac091ec80"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Respect/Data/zipball/7da4b3bd9f4bf584de632f50d58a692ac091ec80",
-                "reference": "7da4b3bd9f4bf584de632f50d58a692ac091ec80",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Respect\\Data": "library/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD Style"
-            ],
-            "authors": [
-                {
-                    "name": "Henrique Moody",
-                    "email": "henriquemoody@gmail.com",
-                    "homepage": "http://about.me/henriquemoody"
-                },
-                {
-                    "name": "Alexandre Gaigalas",
-                    "email": "alexandre@gaigalas.net"
-                },
-                {
-                    "name": "Rogerio Prado de Jesus",
-                    "email": "rogeriopradoj@gmail.com"
-                },
-                {
-                    "name": "Augusto Pascutti",
-                    "email": "augusto@phpsp.org.br"
-                },
-                {
-                    "name": "Nick nickl- Lombard",
-                    "email": "github@jigsoft.co.za"
-                }
-            ],
-            "description": "Persistence simplified",
-            "time": "2013-02-14 01:32:14"
-        },
-        {
-            "name": "respect/relational",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Respect/Relational.git",
-                "reference": "48613ed23e6a3bdce7f3978dcf4dc544805eec9c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Respect/Relational/zipball/48613ed23e6a3bdce7f3978dcf4dc544805eec9c",
-                "reference": "48613ed23e6a3bdce7f3978dcf4dc544805eec9c",
-                "shasum": ""
-            },
-            "require": {
-                "respect/data": "0.2.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Respect\\Relational": "library/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD Style"
-            ],
-            "authors": [
-                {
-                    "name": "Henrique Moody",
-                    "email": "henriquemoody@gmail.com",
-                    "homepage": "http://about.me/henriquemoody"
-                },
-                {
-                    "name": "Alexandre Gaigalas",
-                    "email": "alexandre@gaigalas.net"
-                },
-                {
-                    "name": "Fábio da Silva Ribeiro",
-                    "email": "fabiorphp@gmail.com"
-                },
-                {
-                    "name": "Rogerio Prado de Jesus",
-                    "email": "rogeriopradoj@gmail.com"
-                },
-                {
-                    "name": "Claudson Oliveira",
-                    "email": "claudsonweb@gmail.com"
-                },
-                {
-                    "name": "Kinn Coelho Julião",
-                    "email": "kinncj@gmail.com",
-                    "homepage": "http://kinncj.com.br",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Thiago Rigo",
-                    "email": "thiagophx@gmail.com"
-                }
-            ],
-            "description": "Fluent Database Toolkit",
-            "homepage": "http://respect.li",
-            "time": "2013-05-06 19:12:12"
-        },
-        {
             "name": "respect/validation",
             "version": "dev-master",
             "source": {
@@ -895,12 +834,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "56a61a54ff8461a4b2d76cb4e63448bfb55b00f3"
+                "reference": "005799dca8b98e66733e32d6ea2efa15b75ea0f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/56a61a54ff8461a4b2d76cb4e63448bfb55b00f3",
-                "reference": "56a61a54ff8461a4b2d76cb4e63448bfb55b00f3",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/005799dca8b98e66733e32d6ea2efa15b75ea0f8",
+                "reference": "005799dca8b98e66733e32d6ea2efa15b75ea0f8",
                 "shasum": ""
             },
             "require": {
@@ -946,7 +885,7 @@
                 "debugger",
                 "nette"
             ],
-            "time": "2014-09-01 11:17:14"
+            "time": "2014-09-04 23:59:05"
         },
         {
             "name": "true/punycode",
@@ -994,6 +933,50 @@
                 "punycode"
             ],
             "time": "2014-08-26 14:21:01"
+        },
+        {
+            "name": "uestla/yetorm",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/uestla/YetORM.git",
+                "reference": "29482a70d941ad2b59dbfb235402e1806e0f934c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/uestla/YetORM/zipball/29482a70d941ad2b59dbfb235402e1806e0f934c",
+                "reference": "29482a70d941ad2b59dbfb235402e1806e0f934c",
+                "shasum": ""
+            },
+            "require": {
+                "nette/database": "2.*",
+                "nette/reflection": "2.*",
+                "nette/utils": "2.*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "nette/caching": "*",
+                "nette/robot-loader": "*",
+                "nette/tester": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "YetORM": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Lightweight ORM for Nette\\Database",
+            "homepage": "https://github.com/uestla/YetORM",
+            "keywords": [
+                "database",
+                "nette",
+                "orm"
+            ],
+            "time": "2014-08-25 12:11:24"
         }
     ],
     "packages-dev": [
@@ -1005,7 +988,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "av/bonefish-autoloader": 20,
-        "av/bonefish-di": 20,
+        "av/bonefish-di2": 20,
         "respect/config": 20,
         "latte/latte": 20,
         "cocur/slugify": 20,
@@ -1013,9 +996,9 @@
         "nette/reflection": 20,
         "nette/php-generator": 20,
         "respect/validation": 20,
-        "respect/relational": 20,
         "swiftmailer/swiftmailer": 20,
-        "league/url": 20
+        "league/url": 20,
+        "uestla/yetorm": 20
     },
     "prefer-stable": false,
     "platform": [

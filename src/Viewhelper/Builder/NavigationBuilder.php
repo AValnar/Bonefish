@@ -21,10 +21,16 @@ class NavigationBuilder extends Builder
     protected $id;
 
     /**
-     * @var \Respect\Relational\Mapper
-     * @inject eagerly
+     * @var \Nette\Caching\Cache
+     * @inject
      */
-    public $mapper;
+    public $cache;
+
+    /**
+     * @var \Bonefish\Repositories\NavigationRepository
+     * @inject
+     */
+    public $navigationRepository;
 
     /**
      * @param int $id
@@ -46,23 +52,34 @@ class NavigationBuilder extends Builder
 
     public function build()
     {
-        $navigation = new Navigation();
+        $cache = $this->cache->load('navigation:' . $this->id);
 
-        $navigationElements = $this->mapper->navigationelement->navigation_navigationelement->navigation[$this->getId()]->fetchAll();
-        $elements = array();
-
-        foreach($navigationElements as $element)
-        {
-            $children = $this->mapper->navigationsubmenu->navigationelement_navigationsubmenu->navigationelement[$element->id]->fetchAll();
-            $submenus = array();
-            foreach($children as $child)
-            {
-                $submenus[] = new NavigationSubmenu($child->link, $child->label);
-            }
-            $elements[] = new NavigationElement($element->link, $element->label,$submenus);
+        if ($cache !== NULL) {
+            return $cache;
         }
 
-        $navigation->addManyChildren($elements);
-        return $navigation->render();
+        /** @var \Bonefish\Models\Navigation $navigation */
+        $navigation = $this->navigationRepository->getByID($this->id);
+
+        if ($navigation === NULL) {
+            throw new \InvalidArgumentException('Invalid Navigation');
+        }
+
+        $navigationViewhelper = $navigation->getViewhelper();
+        $elements = $navigation->getElements();
+        /** @var \Bonefish\Models\NavigationElement $element */
+        foreach ($elements as $element) {
+            $submenus = $element->getSubmenus();
+            $elementViewhelper = $element->getViewhelper();
+            /** @var \Bonefish\Models\NavigationSubmenu $submenu */
+            foreach ($submenus as $submenu) {
+                $submenuViewhelper = $submenu->getViewhelper();
+                $elementViewhelper->addChild($submenuViewhelper);
+            }
+            $navigationViewhelper->addChild($elementViewhelper);
+        }
+        $html = $navigationViewhelper->render();
+        $this->cache->save('navigation:' . $this->id, $html);
+        return $html;
     }
 } 

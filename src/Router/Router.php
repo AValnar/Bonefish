@@ -81,7 +81,7 @@ class Router
 
     public function __init()
     {
-        $this->config = $this->configurationManager->getConfiguration('route.ini');
+        $this->config = $this->configurationManager->getConfiguration('Route.ini');
     }
 
     public function route()
@@ -91,7 +91,7 @@ class Router
             $package = $this->environment->createPackage($this->vendor, $this->package);
             $controller = $package->getController(\Bonefish\Core\Package::TYPE_CONTROLLER);
         } catch (\Exception $e) {
-            throw new \Exception('No Route found!');
+            throw new \Exception('No Route found! '.$e->getMessage());
         }
 
         $this->environment->setPackage($package);
