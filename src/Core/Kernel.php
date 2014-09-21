@@ -79,7 +79,7 @@ class Kernel
     protected function initLatte()
     {
         /** @var \Latte\Engine $latte */
-        $latte = $this->container->get('Latte\Engine');
+        $latte = $this->container->get('\Latte\Engine');
         /** @var \Bonefish\Core\Environment $environment */
         $environment = $this->container->get('\Bonefish\Core\Environment');
         $basicConfiguration = $this->configurationManager->getConfiguration('Basic.ini');

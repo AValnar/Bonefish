@@ -86,71 +86,69 @@ class RouterTest extends \PHPUnit_Framework_TestCase
         $router->route();
     }
 
-//    public function testCallControllerActionIndex()
-//    {
-//        $this->markTestSkipped();
-//        $controllerMock = $this->getMock(
-//            '\Bonefish\Kickstart\Controller\Controller',
-//            array()
-//        );
-//        $controllerMock->expects($this->once())
-//            ->method('indexAction');
-//
-//        $packageMock = $this->getMock(
-//            '\Bonefish\Core\Package',
-//            array('includeBootstrap', 'getController'),
-//            array('Bonefish', 'Kickstart')
-//        );
-//        $packageMock->expects($this->any())
-//            ->method('getController')
-//            ->will($this->returnValue($controllerMock));
-//
-//        $enviormentMock = $this->getMockBuilder('\Bonefish\Core\Environment')
-//            ->disableOriginalConstructor()
-//            ->getMock();
-//        $enviormentMock->expects($this->once())
-//            ->method('createPackage')
-//            ->with('Bonefish', 'Kickstart')
-//            ->will($this->returnValue($packageMock));
-//
-//        $url = \League\Url\UrlImmutable::createFromUrl('bonefish.com/v:Bonefish/p:Kickstart');
-//        $router = new \Bonefish\Router\Router($url);
-//        $router->environment = $enviormentMock;
-//        $router->route();
-//    }
-//
-//    public function testCallControllerAction()
-//    {
-//        $this->markTestSkipped();
-//        $controllerMock = $this->getMock(
-//            '\Bonefish\Kickstart\Controller\Controller',
-//            array()
-//        );
-//        $controllerMock->expects($this->once())
-//            ->method('unitAction')
-//            ->with('foo', 'bar');
-//
-//        $packageMock = $this->getMock(
-//            '\Bonefish\Core\Package',
-//            array('includeBootstrap', 'getController'),
-//            array('Bonefish', 'Kickstart')
-//        );
-//        $packageMock->expects($this->any())
-//            ->method('getController')
-//            ->will($this->returnValue($controllerMock));
-//
-//        $enviormentMock = $this->getMockBuilder('\Bonefish\Core\Environment')
-//            ->disableOriginalConstructor()
-//            ->getMock();
-//        $enviormentMock->expects($this->once())
-//            ->method('createPackage')
-//            ->with('Bonefish', 'Kickstart')
-//            ->will($this->returnValue($packageMock));
-//
-//        $url = \League\Url\UrlImmutable::createFromUrl('bonefish.com/v:Bonefish/p:Kickstart/a:unit/foo:foo/bar:bar');
-//        $router = new \Bonefish\Router\Router($url);
-//        $router->environment = $enviormentMock;
-//        $router->route();
-//    }
+    public function testCallControllerActionIndex()
+    {
+        $controllerMock = $this->getMock(
+            '\Bonefish\HelloWorld\Controller\Controller',
+            array()
+        );
+        $controllerMock->expects($this->once())
+            ->method('indexAction');
+
+        $packageMock = $this->getMock(
+            '\Bonefish\Core\Package',
+            array('includeBootstrap', 'getController'),
+            array('Bonefish', 'Kickstart')
+        );
+        $packageMock->expects($this->any())
+            ->method('getController')
+            ->will($this->returnValue($controllerMock));
+
+        $enviormentMock = $this->getMockBuilder('\Bonefish\Core\Environment')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $enviormentMock->expects($this->once())
+            ->method('createPackage')
+            ->with('Bonefish', 'HelloWorld')
+            ->will($this->returnValue($packageMock));
+
+        $url = \League\Url\UrlImmutable::createFromUrl('bonefish.com/v:Bonefish/p:HelloWorld');
+        $router = new \Bonefish\Router\Router($url);
+        $router->environment = $enviormentMock;
+        $router->route();
+    }
+
+    public function testCallControllerAction()
+    {
+        $controllerMock = $this->getMock(
+            '\Bonefish\HelloWorld\Controller\Controller',
+            array()
+        );
+        $controllerMock->expects($this->once())
+            ->method('helloAction')
+            ->with('foo');
+
+        $packageMock = $this->getMock(
+            '\Bonefish\Core\Package',
+            array('includeBootstrap', 'getController'),
+            array('Bonefish', 'HelloWorld')
+        );
+        $packageMock->expects($this->any())
+            ->method('getController')
+            ->will($this->returnValue($controllerMock));
+
+        $enviormentMock = $this->getMockBuilder('\Bonefish\Core\Environment')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $enviormentMock->expects($this->once())
+            ->method('createPackage')
+            ->with('Bonefish', 'HelloWorld')
+            ->will($this->returnValue($packageMock));
+
+        $url = \League\Url\UrlImmutable::createFromUrl('bonefish.com/v:Bonefish/p:HelloWorld/a:hello/name:foo');
+        $router = new \Bonefish\Router\Router($url);
+        $router->environment = $enviormentMock;
+        $router->route();
+    }
 }
  

@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Bonefish\\": ["src","modules/Bonefish"]
+            "Bonefish\\": ["src"]
         }
     }
 }

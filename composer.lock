@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2e8aedd1f003bbce9731987646260080",
+    "hash": "b276049c0acbc77539e0f692bfa7dd56",
     "packages": [
         {
             "name": "av/bonefish-autoloader",
