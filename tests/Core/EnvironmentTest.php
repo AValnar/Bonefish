@@ -73,7 +73,7 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
             ->method('create')
             ->with('\Bonefish\Core\Package')
             ->will($this->returnValue('foobar'));
-        $this->environment->setBasePath(__DIR__ . '/../../Configuration');
+        $this->environment->setBasePath(__DIR__ . '/../../configuration');
         $return = $this->environment->getAllPackages();
         $this->assertThat($return, $this->equalTo($expected));
     }
