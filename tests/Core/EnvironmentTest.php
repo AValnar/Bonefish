@@ -66,6 +66,18 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
         $this->assertThat($return, $this->equalTo('foobar'));
     }
 
+    public function testGetAllPackages()
+    {
+        $expected = array('foobar');
+        $this->container->expects($this->exactly(count($expected)))
+            ->method('create')
+            ->with('\Bonefish\Core\Package')
+            ->will($this->returnValue('foobar'));
+        $this->environment->setBasePath(__DIR__ . '/../../Configuration');
+        $return = $this->environment->getAllPackages();
+        $this->assertThat($return, $this->equalTo($expected));
+    }
+
     public function fullGetterAndSetterProvider()
     {
         return array(

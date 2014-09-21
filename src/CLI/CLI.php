@@ -118,7 +118,8 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
         list($obj, $action) = $this->checkIfActionExists();
 
         if (isset($this->args[4]) && $this->args[4] == 'help') {
-            $this->prettyPrint($obj, $action);
+            $printer = new Printer();
+            $printer->prettyMethod($obj, $action);
         } else {
             call_user_func_array(array($obj, $action), $this->buildParameterList());
         }
@@ -190,68 +191,12 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
         $controller = $package->getController(\Bonefish\Core\Package::TYPE_COMMAND);
         $reflection = new \ReflectionClass($controller);
 
-        foreach ($reflection->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
-            preg_match('/([a-zA-Z]*)Command/', $method->getName(), $match);
-            if (isset($match[1])) {
-                $this->out($package->getVendor() . ' ' . $package->getName() . ' ' . $match[1]);
-            }
+        $parser = new Parser();
+        $actions = $parser->getSuffixMethods('Command',$reflection);
+
+        foreach ($actions as $action) {
+            $this->out($package->getVendor() . ' ' . $package->getName() . ' ' . $action);
         }
-    }
-
-    /**
-     * @param mixed $object
-     * @param string $action
-     */
-    protected function prettyPrint($object, $action)
-    {
-        $r = \Nette\Reflection\Method::from($object, $action);
-
-        $this->printMethodSignatureAndDoc($r);
-
-        $parameters = $r->getParameters();
-        $this->out('Method Parameters:');
-        $annotations = $r->hasAnnotation('param') ? $r->getAnnotations() : array();
-        foreach ($parameters as $key => $parameter) {
-            $doc = $this->getDocForParameter($parameter, $annotations, $key);
-            $default = $this->getDefaultValueForParameter($parameter);
-            $this->out('<light_blue>' . $doc . '</light_blue>' . $default);
-        }
-    }
-
-    /**
-     * @param \Nette\Reflection\Method $r
-     */
-    protected function printMethodSignatureAndDoc($r)
-    {
-        $this->lightGray()->out($r->getDescription());
-        $this->out($r->__toString())->br();
-    }
-
-    /**
-     * @param \ReflectionParameter $parameter
-     * @return string
-     */
-    protected function getDefaultValueForParameter($parameter)
-    {
-        $default = '';
-        if ($parameter->isDefaultValueAvailable()) {
-            $default = ' = ' . var_export($parameter->getDefaultValue(), true);
-        }
-        return $default;
-    }
-
-    /**
-     * @param \ReflectionParameter $parameter
-     * @param array $annotations
-     * @param int $key
-     * @return string
-     */
-    protected function getDocForParameter($parameter, $annotations, $key)
-    {
-        if (isset($annotations['param'][$key])) {
-            return $annotations['param'][$key];
-        }
-        return $parameter->getName();
     }
 
     /**

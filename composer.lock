@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5e2be110e5c96503b6a74c102ac5bef1",
+    "hash": "2e8aedd1f003bbce9731987646260080",
     "packages": [
         {
             "name": "av/bonefish-autoloader",
@@ -62,75 +62,18 @@
             "time": "2014-09-06 21:16:21"
         },
         {
-            "name": "cocur/slugify",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cocur/slugify.git",
-                "reference": "56b8981e5ea194c1033eabcadcf6004679d54c23"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/cocur/slugify/zipball/56b8981e5ea194c1033eabcadcf6004679d54c23",
-                "reference": "56b8981e5ea194c1033eabcadcf6004679d54c23",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "codeclimate/php-test-reporter": "dev-master",
-                "laravel/framework": "~4.1",
-                "mockery/mockery": "~0.9",
-                "phpunit/phpunit": "~3.7",
-                "sami/sami": "~1.3",
-                "satooshi/php-coveralls": "0.6.*",
-                "silex/silex": "~1.2",
-                "symfony/dependency-injection": "~2.4",
-                "symfony/http-kernel": "~2.4",
-                "twig/twig": "~1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Cocur\\Slugify\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ivo Bathke",
-                    "email": "ivo.bathke@gmail.com"
-                },
-                {
-                    "name": "Florian Eckerstorfer",
-                    "email": "florian@eckerstorfer.co",
-                    "homepage": "https://florian.ec"
-                }
-            ],
-            "description": "Converts a string into a slug.",
-            "keywords": [
-                "slug",
-                "slugify"
-            ],
-            "time": "2014-09-01 21:06:00"
-        },
-        {
             "name": "illuminate/support",
-            "version": "v4.2.8",
+            "version": "v4.2.9",
             "target-dir": "Illuminate/Support",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "8702d655da1f7502037a2206df38399656ff35ae"
+                "reference": "b6716d34afce6e69523725f2534a5c3a54dba964"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/8702d655da1f7502037a2206df38399656ff35ae",
-                "reference": "8702d655da1f7502037a2206df38399656ff35ae",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/b6716d34afce6e69523725f2534a5c3a54dba964",
+                "reference": "b6716d34afce6e69523725f2534a5c3a54dba964",
                 "shasum": ""
             },
             "require": {
@@ -164,7 +107,7 @@
                     "email": "taylorotwell@gmail.com"
                 }
             ],
-            "time": "2014-08-05 12:08:34"
+            "time": "2014-09-12 21:42:43"
         },
         {
             "name": "joetannenbaum/climate",
@@ -219,12 +162,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/latte.git",
-                "reference": "b2f8f253669bbc18202fda6d24980f2b99bb124a"
+                "reference": "e3c205bda536a71aeee0984f1ca82217e7b6f825"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/latte/zipball/b2f8f253669bbc18202fda6d24980f2b99bb124a",
-                "reference": "b2f8f253669bbc18202fda6d24980f2b99bb124a",
+                "url": "https://api.github.com/repos/nette/latte/zipball/e3c205bda536a71aeee0984f1ca82217e7b6f825",
+                "reference": "e3c205bda536a71aeee0984f1ca82217e7b6f825",
                 "shasum": ""
             },
             "require": {
@@ -271,7 +214,7 @@
                 "templating",
                 "twig"
             ],
-            "time": "2014-08-24 18:16:06"
+            "time": "2014-09-11 08:07:17"
         },
         {
             "name": "league/url",
@@ -279,12 +222,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/url.git",
-                "reference": "9eb98ff2745b1d4f0b9a9d8e1fdb408ab5035ea4"
+                "reference": "637366196a7ac5361673d04ff5a31232b2094db4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/url/zipball/9eb98ff2745b1d4f0b9a9d8e1fdb408ab5035ea4",
-                "reference": "9eb98ff2745b1d4f0b9a9d8e1fdb408ab5035ea4",
+                "url": "https://api.github.com/repos/thephpleague/url/zipball/637366196a7ac5361673d04ff5a31232b2094db4",
+                "reference": "637366196a7ac5361673d04ff5a31232b2094db4",
                 "shasum": ""
             },
             "require": {
@@ -328,7 +271,7 @@
                 "php",
                 "url"
             ],
-            "time": "2014-09-05 10:33:58"
+            "time": "2014-09-08 11:36:55"
         },
         {
             "name": "nette/caching",
@@ -483,61 +426,6 @@
             "description": "Nette Finder: Files Searching",
             "homepage": "http://nette.org",
             "time": "2014-06-24 11:22:41"
-        },
-        {
-            "name": "nette/php-generator",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nette/php-generator.git",
-                "reference": "77bc28961267ac9ced7aa2401cf361b4a9298998"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nette/php-generator/zipball/77bc28961267ac9ced7aa2401cf361b4a9298998",
-                "reference": "77bc28961267ac9ced7aa2401cf361b4a9298998",
-                "shasum": ""
-            },
-            "require": {
-                "nette/utils": "~2.2",
-                "php": ">=5.3.1"
-            },
-            "conflict": {
-                "nette/nette": "<2.2"
-            },
-            "require-dev": {
-                "nette/tester": "~1.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.3-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause",
-                "GPL-2.0",
-                "GPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "David Grudl",
-                    "homepage": "http://davidgrudl.com"
-                },
-                {
-                    "name": "Nette Community",
-                    "homepage": "http://nette.org/contributors"
-                }
-            ],
-            "description": "Nette PHP Generator",
-            "homepage": "http://nette.org",
-            "time": "2014-08-22 20:05:39"
         },
         {
             "name": "nette/reflection",
@@ -724,122 +612,17 @@
             "time": "2013-08-21 00:17:18"
         },
         {
-            "name": "respect/validation",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Respect/Validation.git",
-                "reference": "3e31d979925b366dfd92d2ac25fb8545c2b3c7fb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Respect/Validation/zipball/3e31d979925b366dfd92d2ac25fb8545c2b3c7fb",
-                "reference": "3e31d979925b366dfd92d2ac25fb8545c2b3c7fb",
-                "shasum": ""
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0",
-                "symfony/validator": "~2.1",
-                "zendframework/zend-validator": "~2.0"
-            },
-            "suggest": {
-                "ext-bcmath": "Arbitrary Precision Mathematics",
-                "ext-mbstring": "Multibyte String Functions"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.7-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Respect\\Validation\\": "library/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD Style"
-            ],
-            "authors": [
-                {
-                    "name": "Respect/Validation Contributors",
-                    "homepage": "https://github.com/Respect/Validation/graphs/contributors"
-                }
-            ],
-            "description": "The most awesome validation engine ever created for PHP",
-            "homepage": "http://respect.li",
-            "keywords": [
-                "respect",
-                "validation",
-                "validator"
-            ],
-            "time": "2014-08-05 16:48:57"
-        },
-        {
-            "name": "swiftmailer/swiftmailer",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "8a2bcc6045e92acfbfea252cb6b444bc8c3f171e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/8a2bcc6045e92acfbfea252cb6b444bc8c3f171e",
-                "reference": "8a2bcc6045e92acfbfea252cb6b444bc8c3f171e",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2.4"
-            },
-            "require-dev": {
-                "mockery/mockery": "~0.9.1"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.2-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "lib/swift_required.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Chris Corbyn"
-                },
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                }
-            ],
-            "description": "Swiftmailer, free feature-rich PHP mailer",
-            "homepage": "http://swiftmailer.org",
-            "keywords": [
-                "mail",
-                "mailer"
-            ],
-            "time": "2014-08-27 09:29:44"
-        },
-        {
             "name": "tracy/tracy",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "005799dca8b98e66733e32d6ea2efa15b75ea0f8"
+                "reference": "2f70d1f2ca423cac11121b061b1592de5f049d30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/005799dca8b98e66733e32d6ea2efa15b75ea0f8",
-                "reference": "005799dca8b98e66733e32d6ea2efa15b75ea0f8",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/2f70d1f2ca423cac11121b061b1592de5f049d30",
+                "reference": "2f70d1f2ca423cac11121b061b1592de5f049d30",
                 "shasum": ""
             },
             "require": {
@@ -885,7 +668,7 @@
                 "debugger",
                 "nette"
             ],
-            "time": "2014-09-04 23:59:05"
+            "time": "2014-09-17 11:22:18"
         },
         {
             "name": "true/punycode",
@@ -940,12 +723,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/uestla/YetORM.git",
-                "reference": "29482a70d941ad2b59dbfb235402e1806e0f934c"
+                "reference": "6590ca099a4d76b62232b3885bb01515133549c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/uestla/YetORM/zipball/29482a70d941ad2b59dbfb235402e1806e0f934c",
-                "reference": "29482a70d941ad2b59dbfb235402e1806e0f934c",
+                "url": "https://api.github.com/repos/uestla/YetORM/zipball/6590ca099a4d76b62232b3885bb01515133549c4",
+                "reference": "6590ca099a4d76b62232b3885bb01515133549c4",
                 "shasum": ""
             },
             "require": {
@@ -976,7 +759,7 @@
                 "nette",
                 "orm"
             ],
-            "time": "2014-08-25 12:11:24"
+            "time": "2014-09-10 12:09:27"
         }
     ],
     "packages-dev": [
@@ -991,12 +774,8 @@
         "av/bonefish-di2": 20,
         "respect/config": 20,
         "latte/latte": 20,
-        "cocur/slugify": 20,
         "tracy/tracy": 20,
         "nette/reflection": 20,
-        "nette/php-generator": 20,
-        "respect/validation": 20,
-        "swiftmailer/swiftmailer": 20,
         "league/url": 20,
         "uestla/yetorm": 20
     },

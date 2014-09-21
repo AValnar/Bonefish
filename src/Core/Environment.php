@@ -167,4 +167,20 @@ class Environment
         return $this->container->create('\Bonefish\Core\Package', array($vendor, $package));
     }
 
+    /**
+     * @return array
+     */
+    public function getAllPackages()
+    {
+        $states = require $this->getFullConfigurationPath().'/Packages.state.php';
+        $return = array();
+        foreach($states as $state) {
+            $vendor = $state[0];
+            foreach ($state[1] as $package) {
+                $return[] = $this->createPackage($vendor,$package);
+            }
+        }
+        return $return;
+    }
+
 } 

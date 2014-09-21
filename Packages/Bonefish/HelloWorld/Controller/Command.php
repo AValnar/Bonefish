@@ -12,5 +12,15 @@ class Command extends \Bonefish\Controller\Command
         $this->out('Hello World');
     }
 
+    /**
+     * Greet someone
+     *
+     * @param string $name
+     */
+    public function greetCommand($name = 'Joe')
+    {
+        $this->out('Hello ' . $name);
+    }
+
 }
 

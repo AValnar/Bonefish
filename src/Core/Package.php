@@ -127,7 +127,7 @@ class Package
 
     public function getConfiguration()
     {
-        if ($this->configuration != NULL) {
+        if ($this->configuration !== NULL) {
             return $this->configuration;
         }
 
