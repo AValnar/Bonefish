@@ -3,13 +3,9 @@ namespace Bonefish\HelloWorld\Controller;
 
 class Controller extends \Bonefish\Controller\Base
 {
-
-    /**
-     * TODO: implement indexAction
-     */
     public function indexAction()
     {
-        echo 'Hello World';
+        $this->view->render();
     }
 
     /**

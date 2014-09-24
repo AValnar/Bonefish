@@ -9,6 +9,8 @@
 namespace Bonefish\View;
 
 
+use Bonefish\Viewhelper\AbstractViewhelper;
+
 class View
 {
 
@@ -46,6 +48,11 @@ class View
      */
     public $container;
 
+    /**
+     * @var array
+     */
+    protected $macros = array();
+
     public function __init()
     {
         $config = $this->configurationManager->getConfiguration('Basic.ini');
@@ -62,6 +69,7 @@ class View
     public function render()
     {
         $this->parameters['view'] = $this;
+        $this->loadMacros();
         $this->latte->render($this->environment->getPackage()->getPackagePath() . '/Layouts/' . $this->layout, $this->parameters);
     }
 
@@ -83,8 +91,32 @@ class View
         return $this->layout;
     }
 
-    public function base()
+    /**
+     * @param AbstractViewhelper $helper
+     */
+    public function addMacro(AbstractViewhelper $helper)
     {
-        return '<base href="' . $this->parameters['config']->baseUrl . $this->environment->getPackage()->getPackageUrlPath() . '/Layouts/" />';
+        $this->macros[] = $helper;
+    }
+
+    protected function loadMacros()
+    {
+        $macroSet = new \Latte\Macros\MacroSet($this->latte->getCompiler());
+        /** @var AbstractViewhelper $macro */
+        foreach ($this->macros as $macro) {
+            if ($macro->getHasEnd()) {
+                $macroSet->addMacro(
+                    $macro->getName(),
+                    array($macro, 'getStart'),
+                    array($macro, 'getEnd')
+                );
+            } else {
+                $macroSet->addMacro(
+                    $macro->getName(),
+                    array($macro, 'getStart')
+                );
+            }
+        }
+
     }
 } 
