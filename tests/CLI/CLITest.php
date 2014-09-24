@@ -138,7 +138,7 @@ class CLITest extends \PHPUnit_Framework_TestCase
     {
         $this->expectOutputString('[92mWelcome to Bonefish![0m
 [m[0m
-[92mTODO: implement mainCommand[0m
+[92m[0m
 [mmainCommand[0m
 [m[0m
 [mMethod Parameters:[0m
