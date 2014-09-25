@@ -55,10 +55,7 @@ class View
 
     public function __init()
     {
-        $config = $this->configurationManager->getConfiguration('Basic.ini');
         $this->setLayout('Default.latte');
-        $this->assign('config', $config);
-        $this->assign('env', $this->environment);
     }
 
     public function assign($name, $value)
@@ -68,7 +65,7 @@ class View
 
     public function render()
     {
-        $this->parameters['view'] = $this;
+        $this->loadDefaultMacros();
         $this->loadMacros();
         $this->latte->render($this->environment->getPackage()->getPackagePath() . '/Layouts/' . $this->layout, $this->parameters);
     }
@@ -118,5 +115,13 @@ class View
             }
         }
 
+    }
+
+    protected function loadDefaultMacros()
+    {
+        $defaults = require $this->environment->getFullConfigurationPath() . '/Viewhelper.default.php';
+        foreach ($defaults as $macro) {
+            $this->addMacro($this->container->get($macro));
+        }
     }
 } 
