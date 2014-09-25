@@ -2,6 +2,7 @@
     "name": "av/bonefish",
     "description": "Bonefish Framework",
     "require": {
+        "composer/installers": "*",
         "av/bonefish-autoloader": "dev-master",
         "av/bonefish-di2": "dev-master",
         "respect/config": "dev-master",
@@ -10,7 +11,13 @@
         "nette/reflection": "dev-master",
         "joetannenbaum/climate": "0.1.*",
         "league/url": "3.0.*@dev",
-        "uestla/yetorm": "dev-master"
+        "uestla/yetorm": "dev-master",
+        "av/bonefish-helloworld": "dev-master"
+    },
+    "extra": {
+        "installer-paths": {
+            "Packages/{$vendor}/{$name}/": ["type:bonefish-package"]
+        }
     },
     "autoload": {
         "psr-4": {

@@ -101,11 +101,19 @@ class Package
         return $this->vendor;
     }
 
+    /**
+     * TODO: Add real path to package state and use that data
+     * @return string
+     */
     public function getPackagePath()
     {
         return  $this->environment->getFullPackagePath() . '/' . $this->vendor . '/' . $this->name;
     }
 
+    /**
+     * TODO: Add real path to package state and use that data
+     * @return string
+     */
     public function getPackageUrlPath()
     {
         return  $this->environment->getPackagePath() . '/' . $this->vendor . '/' . $this->name;
@@ -117,11 +125,7 @@ class Package
      */
     public function getController($type)
     {
-        $this->mapAutoloader();
         $class = $this->vendor . '\\' . $this->name . '\Controller\\' . $type;
-        if (!class_exists($class)) {
-            $this->autoloader->loadClass($class);
-        }
         return $this->container->get($class);
     }
 
@@ -139,20 +143,5 @@ class Package
         }
 
         return $this->configuration;
-    }
-
-    public function mapAutoloader()
-    {
-        if ($this->mapped) {
-            return;
-        }
-
-        $config = $this->getConfiguration();
-
-        if ($config && isset($config->autoload) && $config->autoload) {
-            $this->autoloader->addNamespace($config->classPrefix, $this->environment->getFullPackagePath() . '/' . $config->classPath);
-        }
-
-        $this->mapped = true;
     }
 } 

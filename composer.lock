@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b276049c0acbc77539e0f692bfa7dd56",
+    "hash": "28394999fb9055333693ad9baffbcbbb",
     "packages": [
         {
             "name": "av/bonefish-autoloader",
@@ -60,6 +60,125 @@
             "notification-url": "https://packagist.org/downloads/",
             "description": "This Project maintains the Bonefish Dependency Injection Container",
             "time": "2014-09-06 21:16:21"
+        },
+        {
+            "name": "av/bonefish-helloworld",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AValnar/Bonefish-HelloWorld.git",
+                "reference": "dfee9216348d85968bf9634f657ff9f0793d8a11"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AValnar/Bonefish-HelloWorld/zipball/dfee9216348d85968bf9634f657ff9f0793d8a11",
+                "reference": "dfee9216348d85968bf9634f657ff9f0793d8a11",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "*"
+            },
+            "type": "bonefish-package",
+            "autoload": {
+                "psr-4": {
+                    "Bonefish\\HelloWorld\\": [
+                        ""
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Bonefish Framework",
+            "time": "2014-09-25 20:23:17"
+        },
+        {
+            "name": "composer/installers",
+            "version": "v1.0.18",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/installers.git",
+                "reference": "74fb0a7a1a23696d9c8cc2fba5903f6711cdd067"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/installers/zipball/74fb0a7a1a23696d9c8cc2fba5903f6711cdd067",
+                "reference": "74fb0a7a1a23696d9c8cc2fba5903f6711cdd067",
+                "shasum": ""
+            },
+            "replace": {
+                "roundcube/plugin-installer": "*",
+                "shama/baton": "*"
+            },
+            "require-dev": {
+                "composer/composer": "1.0.*@dev",
+                "phpunit/phpunit": "4.1.*"
+            },
+            "type": "composer-installer",
+            "extra": {
+                "class": "Composer\\Installers\\Installer",
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Composer\\Installers\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kyle Robinson Young",
+                    "email": "kyle@dontkry.com",
+                    "homepage": "https://github.com/shama"
+                }
+            ],
+            "description": "A multi-framework Composer library installer",
+            "homepage": "http://composer.github.com/installers/",
+            "keywords": [
+                "Craft",
+                "Dolibarr",
+                "Hurad",
+                "MODX Evo",
+                "OXID",
+                "WolfCMS",
+                "agl",
+                "annotatecms",
+                "bitrix",
+                "cakephp",
+                "chef",
+                "codeigniter",
+                "concrete5",
+                "croogo",
+                "drupal",
+                "elgg",
+                "fuelphp",
+                "installer",
+                "joomla",
+                "kohana",
+                "laravel",
+                "lithium",
+                "magento",
+                "mako",
+                "mediawiki",
+                "modulework",
+                "moodle",
+                "phpbb",
+                "piwik",
+                "ppi",
+                "puppet",
+                "roundcube",
+                "shopware",
+                "silverstripe",
+                "symfony",
+                "typo3",
+                "wordpress",
+                "zend",
+                "zikula"
+            ],
+            "time": "2014-08-18 20:00:12"
         },
         {
             "name": "illuminate/support",
@@ -222,12 +341,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/url.git",
-                "reference": "637366196a7ac5361673d04ff5a31232b2094db4"
+                "reference": "0213e79a6f05d7964b3bd55c0d2c62070aa0283d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/url/zipball/637366196a7ac5361673d04ff5a31232b2094db4",
-                "reference": "637366196a7ac5361673d04ff5a31232b2094db4",
+                "url": "https://api.github.com/repos/thephpleague/url/zipball/0213e79a6f05d7964b3bd55c0d2c62070aa0283d",
+                "reference": "0213e79a6f05d7964b3bd55c0d2c62070aa0283d",
                 "shasum": ""
             },
             "require": {
@@ -271,7 +390,7 @@
                 "php",
                 "url"
             ],
-            "time": "2014-09-08 11:36:55"
+            "time": "2014-09-25 11:41:42"
         },
         {
             "name": "nette/caching",
@@ -617,12 +736,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "2f70d1f2ca423cac11121b061b1592de5f049d30"
+                "reference": "eea1700d02324e2512e9b2a7842b9ebe61fab5a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/2f70d1f2ca423cac11121b061b1592de5f049d30",
-                "reference": "2f70d1f2ca423cac11121b061b1592de5f049d30",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/eea1700d02324e2512e9b2a7842b9ebe61fab5a7",
+                "reference": "eea1700d02324e2512e9b2a7842b9ebe61fab5a7",
                 "shasum": ""
             },
             "require": {
@@ -668,7 +787,7 @@
                 "debugger",
                 "nette"
             ],
-            "time": "2014-09-17 11:22:18"
+            "time": "2014-09-18 17:02:11"
         },
         {
             "name": "true/punycode",
@@ -777,7 +896,8 @@
         "tracy/tracy": 20,
         "nette/reflection": 20,
         "league/url": 20,
-        "uestla/yetorm": 20
+        "uestla/yetorm": 20,
+        "av/bonefish-helloworld": 20
     },
     "prefer-stable": false,
     "platform": [

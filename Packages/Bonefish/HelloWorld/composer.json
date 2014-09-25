@@ -1,7 +1,0 @@
-{
-    "name": "av/bonefish-helloworld",
-    "description": "Bonefish Framework",
-    "config": {
-        "vendor-dir": "Packages"
-    }
-}
