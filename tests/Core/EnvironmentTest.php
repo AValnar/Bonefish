@@ -63,7 +63,7 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
             ->method('create')
             ->with('\Bonefish\Core\Package', array($vendor, $package,array()))
             ->will($this->returnValue('foobar'));
-        $this->environment->setConfigurationPath('/configuration');
+        $this->environment->setPackageStates(array('test'));
         $return = $this->environment->createPackage($vendor, $package);
         $this->assertThat($return, $this->equalTo('foobar'));
     }
