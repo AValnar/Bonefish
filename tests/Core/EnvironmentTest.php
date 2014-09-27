@@ -47,6 +47,7 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             array('getBasePath', 'setBasePath', 'foo'),
+            array('getPackageStates', 'setPackageStates', 'foo'),
             array('getPackagePath', 'setPackagePath', 'foo'),
             array('getCachePath', 'setCachePath', 'foo'),
             array('getConfigurationPath', 'setConfigurationPath', 'foo'),
@@ -60,15 +61,16 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
         $package = 'bar';
         $this->container->expects($this->once())
             ->method('create')
-            ->with('\Bonefish\Core\Package', array($vendor, $package))
+            ->with('\Bonefish\Core\Package', array($vendor, $package,array()))
             ->will($this->returnValue('foobar'));
+        $this->environment->setConfigurationPath('/configuration');
         $return = $this->environment->createPackage($vendor, $package);
         $this->assertThat($return, $this->equalTo('foobar'));
     }
 
     public function testGetAllPackages()
     {
-        $expected = array('foobar');
+        $expected = array('foobar','foobar');
         $this->container->expects($this->exactly(count($expected)))
             ->method('create')
             ->with('\Bonefish\Core\Package')

@@ -186,7 +186,7 @@ class CLITest extends \PHPUnit_Framework_TestCase
         $packageMock = $this->getMock(
             '\Bonefish\Core\Package',
             array('getController'),
-            array('Bonefish', 'HelloWorld')
+            array('Bonefish', 'HelloWorld', array())
         );
         $packageMock->expects($this->any())
             ->method('getController')

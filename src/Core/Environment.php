@@ -191,7 +191,8 @@ class Environment
     public function createPackage($vendor, $package)
     {
         $packages = $this->getPackageStates();
-        return $this->container->create('\Bonefish\Core\Package', array($vendor, $package, $packages[$vendor][$package]));
+        $config = isset($packages[$vendor][$package]) ? $packages[$vendor][$package] : array();
+        return $this->container->create('\Bonefish\Core\Package', array($vendor, $package, $config));
     }
 
     /**
@@ -201,7 +202,7 @@ class Environment
     {
         $states = $this->getPackageStates();
         $return = array();
-        foreach($states as $vendor => $packages) {
+        foreach ($states as $vendor => $packages) {
             foreach ($packages as $package => $config) {
                 $return[] = $this->createPackage($vendor, $package);
             }

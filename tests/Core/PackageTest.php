@@ -9,6 +9,8 @@
 namespace Bonefish\Tests\Core;
 
 
+use Bonefish\Core\Package;
+
 class PackageTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -55,7 +57,7 @@ class PackageTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(__DIR__));
         $this->package->environment = $enviormentMock;
         $path = $this->package->getPackageUrlPath();
-        $this->assertThat($path,$this->equalTo(__DIR__.'/Bonefish/HelloWorld'));
+        $this->assertThat($path,$this->equalTo(__DIR__.'/Bonefish'.DIRECTORY_SEPARATOR.'HelloWorld'));
     }
 
     public function testNoConfiguration()
@@ -100,10 +102,31 @@ class PackageTest extends \PHPUnit_Framework_TestCase
         $this->assertThat($config,$this->equalTo(false));
     }
 
+    public function testAutoload()
+    {
+        $package = new Package('test','test',array('autoload' => true));
+        $autoloader = $this->getMockBuilder('\Bonefish\Autoloader\Autoloader')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $autoloader->expects($this->once())
+            ->method('addNamespace')
+            ->will($this->returnValue(true));
+        $package->autoloader = $autoloader;
+        $enviormentMock = $this->getMockBuilder('\Bonefish\Core\Environment')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $enviormentMock->expects($this->exactly(1))
+            ->method('getFullPackagePath')
+            ->will($this->returnValue(__DIR__));
+        $package->environment = $enviormentMock;
+        $package->__init();
+    }
+
     public function getterAndSetterProvider()
     {
         return array(
             array('getName', 'setName', 'foo'),
+            array('getPath', 'setPath', 'foo'),
             array('getVendor', 'setVendor', 'foo')
         );
     }

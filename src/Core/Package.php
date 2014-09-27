@@ -59,7 +59,7 @@ class Package
     const TYPE_CONTROLLER = 'Controller';
     const TYPE_COMMAND = 'Command';
 
-    public function __construct($vendor, $name, $config)
+    public function __construct($vendor, $name, $config = array())
     {
         $this->vendor = $vendor;
         $this->name = $name;
@@ -104,6 +104,9 @@ class Package
      */
     public function getPath()
     {
+        if (!isset($this->config['path'])) {
+            return $this->vendor.DIRECTORY_SEPARATOR.$this->name;
+        }
         return $this->config['path'];
     }
 
