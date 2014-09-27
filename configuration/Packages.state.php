@@ -1,10 +1,7 @@
 <?php
+$packages = array();
 
-return array(
-    array(
-        'Bonefish',
-        array(
-            'HelloWorld'
-        )
-    )
-);
+$packages['Bonefish']['HelloWorld'] = array('path' => 'av/bonefish-helloworld', 'active' => true);
+$packages['Bonefish']['Kickstart'] = array('path' => 'av/bonefish-kickstart', 'active' => true);
+
+return $packages;

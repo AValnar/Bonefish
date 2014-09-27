@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "28394999fb9055333693ad9baffbcbbb",
+    "hash": "1c59f704b4f99cf92b9f46da60904fdd",
     "packages": [
         {
             "name": "av/bonefish-autoloader",
@@ -67,12 +67,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/AValnar/Bonefish-HelloWorld.git",
-                "reference": "dfee9216348d85968bf9634f657ff9f0793d8a11"
+                "reference": "9b171c408cb7267479744bb48151949e01def1aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AValnar/Bonefish-HelloWorld/zipball/dfee9216348d85968bf9634f657ff9f0793d8a11",
-                "reference": "dfee9216348d85968bf9634f657ff9f0793d8a11",
+                "url": "https://api.github.com/repos/AValnar/Bonefish-HelloWorld/zipball/9b171c408cb7267479744bb48151949e01def1aa",
+                "reference": "9b171c408cb7267479744bb48151949e01def1aa",
                 "shasum": ""
             },
             "require": {
@@ -88,7 +88,36 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Bonefish Framework",
-            "time": "2014-09-25 20:23:17"
+            "time": "2014-09-25 20:27:29"
+        },
+        {
+            "name": "av/bonefish-kickstart",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AValnar/Bonefish-Kickstart.git",
+                "reference": "8e4dbcd89e4f13aa6ee1562bb740a1db4104a566"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AValnar/Bonefish-Kickstart/zipball/8e4dbcd89e4f13aa6ee1562bb740a1db4104a566",
+                "reference": "8e4dbcd89e4f13aa6ee1562bb740a1db4104a566",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "*"
+            },
+            "type": "bonefish-package",
+            "autoload": {
+                "psr-4": {
+                    "Bonefish\\Kickstart\\": [
+                        ""
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Bonefish Framework",
+            "time": "2014-09-27 11:04:24"
         },
         {
             "name": "composer/installers",
@@ -736,12 +765,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "eea1700d02324e2512e9b2a7842b9ebe61fab5a7"
+                "reference": "682405280eae534dd3d9c7446173a635738dfec4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/eea1700d02324e2512e9b2a7842b9ebe61fab5a7",
-                "reference": "eea1700d02324e2512e9b2a7842b9ebe61fab5a7",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/682405280eae534dd3d9c7446173a635738dfec4",
+                "reference": "682405280eae534dd3d9c7446173a635738dfec4",
                 "shasum": ""
             },
             "require": {
@@ -787,7 +816,7 @@
                 "debugger",
                 "nette"
             ],
-            "time": "2014-09-18 17:02:11"
+            "time": "2014-09-25 22:58:39"
         },
         {
             "name": "true/punycode",
@@ -897,7 +926,8 @@
         "nette/reflection": 20,
         "league/url": 20,
         "uestla/yetorm": 20,
-        "av/bonefish-helloworld": 20
+        "av/bonefish-helloworld": 20,
+        "av/bonefish-kickstart": 20
     },
     "prefer-stable": false,
     "platform": [

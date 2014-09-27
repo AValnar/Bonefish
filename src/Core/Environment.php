@@ -44,6 +44,11 @@ class Environment
     protected $currentPackage;
 
     /**
+     * @var array
+     */
+    protected $packageState = array();
+
+    /**
      * @param string $basePath
      * @return self
      */
@@ -158,13 +163,35 @@ class Environment
     }
 
     /**
+     * @param array $packageState
+     * @return self
+     */
+    public function setPackageStates($packageState)
+    {
+        $this->packageState = $packageState;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPackageStates()
+    {
+        if (empty($this->packageState)) {
+            $this->packageState = require $this->getFullConfigurationPath() . '/Packages.state.php';
+        }
+        return $this->packageState;
+    }
+
+    /**
      * @param string $vendor
      * @param string $package
      * @return \Bonefish\Core\Package
      */
     public function createPackage($vendor, $package)
     {
-        return $this->container->create('\Bonefish\Core\Package', array($vendor, $package));
+        $packages = $this->getPackageStates();
+        return $this->container->create('\Bonefish\Core\Package', array($vendor, $package, $packages[$vendor][$package]));
     }
 
     /**
@@ -172,12 +199,11 @@ class Environment
      */
     public function getAllPackages()
     {
-        $states = require $this->getFullConfigurationPath().'/Packages.state.php';
+        $states = $this->getPackageStates();
         $return = array();
-        foreach($states as $state) {
-            $vendor = $state[0];
-            foreach ($state[1] as $package) {
-                $return[] = $this->createPackage($vendor,$package);
+        foreach($states as $vendor => $packages) {
+            foreach ($packages as $package => $config) {
+                $return[] = $this->createPackage($vendor, $package);
             }
         }
         return $return;

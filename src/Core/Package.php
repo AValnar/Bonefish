@@ -23,6 +23,11 @@ class Package
     protected $name;
 
     /**
+     * @var array
+     */
+    protected $config;
+
+    /**
      * @var \Bonefish\Core\Environment
      * @inject
      */
@@ -51,18 +56,19 @@ class Package
      */
     protected $configuration = NULL;
 
-    /**
-     * @var bool
-     */
-    protected $mapped = false;
-
     const TYPE_CONTROLLER = 'Controller';
     const TYPE_COMMAND = 'Command';
 
-    public function __construct($vendor, $name)
+    public function __construct($vendor, $name, $config)
     {
         $this->vendor = $vendor;
         $this->name = $name;
+        $this->config = $config;
+    }
+
+    public function __init()
+    {
+        $this->autoload();
     }
 
     /**
@@ -84,6 +90,24 @@ class Package
     }
 
     /**
+     * @param string $path
+     * @return self
+     */
+    public function setPath($path)
+    {
+        $this->config['path'] = $path;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->config['path'];
+    }
+
+    /**
      * @param string $vendor
      * @return self
      */
@@ -102,21 +126,26 @@ class Package
     }
 
     /**
-     * TODO: Add real path to package state and use that data
      * @return string
      */
     public function getPackagePath()
     {
-        return  $this->environment->getFullPackagePath() . '/' . $this->vendor . '/' . $this->name;
+        return $this->environment->getFullPackagePath() . '/' . $this->getPath();
     }
 
     /**
-     * TODO: Add real path to package state and use that data
      * @return string
      */
     public function getPackageUrlPath()
     {
-        return  $this->environment->getPackagePath() . '/' . $this->vendor . '/' . $this->name;
+        return $this->environment->getPackagePath() . '/' . $this->getPath();
+    }
+
+    protected function autoload()
+    {
+        if (isset($this->config['autoload']) && $this->config['autoload']) {
+            $this->autoloader->addNamespace($this->vendor . '\\' . $this->name, $this->getPackagePath());
+        }
     }
 
     /**
