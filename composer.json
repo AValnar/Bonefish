@@ -18,8 +18,10 @@
         "joetannenbaum/climate": "0.1.*",
         "league/url": "3.0.*@dev",
         "uestla/yetorm": "dev-master",
+        "nikic/fast-route": "dev-master",
         "av/bonefish-helloworld": "dev-master",
-        "av/bonefish-kickstart": "dev-master"
+        "av/bonefish-kickstart": "dev-master",
+        "av/bonefish-generator": "dev-master"
     },
     "extra": {
         "installer-paths": {

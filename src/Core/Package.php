@@ -148,17 +148,35 @@ class Package
     {
         if (isset($this->config['autoload']) && $this->config['autoload']) {
             $this->autoloader->addNamespace($this->vendor . '\\' . $this->name, $this->getPackagePath());
+            $this->autoloader->addNamespace($this->vendor . '\\' . $this->name, $this->getPackagePath().'/src');
         }
     }
 
     /**
      * @param string $type
-     * @return string
+     * @return mixed
      */
     public function getController($type)
     {
         $class = $this->vendor . '\\' . $this->name . '\Controller\\' . $type;
         return $this->container->get($class);
+    }
+
+    /**
+     * @return array
+     */
+    public function getControllers()
+    {
+        $return = array();
+        $iterator = new \DirectoryIterator($this->getPackagePath().'/Controller');
+        foreach ($iterator as $file) {
+            if ($file->isDir() || $file->isDot()) continue;
+            if ($file->getFilename() != 'Command.php') {
+                $name = substr($file->getFilename(),0,-4);
+                $return[] = $this->getController($name);
+            }
+        }
+        return $return;
     }
 
     public function getConfiguration()
