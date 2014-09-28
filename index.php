@@ -29,12 +29,10 @@ if (!file_exists($composerAutoload))
 
 require $baseDir . '/vendor/autoload.php';
 
-Tracy\Debugger::enable(Tracy\Debugger::DEVELOPMENT);
-Tracy\Debugger::$strictMode = TRUE;
-
 $container = new Bonefish\DependencyInjection\Container();
 /** @var \Bonefish\Core\Kernel $kernel */
 $kernel = $container->create('\Bonefish\Core\Kernel',array($baseDir));
+$kernel->startTracy();
 $kernel->start();
 
 

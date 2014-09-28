@@ -21,9 +21,15 @@ class ConfigurationManager
     public $environment;
 
     /**
+     * @var \Nette\Neon\Neon
+     * @inject
+     */
+    public $neon;
+
+    /**
      * @param string $name
      * @param bool $path
-     * @return \Respect\Config\Container
+     * @return array
      * @throws \InvalidArgumentException
      */
     public function getConfiguration($name,$path = FALSE)
@@ -33,7 +39,8 @@ class ConfigurationManager
             if (!file_exists($path)) {
                 throw new \InvalidArgumentException('Configuration does not exist!');
             }
-            $this->configurations[$name] = new \Respect\Config\Container($path);
+            $config = file_get_contents($path);
+            $this->configurations[$name] = $this->neon->decode($config);
         }
         return $this->configurations[$name];
     }

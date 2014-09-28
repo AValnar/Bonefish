@@ -5,7 +5,7 @@
         "composer/installers": "*",
         "av/bonefish-autoloader": "dev-master",
         "av/bonefish-di2": "dev-master",
-        "respect/config": "dev-master",
+        "nette/neon": "dev-master",
         "latte/latte": "dev-master",
         "tracy/tracy": "dev-master",
         "nette/reflection": "dev-master",

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1c59f704b4f99cf92b9f46da60904fdd",
+    "hash": "ddec2d30ea513e5c57a826a5e458b12d",
     "packages": [
         {
             "name": "av/bonefish-autoloader",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/AValnar/Bonefish-Autoloader.git",
-                "reference": "0669917b29befc58fd3c545fbda2311fe41aba6f"
+                "reference": "efe814dae0985643e9fafa7c31ef7d19f98461d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AValnar/Bonefish-Autoloader/zipball/0669917b29befc58fd3c545fbda2311fe41aba6f",
-                "reference": "0669917b29befc58fd3c545fbda2311fe41aba6f",
+                "url": "https://api.github.com/repos/AValnar/Bonefish-Autoloader/zipball/efe814dae0985643e9fafa7c31ef7d19f98461d7",
+                "reference": "efe814dae0985643e9fafa7c31ef7d19f98461d7",
                 "shasum": ""
             },
             "require": {
@@ -31,7 +31,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "This Project maintains the Bonefish PSR-4 Autoloader",
-            "time": "2014-09-01 21:14:24"
+            "time": "2014-09-27 13:01:25"
         },
         {
             "name": "av/bonefish-di2",
@@ -39,12 +39,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/AValnar/Bonefish-DI2.git",
-                "reference": "f1e50971b251e45a8e49d1283698847bedf63074"
+                "reference": "66b2a8ab7314ec6ea2ba55fe2793905eb257e719"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AValnar/Bonefish-DI2/zipball/f1e50971b251e45a8e49d1283698847bedf63074",
-                "reference": "f1e50971b251e45a8e49d1283698847bedf63074",
+                "url": "https://api.github.com/repos/AValnar/Bonefish-DI2/zipball/66b2a8ab7314ec6ea2ba55fe2793905eb257e719",
+                "reference": "66b2a8ab7314ec6ea2ba55fe2793905eb257e719",
                 "shasum": ""
             },
             "require": {
@@ -59,7 +59,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "This Project maintains the Bonefish Dependency Injection Container",
-            "time": "2014-09-06 21:16:21"
+            "time": "2014-09-27 12:56:27"
         },
         {
             "name": "av/bonefish-helloworld",
@@ -96,12 +96,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/AValnar/Bonefish-Kickstart.git",
-                "reference": "8e4dbcd89e4f13aa6ee1562bb740a1db4104a566"
+                "reference": "c869e48531fecf4abc3ec81529047155e3d03d04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AValnar/Bonefish-Kickstart/zipball/8e4dbcd89e4f13aa6ee1562bb740a1db4104a566",
-                "reference": "8e4dbcd89e4f13aa6ee1562bb740a1db4104a566",
+                "url": "https://api.github.com/repos/AValnar/Bonefish-Kickstart/zipball/c869e48531fecf4abc3ec81529047155e3d03d04",
+                "reference": "c869e48531fecf4abc3ec81529047155e3d03d04",
                 "shasum": ""
             },
             "require": {
@@ -111,13 +111,14 @@
             "autoload": {
                 "psr-4": {
                     "Bonefish\\Kickstart\\": [
-                        ""
+                        "",
+                        "src"
                     ]
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Bonefish Framework",
-            "time": "2014-09-27 11:04:24"
+            "time": "2014-09-27 12:07:54"
         },
         {
             "name": "composer/installers",
@@ -576,6 +577,58 @@
             "time": "2014-06-24 11:22:41"
         },
         {
+            "name": "nette/neon",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nette/neon.git",
+                "reference": "fdf47ea320e72813a7ac1cdf62f555b3697f1777"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nette/neon/zipball/fdf47ea320e72813a7ac1cdf62f555b3697f1777",
+                "reference": "fdf47ea320e72813a7ac1cdf62f555b3697f1777",
+                "shasum": ""
+            },
+            "require": {
+                "ext-iconv": "*",
+                "php": ">=5.3.1"
+            },
+            "require-dev": {
+                "nette/tester": "~1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0",
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "homepage": "http://davidgrudl.com"
+                },
+                {
+                    "name": "Nette Community",
+                    "homepage": "http://nette.org/contributors"
+                }
+            ],
+            "description": "Nette NEON: parser & generator for Nette Object Notation",
+            "homepage": "http://ne-on.org",
+            "time": "2014-09-08 20:28:35"
+        },
+        {
             "name": "nette/reflection",
             "version": "dev-master",
             "source": {
@@ -685,79 +738,6 @@
             "description": "Nette Utility Classes",
             "homepage": "http://nette.org",
             "time": "2014-08-24 23:29:12"
-        },
-        {
-            "name": "respect/config",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Respect/Config.git",
-                "reference": "1d7689ccb0c43153218b463a728f6c7130f1566a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Respect/Config/zipball/1d7689ccb0c43153218b463a728f6c7130f1566a",
-                "reference": "1d7689ccb0c43153218b463a728f6c7130f1566a",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "@stable",
-                "respect/test": "dev-master"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Respect\\Config": "library"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Henrique Moody",
-                    "email": "henriquemoody@gmail.com",
-                    "homepage": "http://about.me/henriquemoody"
-                },
-                {
-                    "name": "Alexandre Gaigalas",
-                    "email": "alexandre@gaigalas.net"
-                },
-                {
-                    "name": "Rogerio Prado de Jesus",
-                    "email": "rogeriopradoj@gmail.com"
-                },
-                {
-                    "name": "Thiago Rigo",
-                    "email": "thiagophx@gmail.com"
-                },
-                {
-                    "name": "Augusto Pascutti",
-                    "email": "augusto@phpsp.org.br"
-                },
-                {
-                    "name": "Nick nickl- Lombard",
-                    "email": "github@jigsoft.co.za"
-                },
-                {
-                    "name": "Ivo Nascimento",
-                    "email": "iannsp@gmail.com",
-                    "homepage": "http://ivonascimento.wordpress.com"
-                }
-            ],
-            "description": "A powerful, small, deadly simple configurator and dependency injection container made to be easy.",
-            "homepage": "https://github.com/Respect/Config",
-            "keywords": [
-                "config",
-                "dependency injection",
-                "dic",
-                "respect"
-            ],
-            "time": "2013-08-21 00:17:18"
         },
         {
             "name": "tracy/tracy",
@@ -920,7 +900,7 @@
     "stability-flags": {
         "av/bonefish-autoloader": 20,
         "av/bonefish-di2": 20,
-        "respect/config": 20,
+        "nette/neon": 20,
         "latte/latte": 20,
         "tracy/tracy": 20,
         "nette/reflection": 20,

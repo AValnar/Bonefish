@@ -119,8 +119,8 @@ class View
 
     protected function loadDefaultMacros()
     {
-        $defaults = require $this->environment->getFullConfigurationPath() . '/Viewhelper.default.php';
-        foreach ($defaults as $macro) {
+        $defaults = $this->configurationManager->getConfiguration('Viewhelper.neon');
+        foreach ($defaults['global'] as $macro) {
             $this->addMacro($this->container->get($macro));
         }
     }

@@ -49,6 +49,12 @@ class Environment
     protected $packageState = array();
 
     /**
+     * @var \Bonefish\Core\ConfigurationManager
+     * @inject
+     */
+    public $configurationManager;
+
+    /**
      * @param string $basePath
      * @return self
      */
@@ -178,7 +184,7 @@ class Environment
     public function getPackageStates()
     {
         if (empty($this->packageState)) {
-            $this->packageState = require $this->getFullConfigurationPath() . '/Packages.state.php';
+            $this->packageState = $this->configurationManager->getConfiguration('Packages.neon');
         }
         return $this->packageState;
     }

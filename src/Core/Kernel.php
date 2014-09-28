@@ -51,7 +51,7 @@ class Kernel
     public function __init()
     {
         $this->initAutolaoder();
-        $this->initEnviorment($this->baseDir);
+        $this->initEnvironment($this->baseDir);
         $this->initLatte();
         $this->initCache();
         $this->initDatabase();
@@ -64,16 +64,16 @@ class Kernel
         $this->container->add('\Bonefish\Autoloader\Autoloader', $autoloader);
     }
 
-    protected function initEnviorment($baseDir)
+    protected function initEnvironment($baseDir)
     {
         /** @var \Bonefish\Core\Environment $environment */
         $environment = $this->container->get('\Bonefish\Core\Environment')
             ->setBasePath($baseDir)
             ->setConfigurationPath('/Configuration');
 
-        $basicConfiguration = $this->configurationManager->getConfiguration('Basic.ini');
-        $environment->setPackagePath($basicConfiguration->packagePath)
-            ->setCachePath($basicConfiguration->cachePath);
+        $basicConfiguration = $this->configurationManager->getConfiguration('Configuration.neon');
+        $environment->setPackagePath($basicConfiguration['global']['packagePath'])
+            ->setCachePath($basicConfiguration['global']['cachePath']);
     }
 
     protected function initLatte()
@@ -82,8 +82,8 @@ class Kernel
         $latte = $this->container->get('\Latte\Engine');
         /** @var \Bonefish\Core\Environment $environment */
         $environment = $this->container->get('\Bonefish\Core\Environment');
-        $basicConfiguration = $this->configurationManager->getConfiguration('Basic.ini');
-        $latte->setTempDirectory($environment->getFullCachePath() . $basicConfiguration->lattePath);
+        $basicConfiguration = $this->configurationManager->getConfiguration('Configuration.neon');
+        $latte->setTempDirectory($environment->getFullCachePath() . $basicConfiguration['global']['lattePath']);
     }
 
     protected function initCache()
@@ -99,14 +99,30 @@ class Kernel
     protected function initDatabase()
     {
         try {
-            $dbConfig = $this->configurationManager->getConfiguration('Database.ini');
-            $connection = new \Nette\Database\Connection($dbConfig->db_dsn, $dbConfig->db_user, $dbConfig->db_pw, array('lazy' => FALSE));
+            $dbConfig = $this->configurationManager->getConfiguration('Configuration.neon');
+            $connection = new \Nette\Database\Connection(
+                $dbConfig['database']['db_driver'] . ':host=' . $dbConfig['database']['db_host'] . ';dbname=' . $dbConfig['database']['db_name'],
+                $dbConfig['database']['db_user'],
+                $dbConfig['database']['db_pw'],
+                array('lazy' => FALSE)
+            );
         } catch (\PDOException $e) {
             die('Connection failed: ' . $e->getMessage());
         }
 
         $context = new \Nette\Database\Context($connection, NULL, $this->container->get('\Nette\Caching\Storages\FileStorage'));
         $this->container->add('\Nette\Database\Context', $context);
+    }
+
+    public function startTracy()
+    {
+        $basicConfiguration = $this->configurationManager->getConfiguration('Configuration.neon');
+        if ($basicConfiguration['global']['develoment']) {
+            \Tracy\Debugger::enable(\Tracy\Debugger::DEVELOPMENT);
+        } else {
+            \Tracy\Debugger::enable(\Tracy\Debugger::PRODUCTION);
+        }
+        \Tracy\Debugger::$strictMode = TRUE;
     }
 
     public function start()

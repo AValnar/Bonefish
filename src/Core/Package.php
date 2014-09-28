@@ -52,7 +52,7 @@ class Package
     public $configurationManager;
 
     /**
-     * @var null|\Respect\Config\Container
+     * @var false|array|null
      */
     protected $configuration = NULL;
 
@@ -168,7 +168,7 @@ class Package
         }
 
         try {
-            $path = $this->getPackagePath() . '/Configuration/Configuration.ini';
+            $path = $this->getPackagePath() . '/Configuration/Configuration.neon';
             $this->configuration = $this->configurationManager->getConfiguration($path, true);
         } catch (\Exception $e) {
             $this->configuration = false;

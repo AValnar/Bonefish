@@ -1,0 +1,17 @@
+global:
+  baseUrl: http://p236456.webspaceconfig.de
+  packagePath: /Packages
+  cachePath: /Cache
+  lattePath: /Latte
+  develoment: yes
+
+database:
+  db_driver: mysql
+  db_host: db1165.mydbserver.com
+  db_name: usr_p236456_1
+  db_user: p236456
+  db_pw: "ogabigUc:509"
+
+route:
+  vendor: Bonefish
+  package: HelloWorld

@@ -81,7 +81,7 @@ class Router
 
     public function __init()
     {
-        $this->config = $this->configurationManager->getConfiguration('Route.ini');
+        $this->config = $this->configurationManager->getConfiguration('Configuration.neon');
     }
 
     public function route()
@@ -157,7 +157,7 @@ class Router
     protected function setDefault($value)
     {
         if ($this->{$value} == '') {
-            $this->{$value} = $this->config->{$value};
+            $this->{$value} = $this->config['route'][$value];
         }
     }
 

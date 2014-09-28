@@ -13,7 +13,7 @@ Features
 - Commandline Tool
 - Package Kickstarter
 - Templating Engine provided by Nette\Latte
-- Simple .ini configurations by Respect\Config
+- Simple .neon configurations by Nette\Neon
 - Nette\Tracy Debugger
 - Composer packages with type "bonefish-package" are automatically installed in /Packages *
 - Dead simple Router
@@ -35,42 +35,37 @@ $ composer require av/bonefish-bonefish:dev-master
 \* Note: This is only needed if https://github.com/composer/installers/pull/181 is not yet merged
 Overwrite your composer/installer with the above fork please to enable proper Package installation
 
-Create a "Cache" directory and a "Latte" directory in the previously created Cache directory.
-If you choose other names please edit them in /Configuration/Basic.ini
-
-Extended Installation
-=====================
-* Set your Database Configuration in /Configuration/Database.ini => edit your Databasehost,-name,-user and -password
-* Change your BaseUrl in /Configuration/Basic.ini
+Create a cache directory and a cache directory inside this previously created one.
+Afterwards set the path in /Configuration/Configuration.neon
+lattePath is relative to cachePath
 
 Usage
 =====
 Actually it is already working.
-Don't belive me ?
+Don't believe me ?
 Just call your index.php and you should already see "Hello World"
 
 Anyway if you want to do a little more than to display "Hello World" you should do the following:
 
 Add Packages
 ============
-When you add a new Package add the following line in your /Configuration/Packages.state.php
-```php
-$packages['vendor']['name'] = array('path' => 'vendor/name', 'active' => true);
-// e.g.
-// $packages['Bonefish']['HelloWorld'] = array('path' => 'av/bonefish-helloworld', 'active' => true);
-// if the package was not installed via composer add the autoload flag like so:
-$packages['vendor']['name'] = array('path' => 'vendor/name', 'active' => true, 'autoload' => true);
+When you add a new Package add the configuration inside /Configuration/Packages.neon
+```yaml
+vendor:
+  package:
+    #path: otherpath/otherdir # only needed if it is not /Packages/vendor/package
+    active: yes
 ```
 
 Routing
 =======
 To call specific Packages or actions your urls should look as follows:
 ```php
-example.com // calls the indexAction of the default package set in /Configuration with vendor and package
-example.com/v:foo // call the index action of the vendor foo with the default package set in /Configuration
+example.com // calls the indexAction of the default package set in /Configuration/Configuration.neon with vendor and package
+example.com/v:foo // call the index action of the vendor foo with the default package
 example.com/v:foo/p:bar // calls the indexAction of the Vendor foo in the Package bar
 example.com/v:foo/p:bar/a:baz // calls the bazAction of the Vendor foo in the Package bar
-example.com/test:foo // would call the indexAction o nthe default package and the parameter test will have the value foo
+example.com/test:foo // would call the indexAction on the default package and the parameter test will have the value foo
 // All keys and parameters can be in any order, Bonefish will sort them for you
 ```
 

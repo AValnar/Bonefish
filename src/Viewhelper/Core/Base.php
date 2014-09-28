@@ -27,7 +27,7 @@ class Base extends AbstractViewhelper
 
     public function getStart(\Latte\MacroNode $node, \Latte\PhpWriter $writer)
     {
-        $config = $this->configurationManager->getConfiguration('Basic.ini');
-        return $writer->write('echo \'<base href="'.$config->baseUrl.'">\'');
+        $config = $this->configurationManager->getConfiguration('Configuration.neon');
+        return $writer->write('echo \'<base href="'.$config['global']['baseUrl'].'">\'');
     }
 } 
