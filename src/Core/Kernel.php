@@ -52,8 +52,8 @@ class Kernel
     {
         $this->initAutolaoder();
         $this->initEnvironment($this->baseDir);
-        $this->initLatte();
         $this->initCache();
+        $this->initLatte();
         $this->initDatabase();
     }
 
@@ -76,6 +76,18 @@ class Kernel
             ->setCachePath($basicConfiguration['global']['cachePath']);
     }
 
+    protected function initCache()
+    {
+        /** @var \Bonefish\Core\Environment $environment */
+        $environment = $this->container->get('\Bonefish\Core\Environment');
+        $path = $environment->getFullCachePath();
+        $this->createDir($path);
+        $storage = new \Nette\Caching\Storages\FileStorage($path);
+        $cache = new \Nette\Caching\Cache($storage);
+        $this->container->add('\Nette\Caching\Cache', $cache);
+        $this->container->add('\Nette\Caching\Storages\FileStorage', $storage);
+    }
+
     protected function initLatte()
     {
         /** @var \Latte\Engine $latte */
@@ -83,17 +95,9 @@ class Kernel
         /** @var \Bonefish\Core\Environment $environment */
         $environment = $this->container->get('\Bonefish\Core\Environment');
         $basicConfiguration = $this->configurationManager->getConfiguration('Configuration.neon');
-        $latte->setTempDirectory($environment->getFullCachePath() . $basicConfiguration['global']['lattePath']);
-    }
-
-    protected function initCache()
-    {
-        /** @var \Bonefish\Core\Environment $environment */
-        $environment = $this->container->get('\Bonefish\Core\Environment');
-        $storage = new \Nette\Caching\Storages\FileStorage($environment->getFullCachePath());
-        $cache = new \Nette\Caching\Cache($storage);
-        $this->container->add('\Nette\Caching\Cache', $cache);
-        $this->container->add('\Nette\Caching\Storages\FileStorage', $storage);
+        $path = $environment->getFullCachePath() . $basicConfiguration['global']['lattePath'];
+        $this->createDir($path);
+        $latte->setTempDirectory($path);
     }
 
     protected function initDatabase()
@@ -130,5 +134,12 @@ class Kernel
         $url = \League\Url\UrlImmutable::createFromServer($_SERVER);
         $router = $this->container->create('Bonefish\Router\Router', array($url));
         $router->route();
+    }
+
+    private function createDir($path)
+    {
+        if (!file_exists($path)) {
+            mkdir($path);
+        }
     }
 } 
