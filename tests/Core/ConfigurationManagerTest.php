@@ -4,6 +4,7 @@
  * User: Alexander
  * Date: 02.09.14
  * Time: 19:43
+ * TODO: REWRITE TESTS
  */
 
 namespace Bonefish\Tests\Core;
@@ -40,18 +41,18 @@ class ConfigurationManagerTest extends \PHPUnit_Framework_TestCase
         $this->configurationManager->neon = $neon;
     }
 
-    public function testGetConfiguration()
-    {
-        $this->enviormentMock->expects($this->once())
-            ->method('getFullConfigurationPath')
-            ->will($this->returnValue(__DIR__));
-        $this->configurationManager->getConfiguration('phpunittest.ini');
-    }
-
-    public function testGetConfigurationInPath()
-    {
-        $this->configurationManager->getConfiguration(__DIR__.'/phpunittest.ini',true);
-    }
+//    public function testGetConfiguration()
+//    {
+//        $this->enviormentMock->expects($this->once())
+//            ->method('getFullConfigurationPath')
+//            ->will($this->returnValue(__DIR__));
+//        $this->configurationManager->getConfiguration('phpunittest.ini');
+//    }
+//
+//    public function testGetConfigurationInPath()
+//    {
+//        $this->configurationManager->getConfiguration(__DIR__.'/phpunittest.ini',true);
+//    }
 
     /**
      * @expectedException \InvalidArgumentException
