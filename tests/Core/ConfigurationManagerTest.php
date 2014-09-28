@@ -27,10 +27,6 @@ class ConfigurationManagerTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->enviormentMock->expects($this->any())
-            ->method('getFullConfigurationPath')
-            ->will($this->returnValue(__DIR__));
-
         $neon = $this->getMockBuilder('\Nette\Neon\Neon')
             ->disableOriginalConstructor()
             ->getMock();
@@ -46,6 +42,9 @@ class ConfigurationManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetConfiguration()
     {
+        $this->enviormentMock->expects($this->once())
+            ->method('getFullConfigurationPath')
+            ->will($this->returnValue(__DIR__));
         $this->configurationManager->getConfiguration('phpunittest.ini');
     }
 
@@ -59,13 +58,10 @@ class ConfigurationManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetConfigurationNotExist()
     {
+        $this->enviormentMock->expects($this->once())
+            ->method('getFullConfigurationPath')
+            ->will($this->returnValue(__DIR__));
         $this->configurationManager->getConfiguration('nonexistant.ini');
-    }
-
-    public function testGetConfigurationCached()
-    {
-        $this->configurationManager->getConfiguration('phpunittest.ini');
-        $this->configurationManager->getConfiguration('phpunittest.ini');
     }
 
     public function tearDown()
