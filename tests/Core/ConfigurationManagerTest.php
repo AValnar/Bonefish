@@ -20,25 +20,38 @@ class ConfigurationManagerTest extends \PHPUnit_Framework_TestCase
     {
         file_put_contents(__DIR__.'/phpunittest.ini', 'test = 1');
 
+        $config = new \stdClass();
+        $config->test = 1;
+
         $this->enviormentMock = $this->getMockBuilder('\Bonefish\Core\Environment')
             ->disableOriginalConstructor()
             ->getMock();
 
+        $this->enviormentMock->expects($this->any())
+            ->method('getFullConfigurationPath')
+            ->will($this->returnValue(__DIR__));
+
+        $neon = $this->getMockBuilder('\Nette\Neon\Neon')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $neon->expects($this->any())
+            ->method('decode')
+            ->will($this->returnValue($config));
+
         $this->configurationManager = new \Bonefish\Core\ConfigurationManager();
         $this->configurationManager->environment = $this->enviormentMock;
+        $this->configurationManager->neon = $neon;
     }
 
     public function testGetConfiguration()
     {
-        $this->enviormentMock->expects($this->once())
-            ->method('getFullConfigurationPath')
-            ->will($this->returnValue(__DIR__));
-        $this->assertThat($this->configurationManager->getConfiguration('phpunittest.ini')->test, $this->equalTo(1));
+        $this->configurationManager->getConfiguration('phpunittest.ini');
     }
 
     public function testGetConfigurationInPath()
     {
-        $this->assertThat($this->configurationManager->getConfiguration(__DIR__.'/phpunittest.ini',true)->test, $this->equalTo(1));
+        $this->configurationManager->getConfiguration(__DIR__.'/phpunittest.ini',true);
     }
 
     /**
@@ -46,19 +59,13 @@ class ConfigurationManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetConfigurationNotExist()
     {
-        $this->enviormentMock->expects($this->once())
-            ->method('getFullConfigurationPath')
-            ->will($this->returnValue(__DIR__));
         $this->configurationManager->getConfiguration('nonexistant.ini');
     }
 
     public function testGetConfigurationCached()
     {
-        $this->enviormentMock->expects($this->once())
-            ->method('getFullConfigurationPath')
-            ->will($this->returnValue(__DIR__));
-        $this->assertThat($this->configurationManager->getConfiguration('phpunittest.ini')->test, $this->equalTo(1));
-        $this->assertThat($this->configurationManager->getConfiguration('phpunittest.ini')->test, $this->equalTo(1));
+        $this->configurationManager->getConfiguration('phpunittest.ini');
+        $this->configurationManager->getConfiguration('phpunittest.ini');
     }
 
     public function tearDown()

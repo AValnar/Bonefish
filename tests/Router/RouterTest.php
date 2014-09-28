@@ -17,7 +17,7 @@ class RouterTest extends \PHPUnit_Framework_TestCase
             '\Bonefish\Core\ConfigurationManager');
         $configurationManagerMock->expects($this->once())
             ->method('getConfiguration')
-            ->with('Route.ini');
+            ->with('Configuration.neon');
 
         $url = \League\Url\UrlImmutable::createFromUrl('');
         $router = new \Bonefish\Router\Router($url);
@@ -31,7 +31,14 @@ class RouterTest extends \PHPUnit_Framework_TestCase
     public function testRouteOnNonPackage()
     {
         $url = \League\Url\UrlImmutable::createFromUrl('');
+        $enviormentMock = $this->getMockBuilder('\Bonefish\Core\Environment')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $enviormentMock->expects($this->once())
+            ->method('createPackage')
+            ->will($this->throwException(new \Exception()));
         $router = new \Bonefish\Router\Router($url);
+        $router->environment = $enviormentMock;
         $router->route();
     }
 
@@ -40,15 +47,15 @@ class RouterTest extends \PHPUnit_Framework_TestCase
      */
     public function testRouteDefaultRoute()
     {
-        $configuration = new \stdClass();
-        $configuration->vendor = 'foo';
-        $configuration->package = 'bar';
+        $configuration['route'] = array();
+        $configuration['route']['vendor'] = 'foo';
+        $configuration['route']['package'] = 'bar';
 
         $configurationManagerMock = $this->getMock(
             '\Bonefish\Core\ConfigurationManager');
         $configurationManagerMock->expects($this->once())
             ->method('getConfiguration')
-            ->with('Route.ini')
+            ->with('Configuration.neon')
             ->will($this->returnValue($configuration));
 
         $enviormentMock = $this->getMockBuilder('\Bonefish\Core\Environment')
