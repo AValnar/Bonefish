@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ddec2d30ea513e5c57a826a5e458b12d",
+    "hash": "15c8252daa9a421a4a88b6c66da5a894",
     "packages": [
         {
             "name": "av/bonefish-autoloader",
@@ -122,16 +122,16 @@
         },
         {
             "name": "composer/installers",
-            "version": "v1.0.18",
+            "version": "dev-custom-type-2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/composer/installers.git",
-                "reference": "74fb0a7a1a23696d9c8cc2fba5903f6711cdd067"
+                "url": "https://github.com/AValnar/installers.git",
+                "reference": "7a13390fd4942ca44e8b72c59da074238566efd5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/74fb0a7a1a23696d9c8cc2fba5903f6711cdd067",
-                "reference": "74fb0a7a1a23696d9c8cc2fba5903f6711cdd067",
+                "url": "https://api.github.com/repos/AValnar/installers/zipball/7a13390fd4942ca44e8b72c59da074238566efd5",
+                "reference": "7a13390fd4942ca44e8b72c59da074238566efd5",
                 "shasum": ""
             },
             "replace": {
@@ -154,7 +154,6 @@
                     "Composer\\Installers\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -168,47 +167,50 @@
             "description": "A multi-framework Composer library installer",
             "homepage": "http://composer.github.com/installers/",
             "keywords": [
+                "AGL",
+                "AnnotateCms",
+                "Bitrix",
+                "CakePHP",
+                "Chef",
+                "CodeIgniter",
                 "Craft",
+                "Croogo",
                 "Dolibarr",
+                "Drupal",
+                "Elgg",
+                "FuelPHP",
                 "Hurad",
+                "Joomla",
+                "Kohana",
+                "Laravel",
+                "Lithium",
+                "MODULEWork",
                 "MODX Evo",
+                "Magento",
+                "Mako",
+                "MediaWiki",
+                "Moodle",
                 "OXID",
+                "PPI",
+                "Piwik",
+                "Puppet",
+                "Roundcube",
+                "SilverStripe",
+                "TYPO3",
                 "WolfCMS",
-                "agl",
-                "annotatecms",
-                "bitrix",
-                "cakephp",
-                "chef",
-                "codeigniter",
+                "WordPress",
+                "Zend",
+                "Zikula",
                 "concrete5",
-                "croogo",
-                "drupal",
-                "elgg",
-                "fuelphp",
                 "installer",
-                "joomla",
-                "kohana",
-                "laravel",
-                "lithium",
-                "magento",
-                "mako",
-                "mediawiki",
-                "modulework",
-                "moodle",
-                "phpbb",
-                "piwik",
-                "ppi",
-                "puppet",
-                "roundcube",
+                "phpBB",
                 "shopware",
-                "silverstripe",
-                "symfony",
-                "typo3",
-                "wordpress",
-                "zend",
-                "zikula"
+                "symfony"
             ],
-            "time": "2014-08-18 20:00:12"
+            "support": {
+                "source": "https://github.com/AValnar/installers/tree/custom-type-2"
+            },
+            "time": "2014-08-30 10:25:12"
         },
         {
             "name": "illuminate/support",
@@ -898,6 +900,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
+        "composer/installers": 20,
         "av/bonefish-autoloader": 20,
         "av/bonefish-di2": 20,
         "nette/neon": 20,

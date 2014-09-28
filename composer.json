@@ -1,8 +1,14 @@
 {
     "name": "av/bonefish",
     "description": "Bonefish Framework",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/AValnar/installers"
+        }
+    ],
     "require": {
-        "composer/installers": "*",
+        "composer/installers": "dev-custom-type-2",
         "av/bonefish-autoloader": "dev-master",
         "av/bonefish-di2": "dev-master",
         "nette/neon": "dev-master",
