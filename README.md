@@ -30,7 +30,7 @@ This Package is automatically tested with PHP 5.4, 5.5 and 5.6 but also works wi
 
 Please use Composer to install this package.
 ```shell
-$ composer require av/bonefish-bonefish:dev-master
+$ composer require av/bonefish:dev-master
 ```
 \* Note: This is only needed if https://github.com/composer/installers/pull/181 is not yet merged
 Overwrite your composer/installer with the above fork please to enable proper Package installation.
