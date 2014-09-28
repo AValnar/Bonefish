@@ -15,14 +15,12 @@ Features
 - Templating Engine provided by Nette\Latte
 - Simple .neon configurations by Nette\Neon
 - Nette\Tracy Debugger
-- Composer packages with type "bonefish-package" are automatically installed in /Packages *
+- Composer packages with type "bonefish-package" are automatically installed in /Packages
 - Dead simple Router
 - Easy ORM with Nette\Database & Uestla/YetORM
 - Easy Viewhelper/Macro Support for Nette\Latte
 - Easy Dependency Injection with Bonefish DI
 - Clean Package System
-
-\* Note: This is only working once https://github.com/composer/installers/pull/181 is merged
 
 Installation
 ============
@@ -30,10 +28,9 @@ This Package is automatically tested with PHP 5.4, 5.5 and 5.6 but also works wi
 
 Please use Composer to install this package.
 ```shell
-$ composer require av/bonefish:dev-master
+$ composer install
+$ composer update
 ```
-\* Note: This is only needed if https://github.com/composer/installers/pull/181 is not yet merged
-Overwrite your composer/installer with the above fork please to enable proper Package installation.
 
 Usage
 =====
