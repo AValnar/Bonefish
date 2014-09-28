@@ -54,6 +54,11 @@ class ConfigurationManagerTest extends \PHPUnit_Framework_TestCase
 //        $this->configurationManager->getConfiguration(__DIR__.'/phpunittest.ini',true);
 //    }
 
+    public function testGetConfigurationInPath()
+    {
+        $this->configurationManager->getConfiguration(__DIR__.'/phpunittest.ini',true);
+    }
+
     /**
      * @expectedException \InvalidArgumentException
      */
