@@ -52,14 +52,14 @@ class Kernel
 
     public function __init()
     {
-        $this->initAutolaoder();
+        $this->initAutoloader();
         $this->initEnvironment($this->baseDir);
         $this->initCache();
         $this->initLatte();
         $this->initDatabase();
     }
 
-    protected function initAutolaoder()
+    protected function initAutoloader()
     {
         $autoloader = new \Bonefish\Autoloader\Autoloader();
         $autoloader->register();

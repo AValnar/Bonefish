@@ -23,7 +23,7 @@ namespace Bonefish\Controller;
  * @date       2014-08-28
  * @package Bonefish\Controller
  */
-class Command extends \JoeTannenbaum\CLImate\CLImate
+abstract class Command extends \JoeTannenbaum\CLImate\CLImate
 {
 
 } 

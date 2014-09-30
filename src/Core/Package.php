@@ -70,7 +70,6 @@ class Package
      */
     protected $configuration = NULL;
 
-    const TYPE_CONTROLLER = 'Controller';
     const TYPE_COMMAND = 'Command';
 
     /**
@@ -124,7 +123,7 @@ class Package
     public function getPath()
     {
         if (!isset($this->config['path'])) {
-            return $this->vendor.DIRECTORY_SEPARATOR.$this->name;
+            return $this->vendor . DIRECTORY_SEPARATOR . $this->name;
         }
         return $this->config['path'];
     }
@@ -167,17 +166,17 @@ class Package
     {
         if (isset($this->config['autoload']) && $this->config['autoload']) {
             $this->autoloader->addNamespace($this->vendor . '\\' . $this->name, $this->getPackagePath());
-            $this->autoloader->addNamespace($this->vendor . '\\' . $this->name, $this->getPackagePath().'/src');
+            $this->autoloader->addNamespace($this->vendor . '\\' . $this->name, $this->getPackagePath() . '/src');
         }
     }
 
     /**
-     * @param string $type
+     * @param string $name
      * @return mixed
      */
-    public function getController($type)
+    public function getController($name)
     {
-        $class = $this->vendor . '\\' . $this->name . '\Controller\\' . $type;
+        $class = $this->vendor . '\\' . $this->name . '\Controller\\' . $name;
         return $this->container->get($class);
     }
 
@@ -187,11 +186,10 @@ class Package
     public function getControllers()
     {
         $return = array();
-        $iterator = new \DirectoryIterator($this->getPackagePath().'/Controller');
+        $iterator = new \DirectoryIterator($this->getPackagePath() . '/Controller');
         foreach ($iterator as $file) {
-            if ($file->isDir() || $file->isDot()) continue;
-            if ($file->getFilename() != 'Command.php') {
-                $name = substr($file->getFilename(),0,-4);
+            if ($this->isControllerPossibleController($file)) {
+                $name = substr($file->getFilename(), 0, -4);
                 $return[] = $this->getController($name);
             }
         }
@@ -199,7 +197,18 @@ class Package
     }
 
     /**
-     * @return array|bool|null
+     * @param \DirectoryIterator $file
+     * @return bool
+     */
+    protected function isControllerPossibleController($file)
+    {
+        if ($file->isDir() || $file->isDot()) return false;
+        if ($file->getFilename() == self::TYPE_COMMAND . '.php') return false;
+        return true;
+    }
+
+    /**
+     * @return array|bool
      */
     public function getConfiguration()
     {

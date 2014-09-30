@@ -1,6 +1,6 @@
 <?php
 
-namespace Bonefish\CLI;
+namespace Bonefish\Reflection;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -21,11 +21,10 @@ namespace Bonefish\CLI;
  * @copyright  Copyright (c) 2014, Alexander Schmidt
  * @version    1.0
  * @date       2014-09-21
- * @package Bonefish\CLI
+ * @package Bonefish\Reflection
  */
-class Parser
+class Helper
 {
-
     /**
      * @param $suffix
      * @param \ReflectionClass $reflection

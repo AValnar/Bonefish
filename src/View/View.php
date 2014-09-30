@@ -85,7 +85,10 @@ class View
     {
         $this->loadDefaultMacros();
         $this->loadMacros();
-        $this->latte->render($this->environment->getPackage()->getPackagePath() . '/Layouts/' . $this->layout, $this->parameters);
+        $this->latte->render(
+            $this->environment->getPackage()->getPackagePath() . '/Layouts/' . $this->layout,
+            $this->parameters
+        );
     }
 
     /**

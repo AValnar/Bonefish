@@ -66,7 +66,7 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
     public $printer;
 
     /**
-     * @var \Bonefish\CLI\Parser
+     * @var \Bonefish\Reflection\Helper
      * @inject
      */
     public $parser;

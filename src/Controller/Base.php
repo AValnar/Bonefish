@@ -23,7 +23,7 @@ namespace Bonefish\Controller;
  * @date       2014-08-28
  * @package Bonefish\Controller
  */
-class Base
+abstract class Base
 {
     /**
      * @var \Bonefish\View\View
