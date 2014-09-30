@@ -108,14 +108,14 @@ class PackageTest extends \PHPUnit_Framework_TestCase
         $autoloader = $this->getMockBuilder('\Bonefish\Autoloader\Autoloader')
             ->disableOriginalConstructor()
             ->getMock();
-        $autoloader->expects($this->once())
+        $autoloader->expects($this->exactly(2))
             ->method('addNamespace')
             ->will($this->returnValue(true));
         $package->autoloader = $autoloader;
         $enviormentMock = $this->getMockBuilder('\Bonefish\Core\Environment')
             ->disableOriginalConstructor()
             ->getMock();
-        $enviormentMock->expects($this->exactly(1))
+        $enviormentMock->expects($this->exactly(2))
             ->method('getFullPackagePath')
             ->will($this->returnValue(__DIR__));
         $package->environment = $enviormentMock;

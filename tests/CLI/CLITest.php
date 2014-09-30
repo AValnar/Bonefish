@@ -107,6 +107,7 @@ class CLITest extends \PHPUnit_Framework_TestCase
 
         $cli = new \Bonefish\CLI\CLI(array('', 'help'));
         $cli->environment = $enviormentMock;
+        $cli->parser = new \Bonefish\Reflection\Helper();
         $cli->execute();
     }
 
@@ -131,6 +132,7 @@ class CLITest extends \PHPUnit_Framework_TestCase
 
         $cli = new \Bonefish\CLI\CLI(array('', 'Bonefish', 'HelloWorld', 'help'));
         $cli->environment = $enviormentMock;
+        $cli->parser = new \Bonefish\Reflection\Helper();
         $cli->execute();
     }
 
@@ -154,6 +156,7 @@ class CLITest extends \PHPUnit_Framework_TestCase
 
         $cli = new \Bonefish\CLI\CLI(array('', 'Bonefish', 'HelloWorld', 'main', 'help'));
         $cli->environment = $enviormentMock;
+        $cli->printer = new \Bonefish\CLI\Printer();
         $cli->execute();
     }
 
