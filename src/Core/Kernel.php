@@ -1,4 +1,7 @@
 <?php
+
+namespace Bonefish\Core;
+
 /**
  * Copyright (C) 2014  Alexander Schmidt
  *
@@ -17,13 +20,9 @@
  * @author     Alexander Schmidt <mail@story75.com>
  * @copyright  Copyright (c) 2014, Alexander Schmidt
  * @version    1.0
- * @date       2014-09-20
- * @package Bonefish
+ * @date       2014-09-21
+ * @package Bonefish\Core
  */
-
-namespace Bonefish\Core;
-
-
 class Kernel
 {
     /**
@@ -43,6 +42,9 @@ class Kernel
      */
     private $baseDir;
 
+    /**
+     * @param string $baseDir
+     */
     public function __construct($baseDir)
     {
         $this->baseDir = $baseDir;
@@ -64,6 +66,9 @@ class Kernel
         $this->container->add('\Bonefish\Autoloader\Autoloader', $autoloader);
     }
 
+    /**
+     * @param string $baseDir
+     */
     protected function initEnvironment($baseDir)
     {
         /** @var \Bonefish\Core\Environment $environment */
@@ -136,6 +141,9 @@ class Kernel
         $router->route();
     }
 
+    /**
+     * @param string $path
+     */
     private function createDir($path)
     {
         if (!file_exists($path)) {

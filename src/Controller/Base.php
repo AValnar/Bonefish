@@ -1,4 +1,7 @@
 <?php
+
+namespace Bonefish\Controller;
+
 /**
  * Copyright (C) 2014  Alexander Schmidt
  *
@@ -20,10 +23,6 @@
  * @date       2014-08-28
  * @package Bonefish\Controller
  */
-
-namespace Bonefish\Controller;
-
-
 class Base
 {
     /**

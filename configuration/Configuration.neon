@@ -15,3 +15,5 @@ database:
 route:
   vendor: Bonefish
   package: HelloWorld
+  controller: Bonefish\HelloWorld\Controller\Controller
+  action: index

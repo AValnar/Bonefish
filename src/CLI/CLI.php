@@ -60,6 +60,18 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
     public $container;
 
     /**
+     * @var \Bonefish\CLI\Printer
+     * @inject
+     */
+    public $printer;
+
+    /**
+     * @var \Bonefish\CLI\Parser
+     * @inject
+     */
+    public $parser;
+
+    /**
      * @param array $args
      */
     public function __construct(array $args)
@@ -118,8 +130,7 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
         list($obj, $action) = $this->checkIfActionExists();
 
         if (isset($this->args[4]) && $this->args[4] == 'help') {
-            $printer = new Printer();
-            $printer->prettyMethod($obj, $action);
+            $this->printer->prettyMethod($obj, $action);
         } else {
             call_user_func_array(array($obj, $action), $this->buildParameterList());
         }
@@ -191,8 +202,7 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
         $controller = $package->getController(\Bonefish\Core\Package::TYPE_COMMAND);
         $reflection = new \ReflectionClass($controller);
 
-        $parser = new Parser();
-        $actions = $parser->getSuffixMethods('Command',$reflection);
+        $actions = $this->parser->getSuffixMethods('Command',$reflection);
 
         foreach ($actions as $action) {
             $this->out($package->getVendor() . ' ' . $package->getName() . ' ' . $action);
@@ -208,6 +218,10 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
         return $package->getController(\Bonefish\Core\Package::TYPE_COMMAND);
     }
 
+    /**
+     * @param string $key
+     * @return string
+     */
     protected function setArgIfIsset($key)
     {
         return isset($this->args[$key]) ? $this->args[$key] : '';
