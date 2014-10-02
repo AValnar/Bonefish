@@ -38,21 +38,54 @@ class DrunkenBear extends CLIHelper implements ICLI
     public function run()
     {
         $help = $this->needHelp();
+
+        $this->filterInvalid($help);
+        $this->filterHelp($help);
+
+        $package = $this->environment->createPackage($this->vendor,$this->package);
+        $this->filterExplain($help,$package);
+        $this->execute($package,$this->action.self::TYPE_COMMAND,$this->buildParameterList());
+    }
+
+    /**
+     * Filter out invalid commands
+     *
+     * @param int $help
+     */
+    private function filterInvalid($help)
+    {
         if ($help == self::TYPE_VENDOR || $help == self::TYPE_PACKAGE) {
             $this->red("Invalid Command!");
-            return;
+            exit(0);
         }
+    }
+
+    /**
+     * Filter out help commands
+     *
+     * @param int $help
+     */
+    private function filterHelp($help)
+    {
         if ($help == self::TYPE_ALL) {
             $packages = $this->environment->getAllPackages();
             $this->help($packages);
-            return;
+            exit(0);
         }
-        $package = $this->environment->createPackage($this->vendor,$this->package);
+    }
+
+    /**
+     * Filter out explain commands
+     *
+     * @param int $help
+     * @param \Bonefish\Core\Package $package
+     */
+    private function filterExplain($help,$package)
+    {
         if ($help == self::TYPE_EXPLAIN) {
             $this->explain($package,$this->action.self::TYPE_COMMAND);
-            return;
+            exit(0);
         }
-        $this->execute($package,$this->action.self::TYPE_COMMAND,$this->buildParameterList());
     }
 
     /**

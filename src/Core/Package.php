@@ -202,7 +202,7 @@ class Package
      */
     protected function isControllerPossibleController($file)
     {
-        if ($file->isDir() || $file->isDot()) return false;
+        if ($file->getExtension() != 'php') return false;
         if ($file->getFilename() == self::TYPE_COMMAND . '.php') return false;
         return true;
     }
