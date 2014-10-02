@@ -211,8 +211,10 @@ class Environment
     public function createPackage($vendor, $package)
     {
         $packages = $this->getPackageStates();
-        $config = isset($packages[$vendor][$package]) ? $packages[$vendor][$package] : array();
-        return $this->container->create('\Bonefish\Core\Package', array($vendor, $package, $config));
+        if (!isset($packages[$vendor][$package])) {
+            throw new \InvalidArgumentException('Package is not set up or does not exist!');
+        }
+        return $this->container->create('\Bonefish\Core\Package', array($vendor, $package, $packages[$vendor][$package]));
     }
 
     /**

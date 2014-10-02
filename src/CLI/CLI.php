@@ -3,6 +3,11 @@
 namespace Bonefish\CLI;
 
 /**
+ * This class provides the command line tool for the Bonefish framework.
+ * Depending on the arguments supplied on the command line we will either
+ * show a list of all packages in our system, a documentation for a
+ * specific action we want to call or calling a specified action.
+ *
  * Copyright (C) 2014  Alexander Schmidt
  *
  * This program is free software: you can redistribute it and/or modify
@@ -22,36 +27,9 @@ namespace Bonefish\CLI;
  * @version    1.0
  * @date       2014-08-28
  * @package Bonefish\CLI
- * @method mixed border(string $char = '', integer $length = '')
  */
-class CLI extends \JoeTannenbaum\CLImate\CLImate
+class CLI extends CLIHelper
 {
-
-    /**
-     * @var array
-     */
-    protected $args;
-
-    /**
-     * @var string
-     */
-    protected $vendor;
-
-    /**
-     * @var string
-     */
-    protected $package;
-
-    /**
-     * @var string
-     */
-    protected $action;
-
-    /**
-     * @var \Bonefish\Core\Environment
-     * @inject
-     */
-    public $environment;
 
     /**
      * @var \Bonefish\DependencyInjection\Container
@@ -59,32 +37,10 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
      */
     public $container;
 
-    /**
-     * @var \Bonefish\CLI\Printer
-     * @inject
-     */
-    public $printer;
 
     /**
-     * @var \Bonefish\Reflection\Helper
-     * @inject
-     */
-    public $parser;
-
-    /**
-     * @param array $args
-     */
-    public function __construct(array $args)
-    {
-        parent::__construct();
-        $this->args = $args;
-        $this->vendor = $this->setArgIfIsset(1);
-        $this->package = $this->setArgIfIsset(2);
-        $this->action = $this->setArgIfIsset(3);
-    }
-
-    /**
-     * CLI handler
+     * Main CLI handler. After a nice welcome message we show some help
+     * or call an action
      */
     public function execute()
     {
@@ -99,6 +55,9 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
         }
     }
 
+    /**
+     * Get all packages in our environment and display the actions present in those packages
+     */
     protected function listAllCommands()
     {
         $packages = $this->environment->getAllPackages();
@@ -111,6 +70,10 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
         }
     }
 
+    /**
+     * Execute a certain command.
+     * If the first parameter is "help" display all available commands inside the set package.
+     */
     protected function executeCommand()
     {
         if (strtolower($this->action) == 'help') {
@@ -125,6 +88,10 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
         $this->callAction();
     }
 
+    /**
+     * Call an existing action.
+     * If the first parameter is "help" display a documentation for said action.
+     */
     protected function callAction()
     {
         list($obj, $action) = $this->checkIfActionExists();
@@ -137,19 +104,8 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
     }
 
     /**
-     * @return array
-     */
-    protected function buildParameterList()
-    {
-        $parameters = count($this->args) - 4;
-        $params = array();
-        for ($i = 0; $i < $parameters; $i++) {
-            $params[] = $this->args[(4 + $i)];
-        }
-        return $params;
-    }
-
-    /**
+     * Check if an action exists and if so return the controller and action otherwise return false.
+     *
      * @return array|bool
      */
     protected function checkIfActionExists()
@@ -164,6 +120,8 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
     }
 
     /**
+     * Validate arguments. Check if arguments are set and if we can create a controller.
+     *
      * @return bool
      */
     protected function validateArgs()
@@ -184,47 +142,14 @@ class CLI extends \JoeTannenbaum\CLImate\CLImate
     }
 
     /**
-     * @param \Bonefish\Core\Package $package
-     */
-    protected function loadPackageAndDisplayActions($package)
-    {
-        $this->out('<light_red>Vendor</light_red>: ' . $package->getVendor() . ' <light_red>Module</light_red>: ' . $package->getName());
-        $this->border();
-        $this->displayActionsFromPackage($package);
-        $this->br();
-    }
-
-    /**
-     * @param \Bonefish\Core\Package $package
-     */
-    protected function displayActionsFromPackage($package)
-    {
-        $controller = $package->getController(\Bonefish\Core\Package::TYPE_COMMAND);
-        $reflection = new \ReflectionClass($controller);
-
-        $actions = $this->parser->getSuffixMethods('Command',$reflection);
-
-        foreach ($actions as $action) {
-            $this->out($package->getVendor() . ' ' . $package->getName() . ' ' . $action);
-        }
-    }
-
-    /**
+     * Create a controller for the curretly selected package
+     *
      * @return \Bonefish\Controller\Command
      */
     protected function getCommandController()
     {
         $package = $this->environment->createPackage($this->vendor, $this->package);
         return $package->getController(\Bonefish\Core\Package::TYPE_COMMAND);
-    }
-
-    /**
-     * @param string $key
-     * @return string
-     */
-    protected function setArgIfIsset($key)
-    {
-        return isset($this->args[$key]) ? $this->args[$key] : '';
     }
 
 } 

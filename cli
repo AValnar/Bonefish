@@ -17,8 +17,8 @@ $container = new Bonefish\DependencyInjection\Container();
 /** @var \Bonefish\Core\Kernel $kernel */
 $kernel = $container->create('\Bonefish\Core\Kernel',array($baseDir));
 
-$cli = $container->create('\Bonefish\CLI\CLI',array($argv));
-$cli->execute();
+$cli = $container->create('\Bonefish\CLI\DrunkenBear',array($argv));
+$cli->run();
 
 exit(0);
 ?>
