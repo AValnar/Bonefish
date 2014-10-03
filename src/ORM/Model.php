@@ -25,5 +25,29 @@ namespace Bonefish\ORM;
  */
 abstract class Model extends \YetORM\Entity
 {
+    /**
+     * @var \Bonefish\DependencyInjection\Container
+     * @inject
+     */
+    public $container;
 
+    /**
+     * @param  \Nette\Database\Table\Selection $selection
+     * @param  string|callable $entity
+     * @param  string $refTable
+     * @param  string $refColumn
+     * @return EntityCollection
+     */
+    protected function createCollection($selection, $entity, $refTable = NULL, $refColumn = NULL)
+    {
+        return $this->container->create(
+            '\Bonefish\ORM\EntityCollection',
+            array(
+                $selection,
+                $entity,
+                $refTable,
+                $refColumn
+            )
+        );
+    }
 } 

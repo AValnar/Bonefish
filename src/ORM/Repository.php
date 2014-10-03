@@ -32,6 +32,12 @@ abstract class Repository extends \YetORM\Repository
      */
     public $context;
 
+    /**
+     * @var \Bonefish\DependencyInjection\Container
+     * @inject
+     */
+    public $container;
+
     public function __construct()
     {
 
@@ -40,5 +46,39 @@ abstract class Repository extends \YetORM\Repository
     public function __init()
     {
         parent::__construct($this->context);
+    }
+
+    /**
+     * @param Model $model
+     */
+    public function save(Model $model)
+    {
+        $this->persist($model);
+    }
+
+    public function createEntity($row = NULL)
+    {
+        $model = parent::createEntity($row);
+        return $this->container->finalizeObject($model);
+    }
+
+    /**
+     * @param  \Nette\Database\Table\Selection $selection
+     * @param  string|callable $entity
+     * @param  string $refTable
+     * @param  string $refColumn
+     * @return EntityCollection
+     */
+    protected function createCollection($selection, $entity = NULL, $refTable = NULL, $refColumn = NULL)
+    {
+        return $this->container->create(
+            '\Bonefish\ORM\EntityCollection',
+            array(
+                $selection,
+                $entity === NULL ? $this->createEntity : $entity,
+                $refTable,
+                $refColumn
+            )
+        );
     }
 } 
