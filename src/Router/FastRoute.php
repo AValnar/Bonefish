@@ -41,7 +41,7 @@ class FastRoute extends AbstractRouter
     }
 
     /**
-     * @return Routes\NotFound|DTO
+     * @return DTO
      */
     protected function dispatch()
     {

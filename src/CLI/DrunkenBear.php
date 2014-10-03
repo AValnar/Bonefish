@@ -55,7 +55,7 @@ class DrunkenBear extends CLIHelper implements ICLI
     private function filterInvalid($help)
     {
         if ($help == self::TYPE_VENDOR || $help == self::TYPE_PACKAGE) {
-            $this->red("Invalid Command!");
+            $this->red()->out("Invalid Command!");
             exit(0);
         }
     }
@@ -126,6 +126,9 @@ class DrunkenBear extends CLIHelper implements ICLI
         $this->printer->prettyMethod($controller, $action);
     }
 
+    /**
+     * @return int
+     */
     protected function needHelp()
     {
         for ($i = 1; $i < 5; ++$i) {
@@ -133,6 +136,6 @@ class DrunkenBear extends CLIHelper implements ICLI
                 return $i;
             }
         }
-        return false;
+        return 0;
     }
 } 
