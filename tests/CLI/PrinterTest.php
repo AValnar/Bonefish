@@ -19,8 +19,8 @@ class PrinterTest extends \PHPUnit_Framework_TestCase {
 [mprettyMethod[0m
 [m[0m
 [mMethod Parameters:[0m
-[m[94mobject[0m[m[0m
-[m[94mmethod[0m[m[0m
+[m[94mmixed $object[0m[m[0m
+[m[94mstring $method[0m[m[0m
 ');
         $printer = new Printer();
         $printer->prettyMethod($printer,'prettyMethod');
