@@ -1,6 +1,6 @@
 <?php
 
-namespace Bonefish\Controller;
+namespace Bonefish\Router\Routes;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -20,32 +20,13 @@ namespace Bonefish\Controller;
  * @author     Alexander Schmidt <mail@story75.com>
  * @copyright  Copyright (c) 2014, Alexander Schmidt
  * @version    1.0
- * @date       2014-08-28
- * @package Bonefish\Controller
+ * @date       2014-10-03
+ * @package Bonefish\Router
  */
-abstract class Base
+class DefaultRoute extends \Bonefish\Router\AbstractRoute
 {
-    /**
-     * @var \Bonefish\View\View
-     * @inject
-     */
-    public $view;
-
-    /**
-     * @var \Bonefish\DependencyInjection\Container
-     * @inject
-     */
-    public $container;
-
-    /**
-     * @param string $route
-     */
-    protected function redirect($route)
+    public function __construct()
     {
-        $route = $this->container->create($route);
-        $dto = $route->getDTO();
-        /** @var \Bonefish\Router\FastRoute $router */
-        $router = $this->container->get('\Bonefish\Router\FastRoute');
-        $router->callControllerDTO($dto);
+        $this->type = self::TYPE_DEFAULT;
     }
 } 

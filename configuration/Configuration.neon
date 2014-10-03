@@ -9,11 +9,22 @@ database:
   db_driver: mysql
   db_host: db1165.mydbserver.com
   db_name: usr_p236456_1
-  db_user: p236456
-  db_pw: "ogabigUc:509"
+  db_user: p236456d1
+  db_pw: "okuVoxeb+136"
 
 route:
-  vendor: Bonefish
-  package: HelloWorld
-  controller: Bonefish\HelloWorld\Controller\Controller
-  action: index
+  default:
+    vendor: Bonefish
+    package: HelloWorld
+    controller: Bonefish\HelloWorld\Controller\Controller
+    action: index
+  notfound:
+    vendor: Bonefish
+    package: HelloWorld
+    controller: Bonefish\HelloWorld\Controller\Controller
+    action: index
+  notallowed:
+    vendor: Bonefish
+    package: HelloWorld
+    controller: Bonefish\HelloWorld\Controller\Controller
+    action: index

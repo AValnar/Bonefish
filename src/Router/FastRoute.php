@@ -31,18 +31,30 @@ class FastRoute extends AbstractRouter
      */
     public function route()
     {
+        if ($this->url->getPath() == '') {
+            $dto = $this->getRouteDTO('\Bonefish\Router\Routes\DefaultRoute');
+        } else {
+            $dto = $this->dispatch();
+        }
+
+        $this->callControllerDTO($dto);
+    }
+
+    /**
+     * @return Routes\NotFound|DTO
+     */
+    protected function dispatch()
+    {
         $dispatcher = $this->createCachedDispatcher();
 
         $data = $dispatcher->dispatch('GET', '/' . urldecode($this->url->getPath()));
 
         if ($data[0] === \FastRoute\Dispatcher::FOUND) {
-            /** @var DTO $dto */
-            $dto = unserialize($data[1]);
             $this->parameter = $data[2];
-            return $this->callControllerDTO($dto);
+            return unserialize($data[1]);
         }
 
-        throw new \Exception('No route found!');
+        return $this->getRouteDTO('\Bonefish\Router\Routes\NotFound');
     }
 
     /**
@@ -64,11 +76,21 @@ class FastRoute extends AbstractRouter
     /**
      * @param DTO $dto
      */
-    protected function callControllerDTO($dto)
+    public function callControllerDTO($dto)
     {
         $package = $this->environment->createPackage($dto->getVendor(), $dto->getPackage());
         $this->environment->setPackage($package);
         $controller = $this->container->get($dto->getController());
         $this->callControllerAction($dto->getAction().'Action',$controller);
+    }
+
+    /**
+     * @param string $route
+     * @return DTO
+     */
+    protected function getRouteDTO($route)
+    {
+        $route = $this->container->create($route);
+        return $route->getDTO();
     }
 } 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Bonefish\Controller;
+namespace Bonefish\Router;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -20,32 +20,49 @@ namespace Bonefish\Controller;
  * @author     Alexander Schmidt <mail@story75.com>
  * @copyright  Copyright (c) 2014, Alexander Schmidt
  * @version    1.0
- * @date       2014-08-28
- * @package Bonefish\Controller
+ * @date       2014-10-03
+ * @package Bonefish\Router
  */
-abstract class Base
+abstract class AbstractRoute
 {
-    /**
-     * @var \Bonefish\View\View
-     * @inject
-     */
-    public $view;
+    const TYPE_404 = 'notfound';
+    const TYPE_403 = 'notallowed';
+    const TYPE_DEFAULT = 'default';
 
     /**
-     * @var \Bonefish\DependencyInjection\Container
-     * @inject
+     * @var string
      */
-    public $container;
+    protected $type;
 
     /**
-     * @param string $route
+     * @var \Bonefish\Core\ConfigurationManager
+     * @inject
      */
-    protected function redirect($route)
+    public $configurationManager;
+
+    /**
+     * @param string $type
+     */
+    public function __construct($type)
     {
-        $route = $this->container->create($route);
-        $dto = $route->getDTO();
-        /** @var \Bonefish\Router\FastRoute $router */
-        $router = $this->container->get('\Bonefish\Router\FastRoute');
-        $router->callControllerDTO($dto);
+        $this->type = $type;
     }
+
+    public function getDTO()
+    {
+        $config = $this->getConfiguration();
+        return new DTO(
+            $config['vendor'],
+            $config['package'],
+            $config['controller'],
+            $config['action']
+        );
+    }
+
+    protected function getConfiguration()
+    {
+        $config = $this->configurationManager->getConfiguration('Configuration.neon');
+        return $config['route'][$this->type];
+    }
+
 } 
