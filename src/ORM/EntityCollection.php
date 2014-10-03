@@ -39,23 +39,29 @@ class EntityCollection extends \YetORM\EntityCollection
     protected function loadData()
     {
         if ($this->data === NULL) {
-            if ($this->entity instanceof \Closure) {
-                $factory = $this->entity;
-
-            } else {
-                $class = $this->entity;
-                $container = $this->container;
-                $factory = function ($record) use ($class,$container) {
-                    return $container->create($class,array($record));
-                };
-            }
-
+            $factory = $this->createCallback();
             $this->data = array();
             foreach ($this->selection as $row) {
                 $record = $this->refTable === NULL ? $row : $row->ref($this->refTable, $this->refColumn);
                 $this->data[] = \Nette\Utils\Callback::invoke($factory, $record);
             }
         }
+    }
+
+    /**
+     * @return callable
+     */
+    protected function createCallback()
+    {
+        if ($this->entity instanceof \Closure) {
+            return $this->entity;
+        }
+
+        $class = $this->entity;
+        $container = $this->container;
+        return function ($record) use ($class, $container) {
+            return $container->create($class, array($record));
+        };
     }
 
     /** @return void */
