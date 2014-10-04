@@ -80,11 +80,7 @@ class ACL implements IACL
      */
     protected function isIncluded($r)
     {
-        if ($r->hasAnnotation('allow')) {
-            $exclude = $r->getAnnotation('allow');
-            return in_array(get_class($this->profile), $exclude);
-        }
-        return false;
+        return $this->checkAnnotation($r,'allow');
     }
 
     /**
@@ -93,16 +89,26 @@ class ACL implements IACL
      */
     protected function isExcluded($r)
     {
-        if ($r->hasAnnotation('exclude')) {
-            $exclude = $r->getAnnotation('exclude');
-            return in_array(get_class($this->profile), $exclude);
+        return $this->checkAnnotation($r,'exclude');
+    }
+
+    /**
+     * @param \Nette\Reflection\ClassType|\Nette\Reflection\Method $r
+     * @param string $annotation
+     * @return bool
+     */
+    protected function checkAnnotation($r,$annotation)
+    {
+        if ($r->hasAnnotation($annotation)) {
+            $dataSet = $r->getAnnotation($annotation);
+            return in_array(get_class($this->profile), $dataSet);
         }
         return false;
     }
 
     /**
      * @param \Bonefish\Controller\Base $controller
-     * @param string $action
+     * @param string|bool $action
      * @return \Nette\Reflection\ClassType|\Nette\Reflection\Method
      */
     protected function getReflection($controller, $action)
