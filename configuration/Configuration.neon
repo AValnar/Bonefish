@@ -5,6 +5,9 @@ global:
   lattePath: /Latte
   develoment: yes
 
+alias:
+  \Bonefish\Auth\IAuth: \Bonefish\Auth\NoAuth
+
 database:
   db_driver: mysql
   db_host: db1165.mydbserver.com

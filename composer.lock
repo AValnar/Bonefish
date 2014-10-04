@@ -39,12 +39,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/AValnar/Bonefish-DI2.git",
-                "reference": "dc464644a2f40789316bfc55751382006b15b25d"
+                "reference": "f844c8c113cf9dc3c187796c3e16afc4039e460b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AValnar/Bonefish-DI2/zipball/dc464644a2f40789316bfc55751382006b15b25d",
-                "reference": "dc464644a2f40789316bfc55751382006b15b25d",
+                "url": "https://api.github.com/repos/AValnar/Bonefish-DI2/zipball/f844c8c113cf9dc3c187796c3e16afc4039e460b",
+                "reference": "f844c8c113cf9dc3c187796c3e16afc4039e460b",
                 "shasum": ""
             },
             "require": {
@@ -59,7 +59,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "This Project maintains the Bonefish Dependency Injection Container",
-            "time": "2014-10-03 18:23:38"
+            "time": "2014-10-04 18:44:14"
         },
         {
             "name": "av/bonefish-generator",

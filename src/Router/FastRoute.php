@@ -82,7 +82,12 @@ class FastRoute extends AbstractRouter
         $package = $this->environment->createPackage($dto->getVendor(), $dto->getPackage());
         $this->environment->setPackage($package);
         $controller = $this->container->get($dto->getController());
-        $this->callControllerAction($dto->getAction() . 'Action', $controller);
+        $action = $dto->getAction() . 'Action';
+        $execute = $this->callBeforeExecute($controller,$action);
+        if ($execute) {
+            $this->callControllerAction($action, $controller);
+            $this->callAfterExecute($controller,$action);
+        }
     }
 
     /**
@@ -93,5 +98,29 @@ class FastRoute extends AbstractRouter
     {
         $route = $this->container->create($route);
         return $route->getDTO();
+    }
+
+    /**
+     * @param \Bonefish\Controller\Base $controller
+     * @param string $action
+     * @return bool
+     */
+    protected function callBeforeExecute($controller,$action)
+    {
+        if (method_exists($controller, 'beforeExecute')) {
+            return $controller->beforeExecute($action);
+        }
+        return true;
+    }
+
+    /**
+     * @param \Bonefish\Controller\Base $controller
+     * @param string $action
+     */
+    protected function callAfterExecute($controller,$action)
+    {
+        if (method_exists($controller, 'afterExecute')) {
+            $controller->afterExecute($action);
+        }
     }
 } 

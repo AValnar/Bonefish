@@ -57,6 +57,8 @@ class Kernel
         $this->initCache();
         $this->initLatte();
         $this->initDatabase();
+        $this->loadAlias();
+        $this->initACL();
     }
 
     protected function initAutoloader()
@@ -91,6 +93,7 @@ class Kernel
         $cache = new \Nette\Caching\Cache($storage);
         $this->container->add('\Nette\Caching\Cache', $cache);
         $this->container->add('\Nette\Caching\Storages\FileStorage', $storage);
+        \Nette\Reflection\AnnotationsParser::setCacheStorage($storage);
     }
 
     protected function initLatte()
@@ -123,6 +126,28 @@ class Kernel
         $this->container->add('\Nette\Database\Context', $context);
     }
 
+    protected function loadAlias()
+    {
+        $basicConfiguration = $this->configurationManager->getConfiguration('Configuration.neon');
+        foreach ($basicConfiguration['alias'] as $class => $alias) {
+            $this->container->alias($alias, $class);
+        }
+    }
+
+    protected function initACL()
+    {
+        /** @var \Bonefish\ACL\ACL $acl */
+        $acl = $this->container->get('\Bonefish\ACL\ACL');
+        /** @var \Bonefish\Auth\IAuth $authService */
+        $authService = $this->container->get('\Bonefish\Auth\IAuth');
+        if ($authService->authenticate()) {
+            $profile = $authService->getProfile();
+        } else {
+            $profile = $this->container->create('\Bonefish\ACL\Profiles\PublicProfile');
+        }
+        $acl->setProfile($profile);
+    }
+
     public function startTracy()
     {
         $basicConfiguration = $this->configurationManager->getConfiguration('Configuration.neon');
@@ -138,7 +163,7 @@ class Kernel
     {
         $url = \League\Url\UrlImmutable::createFromServer($_SERVER);
         $router = $this->container->create('\Bonefish\Router\FastRoute', array($url));
-        $this->container->add('\Bonefish\Router\FastRoute',$router);
+        $this->container->add('\Bonefish\Router\FastRoute', $router);
         $router->route();
     }
 
