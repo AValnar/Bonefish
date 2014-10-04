@@ -41,7 +41,7 @@ class Link extends AbstractViewhelper
      */
     public function getStart(\Latte\MacroNode $node, \Latte\PhpWriter $writer)
     {
-        return $writer->write('echo \'<a href="'.$node->args.'">\'');
+        return $writer->write('echo \'<a href="' . $node->args . '">\'');
     }
 
     /**

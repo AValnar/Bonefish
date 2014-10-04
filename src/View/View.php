@@ -84,6 +84,7 @@ class View
     public function render()
     {
         $this->loadDefaultMacros();
+        $this->loadPackageMacros();
         $this->loadMacros();
         $this->latte->render(
             $this->environment->getPackage()->getPackagePath() . '/Layouts/' . $this->layout,
@@ -138,11 +139,30 @@ class View
 
     }
 
+    /**
+     * @param array $config
+     */
+    public function loadMacrosFromConfiguration(array $config)
+    {
+        foreach ($config as $macro) {
+            $this->addMacro($this->container->get($macro));
+        }
+    }
+
     protected function loadDefaultMacros()
     {
         $defaults = $this->configurationManager->getConfiguration('Viewhelper.neon');
-        foreach ($defaults['global'] as $macro) {
-            $this->addMacro($this->container->get($macro));
+        $this->loadMacrosFromConfiguration($defaults['global']);
+    }
+
+    protected function loadPackageMacros()
+    {
+        try {
+            $path = $this->environment->getPackage()->getPackagePath() . '/Configuration/Viewhelper.neon';
+            $config = $this->configurationManager->getConfiguration($path, true);
+            $this->loadMacrosFromConfiguration($config);
+        } catch (\Exception $e) {
+            // Package has no custom viewhelpers to load by default
         }
     }
 } 

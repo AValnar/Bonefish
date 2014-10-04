@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e8740604d9af5416711ac1919ab5bd3a",
+    "hash": "51fb9f4881f727f987eed01dbf0f61d9",
     "packages": [
         {
             "name": "av/bonefish-autoloader",
@@ -39,12 +39,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/AValnar/Bonefish-DI2.git",
-                "reference": "66b2a8ab7314ec6ea2ba55fe2793905eb257e719"
+                "reference": "dc464644a2f40789316bfc55751382006b15b25d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AValnar/Bonefish-DI2/zipball/66b2a8ab7314ec6ea2ba55fe2793905eb257e719",
-                "reference": "66b2a8ab7314ec6ea2ba55fe2793905eb257e719",
+                "url": "https://api.github.com/repos/AValnar/Bonefish-DI2/zipball/dc464644a2f40789316bfc55751382006b15b25d",
+                "reference": "dc464644a2f40789316bfc55751382006b15b25d",
                 "shasum": ""
             },
             "require": {
@@ -59,7 +59,37 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "This Project maintains the Bonefish Dependency Injection Container",
-            "time": "2014-09-27 12:56:27"
+            "time": "2014-10-03 18:23:38"
+        },
+        {
+            "name": "av/bonefish-generator",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AValnar/Bonefish-Generator.git",
+                "reference": "0136fc91e524baabe5a4bc9cf69fe80fea803249"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AValnar/Bonefish-Generator/zipball/0136fc91e524baabe5a4bc9cf69fe80fea803249",
+                "reference": "0136fc91e524baabe5a4bc9cf69fe80fea803249",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "*"
+            },
+            "type": "bonefish-package",
+            "autoload": {
+                "psr-4": {
+                    "Bonefish\\Generator\\": [
+                        "",
+                        "src"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Bonefish Framework",
+            "time": "2014-09-29 21:29:22"
         },
         {
             "name": "av/bonefish-helloworld",
@@ -747,12 +777,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/FastRoute.git",
-                "reference": "7dc9a43cb856debc22fe158a1144018e16f7a637"
+                "reference": "88ac2888aa29d888cf3f447899753a4a1e599759"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/7dc9a43cb856debc22fe158a1144018e16f7a637",
-                "reference": "7dc9a43cb856debc22fe158a1144018e16f7a637",
+                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/88ac2888aa29d888cf3f447899753a4a1e599759",
+                "reference": "88ac2888aa29d888cf3f447899753a4a1e599759",
                 "shasum": ""
             },
             "require": {
@@ -782,7 +812,7 @@
                 "router",
                 "routing"
             ],
-            "time": "2014-05-17 11:33:04"
+            "time": "2014-09-30 16:53:49"
         },
         {
             "name": "tracy/tracy",
@@ -790,12 +820,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "682405280eae534dd3d9c7446173a635738dfec4"
+                "reference": "6cabbc5608205051b868c0f1606cab216ab9b6bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/682405280eae534dd3d9c7446173a635738dfec4",
-                "reference": "682405280eae534dd3d9c7446173a635738dfec4",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/6cabbc5608205051b868c0f1606cab216ab9b6bf",
+                "reference": "6cabbc5608205051b868c0f1606cab216ab9b6bf",
                 "shasum": ""
             },
             "require": {
@@ -841,7 +871,7 @@
                 "debugger",
                 "nette"
             ],
-            "time": "2014-09-25 22:58:39"
+            "time": "2014-10-02 16:31:54"
         },
         {
             "name": "true/punycode",
@@ -954,7 +984,8 @@
         "uestla/yetorm": 20,
         "nikic/fast-route": 20,
         "av/bonefish-helloworld": 20,
-        "av/bonefish-kickstart": 20
+        "av/bonefish-kickstart": 20,
+        "av/bonefish-generator": 20
     },
     "prefer-stable": false,
     "platform": [
