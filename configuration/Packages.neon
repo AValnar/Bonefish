@@ -5,3 +5,5 @@ Bonefish:
     path: av/bonefish-kickstart
   Generator:
       path: av/bonefish-generator
+  Auth:
+        path: av/bonefish-auth
