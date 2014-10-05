@@ -28,7 +28,7 @@ if (!file_exists($composerAutoload))
     die('Please run Composer install first!');
 
 require $baseDir . '/vendor/autoload.php';
-
+session_start();
 $container = new Bonefish\DependencyInjection\Container();
 /** @var \Bonefish\Core\Kernel $kernel */
 $kernel = $container->create('\Bonefish\Core\Kernel',array($baseDir));

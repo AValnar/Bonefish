@@ -1,10 +1,7 @@
 Bonefish:
   HelloWorld:
     path: av/bonefish-helloworld
-    active: yes
   Kickstart:
     path: av/bonefish-kickstart
-    active: yes
   Generator:
       path: av/bonefish-generator
-      active: yes

@@ -84,7 +84,7 @@ class View
     public function render()
     {
         $this->loadDefaultMacros();
-        $this->loadPackageMacros();
+        $this->loadPackageMacros($this->environment->getPackage());
         $this->loadMacros();
         $this->latte->render(
             $this->environment->getPackage()->getPackagePath() . '/Layouts/' . $this->layout,
@@ -155,10 +155,13 @@ class View
         $this->loadMacrosFromConfiguration($defaults['global']);
     }
 
-    protected function loadPackageMacros()
+    /**
+     * @param \Bonefish\Core\Package $package
+     */
+    protected function loadPackageMacros($package)
     {
         try {
-            $path = $this->environment->getPackage()->getPackagePath() . '/Configuration/Viewhelper.neon';
+            $path = $package->getPackagePath() . '/Configuration/Viewhelper.neon';
             $config = $this->configurationManager->getConfiguration($path, true);
             $this->loadMacrosFromConfiguration($config);
         } catch (\Exception $e) {
