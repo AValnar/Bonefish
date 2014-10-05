@@ -21,7 +21,8 @@
         "nikic/fast-route": "dev-master",
         "av/bonefish-helloworld": "dev-master",
         "av/bonefish-kickstart": "dev-master",
-        "av/bonefish-generator": "dev-master"
+        "av/bonefish-generator": "dev-master",
+        "av/bonefish-auth": "dev-master"
     },
     "extra": {
         "installer-paths": {

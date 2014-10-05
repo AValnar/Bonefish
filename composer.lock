@@ -4,8 +4,38 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "51fb9f4881f727f987eed01dbf0f61d9",
+    "hash": "4338e12a32ee552583fa232f3201f862",
     "packages": [
+        {
+            "name": "av/bonefish-auth",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AValnar/Bonefish-Auth.git",
+                "reference": "24e7d9be54590712fbfcccbd6685118caedd67c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AValnar/Bonefish-Auth/zipball/24e7d9be54590712fbfcccbd6685118caedd67c4",
+                "reference": "24e7d9be54590712fbfcccbd6685118caedd67c4",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "*"
+            },
+            "type": "bonefish-package",
+            "autoload": {
+                "psr-4": {
+                    "Bonefish\\Auth\\": [
+                        "",
+                        "src"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Bonefish Framework",
+            "time": "2014-10-05 09:26:19"
+        },
         {
             "name": "av/bonefish-autoloader",
             "version": "dev-master",
@@ -985,7 +1015,8 @@
         "nikic/fast-route": 20,
         "av/bonefish-helloworld": 20,
         "av/bonefish-kickstart": 20,
-        "av/bonefish-generator": 20
+        "av/bonefish-generator": 20,
+        "av/bonefish-auth": 20
     },
     "prefer-stable": false,
     "platform": [
