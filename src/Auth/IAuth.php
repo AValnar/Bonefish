@@ -36,4 +36,6 @@ interface IAuth
      * @return \Bonefish\ACL\Profile
      */
     public function getProfile();
+
+    public function logout();
 } 

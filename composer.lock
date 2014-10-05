@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/AValnar/Bonefish-Auth.git",
-                "reference": "24e7d9be54590712fbfcccbd6685118caedd67c4"
+                "reference": "792b186525a922d226750fef08899ebbd3adf66d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AValnar/Bonefish-Auth/zipball/24e7d9be54590712fbfcccbd6685118caedd67c4",
-                "reference": "24e7d9be54590712fbfcccbd6685118caedd67c4",
+                "url": "https://api.github.com/repos/AValnar/Bonefish-Auth/zipball/792b186525a922d226750fef08899ebbd3adf66d",
+                "reference": "792b186525a922d226750fef08899ebbd3adf66d",
                 "shasum": ""
             },
             "require": {
@@ -34,7 +34,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Bonefish Framework",
-            "time": "2014-10-05 09:26:19"
+            "time": "2014-10-05 11:04:47"
         },
         {
             "name": "av/bonefish-autoloader",
@@ -433,12 +433,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/url.git",
-                "reference": "0213e79a6f05d7964b3bd55c0d2c62070aa0283d"
+                "reference": "9ba388461ad666288a2bc868f6a5f35d43f2d518"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/url/zipball/0213e79a6f05d7964b3bd55c0d2c62070aa0283d",
-                "reference": "0213e79a6f05d7964b3bd55c0d2c62070aa0283d",
+                "url": "https://api.github.com/repos/thephpleague/url/zipball/9ba388461ad666288a2bc868f6a5f35d43f2d518",
+                "reference": "9ba388461ad666288a2bc868f6a5f35d43f2d518",
                 "shasum": ""
             },
             "require": {
@@ -482,7 +482,7 @@
                 "php",
                 "url"
             ],
-            "time": "2014-09-25 11:41:42"
+            "time": "2014-10-05 09:45:06"
         },
         {
             "name": "nette/caching",
