@@ -1,6 +1,8 @@
 <?php
 
-namespace Bonefish\Controller;
+namespace Bonefish\Viewhelper\Core;
+
+use Bonefish\Viewhelper\AbstractViewhelper;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -20,37 +22,32 @@ namespace Bonefish\Controller;
  * @author     Alexander Schmidt <mail@story75.com>
  * @copyright  Copyright (c) 2014, Alexander Schmidt
  * @version    1.0
- * @date       2014-08-28
- * @package Bonefish\Controller
+ * @date       2014-10-05
+ * @package Bonefish\Viewhelper
  */
-abstract class Base
+class Resource extends AbstractViewhelper
 {
     /**
-     * @var \Bonefish\View\View
+     * @var \Bonefish\Core\Environment
      * @inject
      */
-    public $view;
+    public $environment;
 
-    /**
-     * @var \Bonefish\DependencyInjection\Container
-     * @inject
-     */
-    public $container;
-
-    public function indexAction()
+    public function __construct()
     {
-
+        $this->setName('bonefish.resource');
+        $this->setHasEnd(false);
     }
 
     /**
-     * @param string $route
+     * @param \Latte\MacroNode $node
+     * @param \Latte\PhpWriter $writer
+     * @return string
      */
-    protected function redirect($route)
+    public function getStart(\Latte\MacroNode $node, \Latte\PhpWriter $writer)
     {
-        $route = $this->container->create($route);
-        $dto = $route->getDTO();
-        /** @var \Bonefish\Router\FastRoute $router */
-        $router = $this->container->get('\Bonefish\Router\FastRoute');
-        $router->callControllerDTO($dto);
+        $args = explode(',',$node->args);
+        $package = $this->environment->createPackage($args[0],$args[1]);
+        return $writer->write('echo \'' . $package->getPackageUrlPath() . '\'');
     }
 } 

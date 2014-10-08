@@ -17,9 +17,9 @@ database:
 
 route:
   default:
-    vendor: Bonefish
-    package: HelloWorld
-    controller: Bonefish\HelloWorld\Controller\Controller
+    vendor: AV
+    package: Caplet
+    controller: AV\Caplet\Controller\HomeController
     action: index
   notfound:
     vendor: Bonefish

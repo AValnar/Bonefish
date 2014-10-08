@@ -7,6 +7,8 @@
             "url": "https://github.com/AValnar/installers"
         }
     ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "composer/installers": "dev-custom-type-2",
         "av/bonefish-autoloader": "dev-master",
