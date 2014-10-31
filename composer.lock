@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "04ff3675a85d37acc2ced7e2a7393050",
+    "hash": "ca23d3d11ed5b6bf39b4e02ff0973fff",
     "packages": [
         {
             "name": "av/bonefish-auth",
@@ -848,12 +848,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "6cabbc5608205051b868c0f1606cab216ab9b6bf"
+                "reference": "bf4a72f4211774a2f8b720a250402e39b5db5b57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/6cabbc5608205051b868c0f1606cab216ab9b6bf",
-                "reference": "6cabbc5608205051b868c0f1606cab216ab9b6bf",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/bf4a72f4211774a2f8b720a250402e39b5db5b57",
+                "reference": "bf4a72f4211774a2f8b720a250402e39b5db5b57",
                 "shasum": ""
             },
             "require": {
@@ -899,7 +899,7 @@
                 "debugger",
                 "nette"
             ],
-            "time": "2014-10-02 16:31:54"
+            "time": "2014-10-08 20:15:31"
         },
         {
             "name": "uestla/yetorm",

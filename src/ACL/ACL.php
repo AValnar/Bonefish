@@ -48,12 +48,12 @@ class ACL implements IACL
      */
     public function isAllowed(\Bonefish\Controller\Base $controller, $action = false)
     {
-        if (!$this->isPrivate($controller, $action)) {
-            return true;
-        }
         $r = $this->getReflection($controller,$action);
         if ($this->isExcluded($r)) {
             return false;
+        }
+        if (!$this->isPrivate($controller, $action)) {
+            return true;
         }
         return $this->isIncluded($r);
     }
@@ -101,6 +101,9 @@ class ACL implements IACL
     {
         if ($r->hasAnnotation($annotation)) {
             $dataSet = $r->getAnnotation($annotation);
+            if (!is_array($dataSet)) {
+                $dataSet = array($dataSet);
+            }
             return in_array(get_class($this->profile), $dataSet);
         }
         return false;

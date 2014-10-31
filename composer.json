@@ -33,7 +33,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Bonefish\\": ["src"]
+            "Bonefish\\": ["src"],
+            "Bonefish\\Tests\\": ["tests"]
         }
     }
 }

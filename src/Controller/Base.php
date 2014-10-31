@@ -37,6 +37,17 @@ abstract class Base
      */
     public $container;
 
+    /**
+     * @var \Bonefish\Core\Environment
+     * @inject
+     */
+    public $environment;
+
+    public function getConfiguration()
+    {
+        return $this->environment->getPackage()->getConfiguration();
+    }
+
     public function indexAction()
     {
 

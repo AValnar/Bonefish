@@ -25,8 +25,5 @@ namespace Bonefish\ACL\Profiles;
  */
 class AdminProfile extends \Bonefish\ACL\Profile
 {
-    public function __construct()
-    {
-        $this->permissions = array();
-    }
+
 } 
