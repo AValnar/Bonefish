@@ -23,7 +23,7 @@ namespace Bonefish\CLI;
  * @date       2014-09-21
  * @package Bonefish\CLI
  */
-class Printer extends \League\CLImate
+class Printer extends \League\CLImate\CLImate
 {
     /**
      * @param mixed $object
