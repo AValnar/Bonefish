@@ -63,6 +63,24 @@ class ConfigurationManager
     }
 
     /**
+     * @param $name
+     * @param $data
+     * @param bool $path
+     * @throws \InvalidArgumentException
+     */
+    public function writeConfiguration($name,$data,$path = FALSE)
+    {
+        $path = $this->getPath($name,$path);
+        $file = $this->neon->encode($data);
+
+        file_put_contents($path,$file);
+
+        if (isset($this->configurations[$name])) {
+            $this->configurations[$name] = $data;
+        }
+    }
+
+    /**
      * @param string $name
      * @param bool $path
      * @return string
