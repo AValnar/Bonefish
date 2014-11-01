@@ -6,7 +6,7 @@ global:
   develoment: yes
 
 alias:
-  \Bonefish\Auth\IAuth: \Bonefish\Auth\BasicAuth
+  \Bonefish\Auth\IAuth: \Bonefish\Auth\NoAuth
 
 database:
   db_driver: mysql
