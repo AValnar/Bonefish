@@ -4,41 +4,11 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ca23d3d11ed5b6bf39b4e02ff0973fff",
+    "hash": "e0dc4c689e27189a69716294412f103f",
     "packages": [
         {
-            "name": "av/bonefish-auth",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/AValnar/Bonefish-Auth.git",
-                "reference": "2fb0eab816d8251e2a4368a5b0c23a8cebe30eac"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/AValnar/Bonefish-Auth/zipball/2fb0eab816d8251e2a4368a5b0c23a8cebe30eac",
-                "reference": "2fb0eab816d8251e2a4368a5b0c23a8cebe30eac",
-                "shasum": ""
-            },
-            "require": {
-                "composer/installers": "*"
-            },
-            "type": "bonefish-package",
-            "autoload": {
-                "psr-4": {
-                    "Bonefish\\Auth\\": [
-                        "",
-                        "src"
-                    ]
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "description": "Bonefish Framework",
-            "time": "2014-10-05 11:33:38"
-        },
-        {
             "name": "av/bonefish-autoloader",
-            "version": "dev-master",
+            "version": "v1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AValnar/Bonefish-Autoloader.git",
@@ -65,7 +35,7 @@
         },
         {
             "name": "av/bonefish-di2",
-            "version": "dev-master",
+            "version": "v2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AValnar/Bonefish-DI2.git",
@@ -93,7 +63,7 @@
         },
         {
             "name": "av/bonefish-generator",
-            "version": "dev-master",
+            "version": "v1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AValnar/Bonefish-Generator.git",
@@ -123,16 +93,16 @@
         },
         {
             "name": "av/bonefish-helloworld",
-            "version": "dev-master",
+            "version": "v1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AValnar/Bonefish-HelloWorld.git",
-                "reference": "9b171c408cb7267479744bb48151949e01def1aa"
+                "reference": "c7fb36deaf1f8714f2420ae7aa94966bdc991385"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AValnar/Bonefish-HelloWorld/zipball/9b171c408cb7267479744bb48151949e01def1aa",
-                "reference": "9b171c408cb7267479744bb48151949e01def1aa",
+                "url": "https://api.github.com/repos/AValnar/Bonefish-HelloWorld/zipball/c7fb36deaf1f8714f2420ae7aa94966bdc991385",
+                "reference": "c7fb36deaf1f8714f2420ae7aa94966bdc991385",
                 "shasum": ""
             },
             "require": {
@@ -148,20 +118,20 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Bonefish Framework",
-            "time": "2014-09-25 20:27:29"
+            "time": "2014-11-01 07:50:07"
         },
         {
             "name": "av/bonefish-kickstart",
-            "version": "dev-master",
+            "version": "v1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AValnar/Bonefish-Kickstart.git",
-                "reference": "c869e48531fecf4abc3ec81529047155e3d03d04"
+                "reference": "3ff034b543aa78f3e8908f6ab054a76ed2147d45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AValnar/Bonefish-Kickstart/zipball/c869e48531fecf4abc3ec81529047155e3d03d04",
-                "reference": "c869e48531fecf4abc3ec81529047155e3d03d04",
+                "url": "https://api.github.com/repos/AValnar/Bonefish-Kickstart/zipball/3ff034b543aa78f3e8908f6ab054a76ed2147d45",
+                "reference": "3ff034b543aa78f3e8908f6ab054a76ed2147d45",
                 "shasum": ""
             },
             "require": {
@@ -178,7 +148,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Bonefish Framework",
-            "time": "2014-09-27 12:07:54"
+            "time": "2014-11-01 07:40:34"
         },
         {
             "name": "composer/installers",
@@ -273,112 +243,17 @@
             "time": "2014-08-30 10:25:12"
         },
         {
-            "name": "illuminate/support",
-            "version": "v4.2.9",
-            "target-dir": "Illuminate/Support",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/illuminate/support.git",
-                "reference": "b6716d34afce6e69523725f2534a5c3a54dba964"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/b6716d34afce6e69523725f2534a5c3a54dba964",
-                "reference": "b6716d34afce6e69523725f2534a5c3a54dba964",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "jeremeamia/superclosure": "~1.0",
-                "patchwork/utf8": "1.1.*"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Illuminate\\Support": ""
-                },
-                "files": [
-                    "Illuminate/Support/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com"
-                }
-            ],
-            "time": "2014-09-12 21:42:43"
-        },
-        {
-            "name": "joetannenbaum/climate",
-            "version": "0.1.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/joetannenbaum/climate.git",
-                "reference": "e9ef908066e9ea89fcf724b92220c660b1e8cc36"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/joetannenbaum/climate/zipball/e9ef908066e9ea89fcf724b92220c660b1e8cc36",
-                "reference": "e9ef908066e9ea89fcf724b92220c660b1e8cc36",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "4.2.*",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.1.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "JoeTannenbaum\\CLImate\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Joe Tannenbaum",
-                    "email": "hey@joe.codes"
-                }
-            ],
-            "description": "PHP's best friend for the terminal. CLImate allows you to easily output colored text, special formats, and more.",
-            "keywords": [
-                "cli",
-                "colors",
-                "command",
-                "php",
-                "terminal"
-            ],
-            "time": "2014-08-29 18:50:24"
-        },
-        {
             "name": "latte/latte",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/latte.git",
-                "reference": "e3c205bda536a71aeee0984f1ca82217e7b6f825"
+                "reference": "73b9a94d554915d30b3e77db1148eafacf4012fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/latte/zipball/e3c205bda536a71aeee0984f1ca82217e7b6f825",
-                "reference": "e3c205bda536a71aeee0984f1ca82217e7b6f825",
+                "url": "https://api.github.com/repos/nette/latte/zipball/73b9a94d554915d30b3e77db1148eafacf4012fc",
+                "reference": "73b9a94d554915d30b3e77db1148eafacf4012fc",
                 "shasum": ""
             },
             "require": {
@@ -425,31 +300,82 @@
                 "templating",
                 "twig"
             ],
-            "time": "2014-09-11 08:07:17"
+            "time": "2014-10-26 18:06:34"
         },
         {
-            "name": "league/url",
-            "version": "3.0.1",
+            "name": "league/climate",
+            "version": "2.4.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/thephpleague/url.git",
-                "reference": "1fd91d559b82c357c518e371b89b5c0f06a10b26"
+                "url": "https://github.com/thephpleague/climate.git",
+                "reference": "7672907fc303e0c50269e8f79fd2f57088674052"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/url/zipball/1fd91d559b82c357c518e371b89b5c0f06a10b26",
-                "reference": "1fd91d559b82c357c518e371b89b5c0f06a10b26",
+                "url": "https://api.github.com/repos/thephpleague/climate/zipball/7672907fc303e0c50269e8f79fd2f57088674052",
+                "reference": "7672907fc303e0c50269e8f79fd2f57088674052",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master",
+                "phpunit/phpunit": "4.1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\CLImate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joe Tannenbaum",
+                    "email": "hey@joe.codes",
+                    "homepage": "http://joe.codes/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP's best friend for the terminal. CLImate allows you to easily output colored text, special formats, and more.",
+            "keywords": [
+                "cli",
+                "colors",
+                "command",
+                "php",
+                "terminal"
+            ],
+            "time": "2014-10-22 20:59:25"
+        },
+        {
+            "name": "league/url",
+            "version": "3.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/url.git",
+                "reference": "53e87bdcfa5dd9709ce538f5680fed6e34eef0b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/url/zipball/53e87bdcfa5dd9709ce538f5680fed6e34eef0b4",
+                "reference": "53e87bdcfa5dd9709ce538f5680fed6e34eef0b4",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.3.0",
+                "true/punycode": "~1.0"
             },
             "replace": {
                 "bakame/url": "*"
             },
             "require-dev": {
                 "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "~1.5"
+                "squizlabs/php_codesniffer": "2.0.*@dev"
             },
             "type": "library",
             "extra": {
@@ -480,20 +406,20 @@
                 "php",
                 "url"
             ],
-            "time": "2014-06-30 13:22:30"
+            "time": "2014-09-02 07:57:45"
         },
         {
             "name": "nette/caching",
-            "version": "v2.2.1",
+            "version": "v2.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/caching.git",
-                "reference": "0dcff13fced329d78e14679d8b6d00fd0babd0f1"
+                "reference": "56ec8daeebbd780316a94759fc8a5a861adfa579"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/caching/zipball/0dcff13fced329d78e14679d8b6d00fd0babd0f1",
-                "reference": "0dcff13fced329d78e14679d8b6d00fd0babd0f1",
+                "url": "https://api.github.com/repos/nette/caching/zipball/56ec8daeebbd780316a94759fc8a5a861adfa579",
+                "reference": "56ec8daeebbd780316a94759fc8a5a861adfa579",
                 "shasum": ""
             },
             "require": {
@@ -532,7 +458,7 @@
             ],
             "description": "Nette Caching Component",
             "homepage": "http://nette.org",
-            "time": "2014-06-24 11:38:03"
+            "time": "2014-10-15 20:28:19"
         },
         {
             "name": "nette/database",
@@ -801,16 +727,16 @@
         },
         {
             "name": "nikic/fast-route",
-            "version": "dev-master",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/FastRoute.git",
-                "reference": "88ac2888aa29d888cf3f447899753a4a1e599759"
+                "reference": "7dc9a43cb856debc22fe158a1144018e16f7a637"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/88ac2888aa29d888cf3f447899753a4a1e599759",
-                "reference": "88ac2888aa29d888cf3f447899753a4a1e599759",
+                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/7dc9a43cb856debc22fe158a1144018e16f7a637",
+                "reference": "7dc9a43cb856debc22fe158a1144018e16f7a637",
                 "shasum": ""
             },
             "require": {
@@ -840,7 +766,7 @@
                 "router",
                 "routing"
             ],
-            "time": "2014-09-30 16:53:49"
+            "time": "2014-05-17 11:33:04"
         },
         {
             "name": "tracy/tracy",
@@ -848,12 +774,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "bf4a72f4211774a2f8b720a250402e39b5db5b57"
+                "reference": "62de2a866b2ee73ac6e989b778e364cdc301c321"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/bf4a72f4211774a2f8b720a250402e39b5db5b57",
-                "reference": "bf4a72f4211774a2f8b720a250402e39b5db5b57",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/62de2a866b2ee73ac6e989b778e364cdc301c321",
+                "reference": "62de2a866b2ee73ac6e989b778e364cdc301c321",
                 "shasum": ""
             },
             "require": {
@@ -899,7 +825,54 @@
                 "debugger",
                 "nette"
             ],
-            "time": "2014-10-08 20:15:31"
+            "time": "2014-10-29 12:35:17"
+        },
+        {
+            "name": "true/punycode",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/true/php-punycode.git",
+                "reference": "59dca474914324763397be2ea3d6ad3bc48f4688"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/true/php-punycode/zipball/59dca474914324763397be2ea3d6ad3bc48f4688",
+                "reference": "59dca474914324763397be2ea3d6ad3bc48f4688",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.x",
+                "satooshi/php-coveralls": "dev-master",
+                "squizlabs/php_codesniffer": "2.0.x-dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "True\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Renan Gonçalves",
+                    "email": "renan.saddam@gmail.com"
+                }
+            ],
+            "description": "A Bootstring encoding of Unicode for Internationalized Domain Names in Applications (IDNA)",
+            "homepage": "https://github.com/true/php-punycode",
+            "keywords": [
+                "idna",
+                "punycode"
+            ],
+            "time": "2014-08-26 14:21:01"
         },
         {
             "name": "uestla/yetorm",
@@ -946,34 +919,18 @@
             "time": "2014-09-10 12:09:27"
         }
     ],
-    "packages-dev": [
-
-    ],
-    "aliases": [
-
-    ],
+    "packages-dev": [],
+    "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
         "composer/installers": 20,
-        "av/bonefish-autoloader": 20,
-        "av/bonefish-di2": 20,
         "nette/neon": 20,
         "latte/latte": 20,
         "tracy/tracy": 20,
         "nette/reflection": 20,
-        "league/url": 20,
-        "uestla/yetorm": 20,
-        "nikic/fast-route": 20,
-        "av/bonefish-helloworld": 20,
-        "av/bonefish-kickstart": 20,
-        "av/bonefish-generator": 20,
-        "av/bonefish-auth": 20
+        "uestla/yetorm": 20
     },
     "prefer-stable": true,
-    "platform": [
-
-    ],
-    "platform-dev": [
-
-    ]
+    "platform": [],
+    "platform-dev": []
 }

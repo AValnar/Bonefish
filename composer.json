@@ -11,20 +11,19 @@
     "prefer-stable": true,
     "require": {
         "composer/installers": "dev-custom-type-2",
-        "av/bonefish-autoloader": "dev-master",
-        "av/bonefish-di2": "dev-master",
+        "av/bonefish-autoloader": "1.*",
+        "av/bonefish-di2": "2.*",
         "nette/neon": "dev-master",
         "latte/latte": "dev-master",
         "tracy/tracy": "dev-master",
         "nette/reflection": "dev-master",
-        "joetannenbaum/climate": "0.1.*",
-        "league/url": "3.0.*@dev",
+        "league/climate": "2.4.*",
+        "league/url": "3.1.*",
         "uestla/yetorm": "dev-master",
-        "nikic/fast-route": "dev-master",
-        "av/bonefish-helloworld": "dev-master",
-        "av/bonefish-kickstart": "dev-master",
-        "av/bonefish-generator": "dev-master",
-        "av/bonefish-auth": "dev-master"
+        "nikic/fast-route": "0.2.*",
+        "av/bonefish-helloworld": "1.*",
+        "av/bonefish-kickstart": "1.*",
+        "av/bonefish-generator": "1.*"
     },
     "extra": {
         "installer-paths": {
