@@ -28,21 +28,46 @@ class Printer extends \League\CLImate\CLImate
     /**
      * @param mixed $object
      * @param string $method
+     * @param bool $plain don't like colors ?
+     * @param bool $return
+     * @param bool $supressOutput
+     * @return string
      */
-    public function prettyMethod($object, $method)
+    public function prettyMethod($object, $method, $plain = FALSE, $return = TRUE, $supressOutput = FALSE)
     {
         $r = \Nette\Reflection\Method::from($object, $method);
-        $this->lightGreen()->out($r->getDescription());
-        $this->out($r->getName());
         $parameters = $r->getParameters();
-        $this->br();
-        $this->out('Method Parameters:');
         $annotations = $r->hasAnnotation('param') ? $r->getAnnotations() : array();
-        foreach ($parameters as $key => $parameter) {
-            $doc = $this->getDocForParameter($parameter, $annotations, $key);
-            $default = $this->getDefaultValueForParameter($parameter);
-            $this->out('<light_blue>' . $doc . '</light_blue>' . $default);
+
+        $output = '';
+        if ($r->getDescription() != '') {
+            $output .= '<light_green>' . $r->getDescription() . '</light_green>' . PHP_EOL;
         }
+        $output .= $r->getName() . PHP_EOL;
+
+        if (!empty($parameters)) {
+            $output .= PHP_EOL;
+            $output .= 'Method Parameters:' . PHP_EOL;
+
+            foreach ($parameters as $key => $parameter) {
+                $doc = $this->getDocForParameter($parameter, $annotations, $key);
+                $default = $this->getDefaultValueForParameter($parameter);
+
+                $output .= '<light_blue>' . $doc . '</light_blue>' . $default . PHP_EOL;
+            }
+        }
+
+        if ($plain) {
+            echo $output;
+        } else {
+            $this->out($output);
+        }
+
+        if ($return) {
+            return $output;
+        }
+
+        return '';
     }
 
     /**
