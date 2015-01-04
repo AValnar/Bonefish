@@ -29,32 +29,15 @@ class Printer extends \League\CLImate\CLImate
      * @param mixed $object
      * @param string $method
      * @param bool $plain don't like colors ?
-     * @param bool $return
      * @param bool $supressOutput
      * @return string
      */
     public function prettyMethod($object, $method, $plain = FALSE, $supressOutput = FALSE)
     {
         $r = \Nette\Reflection\Method::from($object, $method);
-        $parameters = $r->getParameters();
-        $annotations = $r->hasAnnotation('param') ? $r->getAnnotations() : array();
 
-        $output = '';
-
-        if ($r->getDescription() != '') {
-            $output .= '<light_green>' . $r->getDescription() . '</light_green>' . PHP_EOL;
-        }
-
-        $output .= $r->getName() . PHP_EOL;
-
-        if (!empty($parameters)) {
-            $output .= PHP_EOL;
-            $output .= 'Method Parameters:' . PHP_EOL;
-
-            foreach ($parameters as $key => $parameter) {
-                $output .= $this->output($parameter, $key, $annotations);
-            }
-        }
+        $output = $this->printMeta($r);
+        $output .= $this->printParameters($r);
 
         if (!$supressOutput) {
             $this->output($output,$plain);
@@ -63,6 +46,52 @@ class Printer extends \League\CLImate\CLImate
         return $output;
     }
 
+    /**
+     * @param $r
+     * @return string
+     */
+    protected function printParameters($r)
+    {
+        if (empty($parameters)) {
+            return '';
+        }
+
+        $annotations = $r->hasAnnotation('param') ? $r->getAnnotations() : array();
+        $parameters = $r->getParameters();
+
+        $output = PHP_EOL;
+        $output .= 'Method Parameters:' . PHP_EOL;
+
+        foreach ($parameters as $key => $parameter) {
+            $output .= $this->printParameter($parameter, $key, $annotations);
+        }
+
+        return $output;
+    }
+
+    /**
+     * @param $r
+     * @return string
+     */
+    protected function printMeta($r)
+    {
+        $output = '';
+
+        if ($r->getDescription() != '') {
+            $output .= '<light_green>' . $r->getDescription() . '</light_green>' . PHP_EOL;
+        }
+
+        $output .= $r->getName() . PHP_EOL;
+
+        return $output;
+    }
+
+    /**
+     * @param $parameter
+     * @param $key
+     * @param $annotations
+     * @return string
+     */
     protected function printParameter($parameter, $key, $annotations)
     {
         $doc = $this->getDocForParameter($parameter, $annotations, $key);
