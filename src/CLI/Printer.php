@@ -33,16 +33,18 @@ class Printer extends \League\CLImate\CLImate
      * @param bool $supressOutput
      * @return string
      */
-    public function prettyMethod($object, $method, $plain = FALSE, $return = TRUE, $supressOutput = FALSE)
+    public function prettyMethod($object, $method, $plain = FALSE, $supressOutput = FALSE)
     {
         $r = \Nette\Reflection\Method::from($object, $method);
         $parameters = $r->getParameters();
         $annotations = $r->hasAnnotation('param') ? $r->getAnnotations() : array();
 
         $output = '';
+
         if ($r->getDescription() != '') {
             $output .= '<light_green>' . $r->getDescription() . '</light_green>' . PHP_EOL;
         }
+
         $output .= $r->getName() . PHP_EOL;
 
         if (!empty($parameters)) {
@@ -50,24 +52,36 @@ class Printer extends \League\CLImate\CLImate
             $output .= 'Method Parameters:' . PHP_EOL;
 
             foreach ($parameters as $key => $parameter) {
-                $doc = $this->getDocForParameter($parameter, $annotations, $key);
-                $default = $this->getDefaultValueForParameter($parameter);
-
-                $output .= '<light_blue>' . $doc . '</light_blue>' . $default . PHP_EOL;
+                $output .= $this->output($parameter, $key, $annotations);
             }
         }
 
+        if (!$supressOutput) {
+            $this->output($output,$plain);
+        }
+
+        return $output;
+    }
+
+    protected function printParameter($parameter, $key, $annotations)
+    {
+        $doc = $this->getDocForParameter($parameter, $annotations, $key);
+        $default = $this->getDefaultValueForParameter($parameter);
+
+        return '<light_blue>' . $doc . '</light_blue>' . $default . PHP_EOL;
+    }
+
+    /**
+     * @param $output
+     * @param $plain
+     */
+    protected  function output($output, $plain)
+    {
         if ($plain) {
             echo $output;
         } else {
             $this->out($output);
         }
-
-        if ($return) {
-            return $output;
-        }
-
-        return '';
     }
 
     /**

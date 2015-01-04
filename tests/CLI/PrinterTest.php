@@ -38,7 +38,7 @@ class PrinterTest extends \PHPUnit_Framework_TestCase
      */
     public function testPrettyMethod($method, $expected)
     {
-        $ret = $this->printer->prettyMethod($this->dummy, $method, TRUE, TRUE, TRUE);
+        $ret = $this->printer->prettyMethod($this->dummy, $method, TRUE, TRUE);
         $this->assertThat($ret,$this->equalTo($expected));
     }
 
