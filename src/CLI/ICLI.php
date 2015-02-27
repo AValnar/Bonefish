@@ -27,6 +27,16 @@ interface ICLI
 {
 
     /**
+     * @param array $arguments
+     */
+    public function setParameters(array $arguments);
+
+    /**
+     * @return array
+     */
+    public function getParameters();
+
+    /**
      * Main handler
      */
     public function run();

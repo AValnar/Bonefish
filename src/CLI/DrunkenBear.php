@@ -1,6 +1,7 @@
 <?php
 
 namespace Bonefish\CLI;
+use Bonefish\AbstractTraits\Parameters;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -25,6 +26,8 @@ namespace Bonefish\CLI;
  */
 class DrunkenBear extends CLIHelper implements ICLI
 {
+    use Parameters;
+
     const TYPE_EXPLAIN = 4;
     const TYPE_ALL = 1;
     const TYPE_VENDOR = 2;
@@ -138,4 +141,5 @@ class DrunkenBear extends CLIHelper implements ICLI
         }
         return 0;
     }
-} 
+
+}
