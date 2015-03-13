@@ -25,10 +25,16 @@
         "av/bonefish-kickstart": "1.*",
         "av/bonefish-generator": "1.*"
     },
-    "extra": {
-        "installer-paths": {
-            "Packages/{$vendor}/{$name}/": ["type:bonefish-package"]
-        }
+    "require-dev": {
+       "composer/composer": "dev-master"
+    },
+    "scripts": {
+        "post-package-install": [
+            "Bonefish\\Composer::postPackageInstall"
+        ],
+        "post-package-uninstall": [
+            "Bonefish\\Composer::postPackageUninstall"
+        ]
     },
     "autoload": {
         "psr-4": {

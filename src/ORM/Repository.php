@@ -22,6 +22,8 @@ namespace Bonefish\ORM;
  * @version    1.0
  * @date       2014-09-07
  * @package Bonefish\ORM
+ *
+ * @property $createEntity
  */
 abstract class Repository extends \YetORM\Repository
 {

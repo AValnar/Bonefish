@@ -36,6 +36,12 @@ class DrunkenBear extends CLIHelper implements ICLI
     const TYPE_COMMAND = "Command";
 
     /**
+     * @var \Bonefish\Core\PackageManager
+     * @inject
+     */
+    public $packageManager;
+
+    /**
      * Main handler
      */
     public function run()
@@ -45,7 +51,7 @@ class DrunkenBear extends CLIHelper implements ICLI
         $this->filterInvalid($help);
         $this->filterHelp($help);
 
-        $package = $this->environment->createPackage($this->vendor,$this->package);
+        $package = $this->packageManager->createPackage($this->vendor,$this->package);
         $this->filterExplain($help,$package);
         $this->execute($package,$this->action.self::TYPE_COMMAND,$this->buildParameterList());
     }
@@ -71,7 +77,7 @@ class DrunkenBear extends CLIHelper implements ICLI
     private function filterHelp($help)
     {
         if ($help == self::TYPE_ALL) {
-            $packages = $this->environment->getAllPackages();
+            $packages = $this->packageManager->getAllPackages();
             $this->help($packages);
             exit(0);
         }

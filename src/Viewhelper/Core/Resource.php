@@ -33,6 +33,12 @@ class Resource extends AbstractViewhelper
      */
     public $environment;
 
+    /**
+     * @var \Bonefish\Core\PackageManager
+     * @inject
+     */
+    public $packageManager;
+
     public function __construct()
     {
         $this->setName('bonefish.resource');
@@ -47,7 +53,7 @@ class Resource extends AbstractViewhelper
     public function getStart(\Latte\MacroNode $node, \Latte\PhpWriter $writer)
     {
         $args = explode(',',$node->args);
-        $package = $this->environment->createPackage($args[0],$args[1]);
+        $package = $this->packageManager->createPackage($args[0],$args[1]);
         return $writer->write('echo \'' . $package->getPackageUrlPath() . '\'');
     }
 } 

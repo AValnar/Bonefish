@@ -69,6 +69,12 @@ class Environment
     public $configurationManager;
 
     /**
+     * @var \Bonefish\Core\PackageManager
+     * @inject
+     */
+    public $packageManager;
+
+    /**
      * @param string $basePath
      * @return self
      */
@@ -185,51 +191,40 @@ class Environment
     /**
      * @param array $packageState
      * @return self
+     * @deprecated Use Bonefish\Core\PackageManager instead
      */
     public function setPackageStates($packageState)
     {
-        $this->packageState = $packageState;
+        $this->packageManager->setPackageStates($packageState);
         return $this;
     }
 
     /**
      * @return array
+     * @deprecated Use Bonefish\Core\PackageManager instead
      */
     public function getPackageStates()
     {
-        if (empty($this->packageState)) {
-            $this->packageState = $this->configurationManager->getConfiguration('Packages.neon');
-        }
-        return $this->packageState;
+        return $this->packageManager->getPackageStates();
     }
 
     /**
      * @param string $vendor
      * @param string $package
      * @return \Bonefish\Core\Package
+     * @deprecated Use Bonefish\Core\PackageManager instead
      */
     public function createPackage($vendor, $package)
     {
-        $packages = $this->getPackageStates();
-        if (!isset($packages[$vendor][$package])) {
-            throw new \InvalidArgumentException('Package is not set up or does not exist!');
-        }
-        return $this->container->create('\Bonefish\Core\Package', array($vendor, $package, $packages[$vendor][$package]));
+        return $this->packageManager->createPackage($vendor, $package);
     }
 
     /**
      * @return array
+     * @deprecated Use Bonefish\Core\PackageManager instead
      */
     public function getAllPackages()
     {
-        $states = $this->getPackageStates();
-        $return = array();
-        foreach ($states as $vendor => $packages) {
-            foreach ($packages as $package => $config) {
-                $return[] = $this->createPackage($vendor, $package);
-            }
-        }
-        return $return;
+        return $this->packageManager->getAllPackages();
     }
-
-} 
+}

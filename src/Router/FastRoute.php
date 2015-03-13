@@ -27,6 +27,12 @@ class FastRoute extends AbstractRouter
 {
 
     /**
+     * @var \Bonefish\Core\PackageManager
+     * @inject
+     */
+    public $packageManager;
+
+    /**
      * @throws \Exception
      */
     public function route()
@@ -79,7 +85,7 @@ class FastRoute extends AbstractRouter
      */
     public function callControllerDTO($dto)
     {
-        $package = $this->environment->createPackage($dto->getVendor(), $dto->getPackage());
+        $package = $this->packageManager->createPackage($dto->getVendor(), $dto->getPackage());
         $this->environment->setPackage($package);
         $controller = $this->container->get($dto->getController());
         $action = $dto->getAction() . 'Action';
