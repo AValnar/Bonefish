@@ -52,13 +52,13 @@ class Printer extends \League\CLImate\CLImate
      */
     protected function printParameters($r)
     {
+        $parameters = $r->getParameters();
+
         if (empty($parameters)) {
             return '';
         }
 
         $annotations = $r->hasAnnotation('param') ? $r->getAnnotations() : array();
-        $parameters = $r->getParameters();
-
         $output = PHP_EOL;
         $output .= 'Method Parameters:' . PHP_EOL;
 

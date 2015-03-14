@@ -59,7 +59,8 @@ class Kernel
 
     public function start()
     {
-        $url = \League\Url\UrlImmutable::createFromServer($_SERVER);
+        $server = $_SERVER;
+        $url = \League\Url\UrlImmutable::createFromServer($server);
         $router = $this->container->create('\Bonefish\Router\FastRoute', array($url));
         $this->container->add('\Bonefish\Router\FastRoute', $router);
         $router->route();

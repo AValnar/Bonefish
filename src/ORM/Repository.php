@@ -22,8 +22,6 @@ namespace Bonefish\ORM;
  * @version    1.0
  * @date       2014-09-07
  * @package Bonefish\ORM
- *
- * @property $createEntity
  */
 abstract class Repository extends \YetORM\Repository
 {
@@ -47,6 +45,7 @@ abstract class Repository extends \YetORM\Repository
 
     public function __init()
     {
+        // Due to automatic di we don't have the context in the constructor thus we call it here once we have the context
         parent::__construct($this->context);
     }
 
@@ -77,7 +76,7 @@ abstract class Repository extends \YetORM\Repository
             '\Bonefish\ORM\EntityCollection',
             array(
                 $selection,
-                $entity === NULL ? $this->createEntity : $entity,
+                $entity === NULL ? $this->createEntity() : $entity,
                 $refTable,
                 $refColumn
             )

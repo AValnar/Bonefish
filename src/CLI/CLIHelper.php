@@ -23,6 +23,9 @@ namespace Bonefish\CLI;
  * @date       2014-10-02
  * @package Bonefish\CLI
  * @method mixed border(string $char = '', integer $length = '')
+ * @method mixed out(string $text)
+ * @method mixed br
+ * @method mixed red
  */
 class CLIHelper extends \League\CLImate\CLImate
 {

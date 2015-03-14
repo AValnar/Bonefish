@@ -83,7 +83,7 @@ abstract class AbstractViewhelper
      * @param \Latte\PhpWriter $writer
      * @return string
      */
-    function getEnd(\Latte\MacroNode $node, \Latte\PhpWriter $writer)
+    public function getEnd(\Latte\MacroNode $node, \Latte\PhpWriter $writer)
     {
         return $writer->write('');
     }

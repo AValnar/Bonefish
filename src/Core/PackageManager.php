@@ -2,9 +2,6 @@
 
 namespace Bonefish\Core;
 
-use Composer\Script\Event;
-
-
 /**
  * Copyright (C) 2014  Alexander Schmidt
  *
@@ -45,18 +42,6 @@ class PackageManager
      * @var array
      */
     protected $packageState = array();
-
-    public function postPackageInstall(Event $event)
-    {
-        //$installedPackage = $event->getOperation()->getPackage();
-        // do stuff
-    }
-
-    public function postPackageUninstall(Event $event)
-    {
-        //$installedPackage = $event->getOperation()->getPackage();
-        // do stuff
-    }
 
     /**
      * @param array $packageState
