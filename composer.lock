@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e0dc4c689e27189a69716294412f103f",
+    "hash": "98ec4aba040fa65a45a08bc8a7527699",
     "packages": [
         {
             "name": "av/bonefish-autoloader",
@@ -152,16 +152,16 @@
         },
         {
             "name": "composer/installers",
-            "version": "dev-custom-type-2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AValnar/installers.git",
-                "reference": "7a13390fd4942ca44e8b72c59da074238566efd5"
+                "reference": "9c9e37671ef04d934db0c615ab3ae1e89c0608b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AValnar/installers/zipball/7a13390fd4942ca44e8b72c59da074238566efd5",
-                "reference": "7a13390fd4942ca44e8b72c59da074238566efd5",
+                "url": "https://api.github.com/repos/AValnar/installers/zipball/9c9e37671ef04d934db0c615ab3ae1e89c0608b0",
+                "reference": "9c9e37671ef04d934db0c615ab3ae1e89c0608b0",
                 "shasum": ""
             },
             "replace": {
@@ -198,6 +198,7 @@
             "homepage": "http://composer.github.com/installers/",
             "keywords": [
                 "AGL",
+                "Aimeos",
                 "AnnotateCms",
                 "Bitrix",
                 "CakePHP",
@@ -205,10 +206,12 @@
                 "CodeIgniter",
                 "Craft",
                 "Croogo",
+                "DokuWiki",
                 "Dolibarr",
                 "Drupal",
                 "Elgg",
                 "FuelPHP",
+                "Grav",
                 "Hurad",
                 "Joomla",
                 "Kohana",
@@ -225,8 +228,10 @@
                 "Piwik",
                 "Puppet",
                 "Roundcube",
+                "SMF",
                 "SilverStripe",
                 "TYPO3",
+                "Thelia",
                 "WolfCMS",
                 "WordPress",
                 "Zend",
@@ -238,9 +243,9 @@
                 "symfony"
             ],
             "support": {
-                "source": "https://github.com/AValnar/installers/tree/custom-type-2"
+                "source": "https://github.com/AValnar/installers/tree/master"
             },
-            "time": "2014-08-30 10:25:12"
+            "time": "2015-03-12 16:27:44"
         },
         {
             "name": "latte/latte",
@@ -248,12 +253,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/latte.git",
-                "reference": "73b9a94d554915d30b3e77db1148eafacf4012fc"
+                "reference": "0cede35b8b74081d70c89e7d437adfc1be91cdd7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/latte/zipball/73b9a94d554915d30b3e77db1148eafacf4012fc",
-                "reference": "73b9a94d554915d30b3e77db1148eafacf4012fc",
+                "url": "https://api.github.com/repos/nette/latte/zipball/0cede35b8b74081d70c89e7d437adfc1be91cdd7",
+                "reference": "0cede35b8b74081d70c89e7d437adfc1be91cdd7",
                 "shasum": ""
             },
             "require": {
@@ -261,7 +266,7 @@
                 "php": ">=5.3.1"
             },
             "require-dev": {
-                "nette/tester": "~1.0"
+                "nette/tester": "~1.3"
             },
             "suggest": {
                 "ext-fileinfo": "to use filter |datastream",
@@ -300,7 +305,7 @@
                 "templating",
                 "twig"
             ],
-            "time": "2014-10-26 18:06:34"
+            "time": "2015-03-09 12:15:51"
         },
         {
             "name": "league/climate",
@@ -410,16 +415,16 @@
         },
         {
             "name": "nette/caching",
-            "version": "v2.2.2",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/caching.git",
-                "reference": "56ec8daeebbd780316a94759fc8a5a861adfa579"
+                "reference": "e9508220f5628d9ac075ec3c13ba1e053dbd7944"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/caching/zipball/56ec8daeebbd780316a94759fc8a5a861adfa579",
-                "reference": "56ec8daeebbd780316a94759fc8a5a861adfa579",
+                "url": "https://api.github.com/repos/nette/caching/zipball/e9508220f5628d9ac075ec3c13ba1e053dbd7944",
+                "reference": "e9508220f5628d9ac075ec3c13ba1e053dbd7944",
                 "shasum": ""
             },
             "require": {
@@ -431,10 +436,16 @@
                 "nette/nette": "<2.2"
             },
             "require-dev": {
-                "latte/latte": "~2.2.2",
+                "latte/latte": "~2.3",
+                "nette/di": "~2.3",
                 "nette/tester": "~1.0"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
             "autoload": {
                 "classmap": [
                     "src/"
@@ -458,20 +469,20 @@
             ],
             "description": "Nette Caching Component",
             "homepage": "http://nette.org",
-            "time": "2014-10-15 20:28:19"
+            "time": "2015-02-18 02:23:54"
         },
         {
             "name": "nette/database",
-            "version": "v2.2.2",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/database.git",
-                "reference": "5b7bf41ba57f1f809823555e4630030f4ebc2a05"
+                "reference": "9e939487553684074ca49428575ee518e94aaa4f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/database/zipball/5b7bf41ba57f1f809823555e4630030f4ebc2a05",
-                "reference": "5b7bf41ba57f1f809823555e4630030f4ebc2a05",
+                "url": "https://api.github.com/repos/nette/database/zipball/9e939487553684074ca49428575ee518e94aaa4f",
+                "reference": "9e939487553684074ca49428575ee518e94aaa4f",
                 "shasum": ""
             },
             "require": {
@@ -484,9 +495,16 @@
                 "nette/nette": "<2.2"
             },
             "require-dev": {
-                "nette/tester": "~1.0"
+                "mockery/mockery": "~0.9.1",
+                "nette/di": "~2.3",
+                "nette/tester": "~1.3"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
             "autoload": {
                 "classmap": [
                     "src/"
@@ -510,20 +528,20 @@
             ],
             "description": "Nette Database Component",
             "homepage": "http://nette.org",
-            "time": "2014-08-24 22:56:02"
+            "time": "2015-02-20 03:30:49"
         },
         {
             "name": "nette/finder",
-            "version": "v2.2.0",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/finder.git",
-                "reference": "ab0d08478952e754f21b2e325d6703aa77d61b72"
+                "reference": "0eba793c90e236714b6f76474590d14d6bfe733a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/finder/zipball/ab0d08478952e754f21b2e325d6703aa77d61b72",
-                "reference": "ab0d08478952e754f21b2e325d6703aa77d61b72",
+                "url": "https://api.github.com/repos/nette/finder/zipball/0eba793c90e236714b6f76474590d14d6bfe733a",
+                "reference": "0eba793c90e236714b6f76474590d14d6bfe733a",
                 "shasum": ""
             },
             "require": {
@@ -537,6 +555,11 @@
                 "nette/tester": "~1.0"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
             "autoload": {
                 "classmap": [
                     "src/"
@@ -560,7 +583,7 @@
             ],
             "description": "Nette Finder: Files Searching",
             "homepage": "http://nette.org",
-            "time": "2014-06-24 11:22:41"
+            "time": "2015-02-17 20:36:43"
         },
         {
             "name": "nette/neon",
@@ -568,12 +591,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/neon.git",
-                "reference": "fdf47ea320e72813a7ac1cdf62f555b3697f1777"
+                "reference": "c14c3ae106fbf11bef6dfc3ec7668c59bdd7f58e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/neon/zipball/fdf47ea320e72813a7ac1cdf62f555b3697f1777",
-                "reference": "fdf47ea320e72813a7ac1cdf62f555b3697f1777",
+                "url": "https://api.github.com/repos/nette/neon/zipball/c14c3ae106fbf11bef6dfc3ec7668c59bdd7f58e",
+                "reference": "c14c3ae106fbf11bef6dfc3ec7668c59bdd7f58e",
                 "shasum": ""
             },
             "require": {
@@ -612,7 +635,7 @@
             ],
             "description": "Nette NEON: parser & generator for Nette Object Notation",
             "homepage": "http://ne-on.org",
-            "time": "2014-09-08 20:28:35"
+            "time": "2015-02-17 21:10:16"
         },
         {
             "name": "nette/reflection",
@@ -620,12 +643,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/reflection.git",
-                "reference": "46c46460302913f42afc16c8307b2388107e33e2"
+                "reference": "08328bbd23323de285966dac7164f9ceb73cd77b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/reflection/zipball/46c46460302913f42afc16c8307b2388107e33e2",
-                "reference": "46c46460302913f42afc16c8307b2388107e33e2",
+                "url": "https://api.github.com/repos/nette/reflection/zipball/08328bbd23323de285966dac7164f9ceb73cd77b",
+                "reference": "08328bbd23323de285966dac7164f9ceb73cd77b",
                 "shasum": ""
             },
             "require": {
@@ -638,6 +661,7 @@
                 "nette/nette": "<2.2"
             },
             "require-dev": {
+                "nette/di": "~2.3",
                 "nette/tester": "~1.0"
             },
             "type": "library",
@@ -669,20 +693,20 @@
             ],
             "description": "Nette PHP Reflection Component",
             "homepage": "http://nette.org",
-            "time": "2014-08-24 23:15:43"
+            "time": "2015-02-16 15:33:50"
         },
         {
             "name": "nette/utils",
-            "version": "v2.2.2",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/utils.git",
-                "reference": "9166030811103af7101630bddc0bb1b91a7e36f7"
+                "reference": "29bfb4424689014e0749e14eef8de18c4b0fd020"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/utils/zipball/9166030811103af7101630bddc0bb1b91a7e36f7",
-                "reference": "9166030811103af7101630bddc0bb1b91a7e36f7",
+                "url": "https://api.github.com/repos/nette/utils/zipball/29bfb4424689014e0749e14eef8de18c4b0fd020",
+                "reference": "29bfb4424689014e0749e14eef8de18c4b0fd020",
                 "shasum": ""
             },
             "require": {
@@ -697,9 +721,15 @@
             "suggest": {
                 "ext-gd": "to use Image",
                 "ext-iconv": "to use Strings::webalize() and toAscii()",
+                "ext-intl": "for script transliteration in Strings::webalize() and toAscii()",
                 "ext-mbstring": "to use Strings::lower() etc..."
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
             "autoload": {
                 "classmap": [
                     "src/"
@@ -723,7 +753,7 @@
             ],
             "description": "Nette Utility Classes",
             "homepage": "http://nette.org",
-            "time": "2014-08-24 23:29:12"
+            "time": "2015-02-24 21:21:17"
         },
         {
             "name": "nikic/fast-route",
@@ -774,19 +804,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "62de2a866b2ee73ac6e989b778e364cdc301c321"
+                "reference": "b9e95876d396470dbdb3b39bb2a04ce56aa3995a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/62de2a866b2ee73ac6e989b778e364cdc301c321",
-                "reference": "62de2a866b2ee73ac6e989b778e364cdc301c321",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/b9e95876d396470dbdb3b39bb2a04ce56aa3995a",
+                "reference": "b9e95876d396470dbdb3b39bb2a04ce56aa3995a",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.1"
             },
             "require-dev": {
-                "nette/tester": "~1.0"
+                "nette/di": "~2.3",
+                "nette/tester": "~1.3"
             },
             "type": "library",
             "extra": {
@@ -796,7 +827,7 @@
             },
             "autoload": {
                 "classmap": [
-                    "src/Tracy"
+                    "src"
                 ],
                 "files": [
                     "src/shortcuts.php"
@@ -825,20 +856,20 @@
                 "debugger",
                 "nette"
             ],
-            "time": "2014-10-29 12:35:17"
+            "time": "2015-03-13 12:13:16"
         },
         {
             "name": "true/punycode",
-            "version": "1.0.1",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/true/php-punycode.git",
-                "reference": "59dca474914324763397be2ea3d6ad3bc48f4688"
+                "reference": "21c0025130b4e2b2d0b7dbe5f86e9e1512507656"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/true/php-punycode/zipball/59dca474914324763397be2ea3d6ad3bc48f4688",
-                "reference": "59dca474914324763397be2ea3d6ad3bc48f4688",
+                "url": "https://api.github.com/repos/true/php-punycode/zipball/21c0025130b4e2b2d0b7dbe5f86e9e1512507656",
+                "reference": "21c0025130b4e2b2d0b7dbe5f86e9e1512507656",
                 "shasum": ""
             },
             "require": {
@@ -848,7 +879,7 @@
             "require-dev": {
                 "phpunit/phpunit": "4.x",
                 "satooshi/php-coveralls": "dev-master",
-                "squizlabs/php_codesniffer": "2.0.x-dev"
+                "squizlabs/php_codesniffer": "~2.0"
             },
             "type": "library",
             "autoload": {
@@ -872,7 +903,7 @@
                 "idna",
                 "punycode"
             ],
-            "time": "2014-08-26 14:21:01"
+            "time": "2015-03-12 16:49:35"
         },
         {
             "name": "uestla/yetorm",
@@ -880,12 +911,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/uestla/YetORM.git",
-                "reference": "6590ca099a4d76b62232b3885bb01515133549c4"
+                "reference": "9381cda4c05bbe4ef0a72fc99d09e2123d2aec42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/uestla/YetORM/zipball/6590ca099a4d76b62232b3885bb01515133549c4",
-                "reference": "6590ca099a4d76b62232b3885bb01515133549c4",
+                "url": "https://api.github.com/repos/uestla/YetORM/zipball/9381cda4c05bbe4ef0a72fc99d09e2123d2aec42",
+                "reference": "9381cda4c05bbe4ef0a72fc99d09e2123d2aec42",
                 "shasum": ""
             },
             "require": {
@@ -916,10 +947,342 @@
                 "nette",
                 "orm"
             ],
-            "time": "2014-09-10 12:09:27"
+            "time": "2015-02-24 19:44:06"
         }
     ],
-    "packages-dev": [],
+    "packages-dev": [
+        {
+            "name": "composer/composer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/composer.git",
+                "reference": "d57187446151ef84b28cb9f6b3ed38cc2cffc597"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/composer/zipball/d57187446151ef84b28cb9f6b3ed38cc2cffc597",
+                "reference": "d57187446151ef84b28cb9f6b3ed38cc2cffc597",
+                "shasum": ""
+            },
+            "require": {
+                "justinrainbow/json-schema": "~1.3",
+                "php": ">=5.3.2",
+                "seld/jsonlint": "~1.0",
+                "symfony/console": "~2.5",
+                "symfony/finder": "~2.2",
+                "symfony/process": "~2.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.5"
+            },
+            "suggest": {
+                "ext-openssl": "Enabling the openssl extension allows you to access https URLs for repositories and packages",
+                "ext-zip": "Enabling the zip extension allows you to unzip archives, and allows gzip compression of all internet traffic"
+            },
+            "bin": [
+                "bin/composer"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Composer": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nils Adermann",
+                    "email": "naderman@naderman.de",
+                    "homepage": "http://www.naderman.de"
+                },
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be",
+                    "homepage": "http://seld.be"
+                }
+            ],
+            "description": "Composer helps you declare, manage and install dependencies of PHP projects, ensuring you have the right stack everywhere.",
+            "homepage": "http://getcomposer.org/",
+            "keywords": [
+                "autoload",
+                "dependency",
+                "package"
+            ],
+            "time": "2015-03-09 23:06:06"
+        },
+        {
+            "name": "justinrainbow/json-schema",
+            "version": "1.3.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/justinrainbow/json-schema.git",
+                "reference": "87b54b460febed69726c781ab67462084e97a105"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/87b54b460febed69726c781ab67462084e97a105",
+                "reference": "87b54b460febed69726c781ab67462084e97a105",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "json-schema/json-schema-test-suite": "1.1.0",
+                "phpdocumentor/phpdocumentor": "~2",
+                "phpunit/phpunit": "~3.7"
+            },
+            "bin": [
+                "bin/validate-json"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "JsonSchema": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Bruno Prieto Reis",
+                    "email": "bruno.p.reis@gmail.com"
+                },
+                {
+                    "name": "Justin Rainbow",
+                    "email": "justin.rainbow@gmail.com"
+                },
+                {
+                    "name": "Igor Wiedler",
+                    "email": "igor@wiedler.ch"
+                },
+                {
+                    "name": "Robert Schönthal",
+                    "email": "seroscho@googlemail.com"
+                }
+            ],
+            "description": "A library to validate a json schema.",
+            "homepage": "https://github.com/justinrainbow/json-schema",
+            "keywords": [
+                "json",
+                "schema"
+            ],
+            "time": "2014-08-25 02:48:14"
+        },
+        {
+            "name": "seld/jsonlint",
+            "version": "1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Seldaek/jsonlint.git",
+                "reference": "863ae85c6d3ef60ca49cb12bd051c4a0648c40c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/863ae85c6d3ef60ca49cb12bd051c4a0648c40c4",
+                "reference": "863ae85c6d3ef60ca49cb12bd051c4a0648c40c4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "bin": [
+                "bin/jsonlint"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Seld\\JsonLint\\": "src/Seld/JsonLint/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be",
+                    "homepage": "http://seld.be"
+                }
+            ],
+            "description": "JSON Linter",
+            "keywords": [
+                "json",
+                "linter",
+                "parser",
+                "validator"
+            ],
+            "time": "2015-01-04 21:18:15"
+        },
+        {
+            "name": "symfony/console",
+            "version": "v2.6.4",
+            "target-dir": "Symfony/Component/Console",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Console.git",
+                "reference": "e44154bfe3e41e8267d7a3794cd9da9a51cfac34"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/e44154bfe3e41e8267d7a3794cd9da9a51cfac34",
+                "reference": "e44154bfe3e41e8267d7a3794cd9da9a51cfac34",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "psr/log": "~1.0",
+                "symfony/event-dispatcher": "~2.1",
+                "symfony/process": "~2.1"
+            },
+            "suggest": {
+                "psr/log": "For using the console logger",
+                "symfony/event-dispatcher": "",
+                "symfony/process": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Console\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Symfony Console Component",
+            "homepage": "http://symfony.com",
+            "time": "2015-01-25 04:39:26"
+        },
+        {
+            "name": "symfony/finder",
+            "version": "v2.6.4",
+            "target-dir": "Symfony/Component/Finder",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Finder.git",
+                "reference": "16513333bca64186c01609961a2bb1b95b5e1355"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Finder/zipball/16513333bca64186c01609961a2bb1b95b5e1355",
+                "reference": "16513333bca64186c01609961a2bb1b95b5e1355",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Finder\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Symfony Finder Component",
+            "homepage": "http://symfony.com",
+            "time": "2015-01-03 08:01:59"
+        },
+        {
+            "name": "symfony/process",
+            "version": "v2.6.4",
+            "target-dir": "Symfony/Component/Process",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Process.git",
+                "reference": "ecfc23e89d9967999fa5f60a1e9af7384396e9ae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Process/zipball/ecfc23e89d9967999fa5f60a1e9af7384396e9ae",
+                "reference": "ecfc23e89d9967999fa5f60a1e9af7384396e9ae",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Process\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Symfony Process Component",
+            "homepage": "http://symfony.com",
+            "time": "2015-01-25 04:39:26"
+        }
+    ],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
@@ -928,9 +1291,11 @@
         "latte/latte": 20,
         "tracy/tracy": 20,
         "nette/reflection": 20,
-        "uestla/yetorm": 20
+        "uestla/yetorm": 20,
+        "composer/composer": 20
     },
     "prefer-stable": true,
+    "prefer-lowest": false,
     "platform": [],
     "platform-dev": []
 }

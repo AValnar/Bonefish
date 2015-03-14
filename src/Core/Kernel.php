@@ -1,6 +1,7 @@
 <?php
 
 namespace Bonefish\Core;
+use Bonefish\Core\Mode\FullStackMode;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -32,10 +33,10 @@ class Kernel
     public $container;
 
     /**
-     * @var \Bonefish\Core\ConfigurationManager
+     * @var FullStackMode
      * @inject
      */
-    public $configurationManager;
+    public $fullStackMode;
 
     /**
      * @var string
@@ -52,111 +53,8 @@ class Kernel
 
     public function __init()
     {
-        $this->initAutoloader();
-        $this->initEnvironment($this->baseDir);
-        $this->initCache();
-        $this->initLatte();
-        $this->initDatabase();
-        $this->loadAlias();
-        $this->initACL();
-    }
-
-    protected function initAutoloader()
-    {
-        $autoloader = new \Bonefish\Autoloader\Autoloader();
-        $autoloader->register();
-        $this->container->add('\Bonefish\Autoloader\Autoloader', $autoloader);
-    }
-
-    /**
-     * @param string $baseDir
-     */
-    protected function initEnvironment($baseDir)
-    {
-        /** @var \Bonefish\Core\Environment $environment */
-        $environment = $this->container->get('\Bonefish\Core\Environment')
-            ->setBasePath($baseDir)
-            ->setConfigurationPath('/Configuration');
-
-        $basicConfiguration = $this->configurationManager->getConfiguration('Configuration.neon');
-        $environment->setPackagePath($basicConfiguration['global']['packagePath'])
-            ->setCachePath($basicConfiguration['global']['cachePath']);
-    }
-
-    protected function initCache()
-    {
-        /** @var \Bonefish\Core\Environment $environment */
-        $environment = $this->container->get('\Bonefish\Core\Environment');
-        $path = $environment->getFullCachePath();
-        $this->createDir($path);
-        $storage = new \Nette\Caching\Storages\FileStorage($path);
-        $cache = new \Nette\Caching\Cache($storage);
-        $this->container->add('\Nette\Caching\Cache', $cache);
-        $this->container->add('\Nette\Caching\Storages\FileStorage', $storage);
-        \Nette\Reflection\AnnotationsParser::setCacheStorage($storage);
-    }
-
-    protected function initLatte()
-    {
-        /** @var \Latte\Engine $latte */
-        $latte = $this->container->get('\Latte\Engine');
-        /** @var \Bonefish\Core\Environment $environment */
-        $environment = $this->container->get('\Bonefish\Core\Environment');
-        $basicConfiguration = $this->configurationManager->getConfiguration('Configuration.neon');
-        $path = $environment->getFullCachePath() . $basicConfiguration['global']['lattePath'];
-        $this->createDir($path);
-        $latte->setTempDirectory($path);
-    }
-
-    protected function initDatabase()
-    {
-        try {
-            $dbConfig = $this->configurationManager->getConfiguration('Configuration.neon');
-            $connection = new \Nette\Database\Connection(
-                $dbConfig['database']['db_driver'] . ':host=' . $dbConfig['database']['db_host'] . ';dbname=' . $dbConfig['database']['db_name'],
-                $dbConfig['database']['db_user'],
-                $dbConfig['database']['db_pw'],
-                array('lazy' => FALSE)
-            );
-        } catch (\PDOException $e) {
-            die('Connection failed: ' . $e->getMessage());
-        }
-
-        $context = new \Nette\Database\Context($connection, NULL, $this->container->get('\Nette\Caching\Storages\FileStorage'));
-        $this->container->add('\Nette\Database\Context', $context);
-    }
-
-    protected function loadAlias()
-    {
-        $basicConfiguration = $this->configurationManager->getConfiguration('Configuration.neon');
-        foreach ($basicConfiguration['alias'] as $class => $alias) {
-            $this->container->alias($alias, $class);
-        }
-    }
-
-    protected function initACL()
-    {
-        /** @var \Bonefish\ACL\ACL $acl */
-        $acl = $this->container->get('\Bonefish\ACL\ACL');
-        /** @var \Bonefish\Auth\IAuth $authService */
-        $authService = $this->container->get('\Bonefish\Auth\IAuth');
-        if ($authService->authenticate()) {
-            $profile = $authService->getProfile();
-        } else {
-            $profile = $this->container->create('\Bonefish\ACL\Profiles\PublicProfile');
-        }
-        $acl->setProfile($profile);
-    }
-
-    public function startTracy()
-    {
-        $basicConfiguration = $this->configurationManager->getConfiguration('Configuration.neon');
-        if ($basicConfiguration['global']['develoment']) {
-            \Tracy\Debugger::enable(\Tracy\Debugger::DEVELOPMENT);
-        } else {
-            \Tracy\Debugger::enable(\Tracy\Debugger::PRODUCTION);
-        }
-        \Tracy\Debugger::$strictMode = TRUE;
+        $this->fullStackMode->setParameters(array('basePath' => $this->baseDir));
+        $this->fullStackMode->init();
     }
 
     public function start()
@@ -167,13 +65,4 @@ class Kernel
         $router->route();
     }
 
-    /**
-     * @param string $path
-     */
-    private function createDir($path)
-    {
-        if (!file_exists($path)) {
-            mkdir($path);
-        }
-    }
 } 

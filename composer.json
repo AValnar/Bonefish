@@ -10,7 +10,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "composer/installers": "dev-custom-type-2",
+        "composer/installers": "dev-master",
         "av/bonefish-autoloader": "1.*",
         "av/bonefish-di2": "2.*",
         "nette/neon": "dev-master",
@@ -27,14 +27,6 @@
     },
     "require-dev": {
        "composer/composer": "dev-master"
-    },
-    "scripts": {
-        "post-package-install": [
-            "Bonefish\\Composer::postPackageInstall"
-        ],
-        "post-package-uninstall": [
-            "Bonefish\\Composer::postPackageUninstall"
-        ]
     },
     "autoload": {
         "psr-4": {

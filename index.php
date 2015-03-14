@@ -32,7 +32,6 @@ session_start();
 $container = new Bonefish\DependencyInjection\Container();
 /** @var \Bonefish\Core\Kernel $kernel */
 $kernel = $container->create('\Bonefish\Core\Kernel',array($baseDir));
-$kernel->startTracy();
 $kernel->start();
 
 

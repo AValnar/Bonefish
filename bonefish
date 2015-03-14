@@ -14,7 +14,10 @@ if (!file_exists($composerAutoload))
 require $baseDir . '/vendor/autoload.php';
 
 $container = new Bonefish\DependencyInjection\Container();
-$container->create('\Bonefish\Core\Kernel',array($baseDir));
+/** @var \Bonefish\Core\Mode\CLIMode $cliMode */
+$cliMode = $container->create('\Bonefish\Core\Mode\CLIMode');
+$cliMode->setParameters(array('basePath' => $baseDir));
+$cliMode->init();
 
 $cli = $container->create('\Bonefish\CLI\DrunkenBear',array($argv));
 $cli->run();
