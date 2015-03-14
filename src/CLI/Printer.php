@@ -47,7 +47,7 @@ class Printer extends \League\CLImate\CLImate
     }
 
     /**
-     * @param $r
+     * @param \Nette\Reflection\Method $r
      * @return string
      */
     protected function printParameters($r)
@@ -70,7 +70,7 @@ class Printer extends \League\CLImate\CLImate
     }
 
     /**
-     * @param $r
+     * @param \Nette\Reflection\Method $r
      * @return string
      */
     protected function printMeta($r)
@@ -101,8 +101,8 @@ class Printer extends \League\CLImate\CLImate
     }
 
     /**
-     * @param $output
-     * @param $plain
+     * @param string $output
+     * @param boolean $plain
      */
     protected  function output($output, $plain)
     {
