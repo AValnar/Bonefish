@@ -10,6 +10,7 @@ matrix:
     - php: 7.0
     - php: hhvm
 install:
+  - composer self-update
   - composer install
 script: phpunit --coverage-clover=coverage.clover --bootstrap vendor/autoload.php tests
 after_script:

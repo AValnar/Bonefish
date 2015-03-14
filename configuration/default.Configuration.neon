@@ -1,0 +1,33 @@
+global:
+  baseUrl: http://example.com
+  packagePath: /Packages
+  cachePath: /Cache
+  lattePath: /Latte
+  develoment: yes
+
+alias:
+  \Bonefish\Auth\IAuth: \Bonefish\Auth\NoAuth
+
+database:
+  db_driver: mysql
+  db_host: my.db.host
+  db_name: databasename
+  db_user: databaseuser
+  db_pw: databaseuserpassword
+
+route:
+  default:
+    vendor: Bonefish
+    package: HelloWorld
+    controller: Bonefish\HelloWorld\Controller\Controller
+    action: index
+  notfound:
+    vendor: Bonefish
+    package: HelloWorld
+    controller: Bonefish\HelloWorld\Controller\Controller
+    action: index
+  notallowed:
+    vendor: Bonefish
+    package: HelloWorld
+    controller: Bonefish\HelloWorld\Controller\Controller
+    action: index
