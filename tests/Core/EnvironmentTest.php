@@ -47,40 +47,11 @@ class EnvironmentTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             array('getBasePath', 'setBasePath', 'foo'),
-            array('getPackageStates', 'setPackageStates', 'foo'),
             array('getPackagePath', 'setPackagePath', 'foo'),
             array('getCachePath', 'setCachePath', 'foo'),
             array('getConfigurationPath', 'setConfigurationPath', 'foo'),
             array('getPackage', 'setPackage', 'foo')
         );
-    }
-
-    public function testCreatePackage()
-    {
-        $vendor = 'foo';
-        $package = 'bar';
-        $this->container->expects($this->once())
-            ->method('create')
-            ->with('\Bonefish\Core\Package', array($vendor, $package,array()))
-            ->will($this->returnValue('foobar'));
-        $state[$vendor][$package] = array();
-        $this->environment->setPackageStates($state);
-        $return = $this->environment->createPackage($vendor, $package);
-        $this->assertThat($return, $this->equalTo('foobar'));
-    }
-
-    public function testGetAllPackages()
-    {
-        $expected = array('foobar','foobar');
-        $this->container->expects($this->exactly(count($expected)))
-            ->method('create')
-            ->with('\Bonefish\Core\Package')
-            ->will($this->returnValue('foobar'));
-        $config['Bonefish']['foo'] = array();
-        $config['Bonefish']['bar'] = array();
-        $this->environment->setPackageStates($config);
-        $return = $this->environment->getAllPackages();
-        $this->assertThat($return, $this->equalTo($expected));
     }
 
     public function fullGetterAndSetterProvider()
