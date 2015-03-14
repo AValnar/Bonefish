@@ -49,7 +49,7 @@ class EntityCollection extends \YetORM\EntityCollection
     }
 
     /**
-     * @return callable
+     * @return \Closure
      */
     protected function createCallback()
     {

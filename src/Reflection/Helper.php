@@ -26,7 +26,7 @@ namespace Bonefish\Reflection;
 class Helper
 {
     /**
-     * @param $suffix
+     * @param string $suffix
      * @param \ReflectionClass $reflection
      * @return array
      */
@@ -46,7 +46,7 @@ class Helper
     }
 
     /**
-     * @param $regEx
+     * @param string $regEx
      * @param \ReflectionClass $reflection
      * @return array
      */
