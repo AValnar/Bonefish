@@ -1,6 +1,11 @@
 <?php
 
-namespace Bonefish\CLI;
+
+namespace Bonefish\CLI\Raptor;
+use Bonefish\AbstractTraits\Parameters;
+use Bonefish\CLI\ICLI;
+use Bonefish\CLI\Raptor\Cache\IRaptorCache;
+use Bonefish\CLI\Raptor\Cache\RaptorCache;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -20,26 +25,37 @@ namespace Bonefish\CLI;
  * @author     Alexander Schmidt <mail@story75.com>
  * @copyright  Copyright (c) 2014, Alexander Schmidt
  * @version    1.0
- * @date       2014-10-01
- * @package Bonefish\CLI
+ * @date       2015-03-14
+ * @package Bonefish\CLI\Raptor
  */
-interface ICLI
+class Raptor implements ICLI
 {
+    use Parameters;
 
     /**
-     * @param array $arguments
+     * @var \Bonefish\CLI\Raptor\Cache\IRaptorCache
+     * @inject
      */
-    public function setParameters(array $arguments);
+    public $cache;
 
     /**
-     * @return array
+     * @var \Bonefish\CLI\Raptor\Cache\IRaptorCacheWarmer
+     * @inject
      */
-    public function getParameters();
+    public $cacheWarmer;
 
     /**
      * Main handler
      */
-    public function run();
+    public function run()
+    {
+        $this->warmCache($this->cache);
+
+        if (!$this->cache->isReady())
+        {
+            throw new \RuntimeException('Raptor was not able to get/create it\'s cache data!');
+        }
+    }
 
     /**
      * Execute an action
@@ -48,7 +64,10 @@ interface ICLI
      * @param string $action
      * @param array $parameters
      */
-    public function execute($package, $action, $parameters = array());
+    public function execute($package, $action, $parameters = array())
+    {
+        // TODO: Implement execute() method.
+    }
 
     /**
      * Explain an action
@@ -56,5 +75,18 @@ interface ICLI
      * @param \Bonefish\Core\Package $package
      * @param string $action
      */
-    public function explain($package, $action);
+    public function explain($package, $action)
+    {
+        // TODO: Implement explain() method.
+    }
+
+    /**
+     * Prepare Cache and create if it does not exist yet
+     * @param IRaptorCache $cache Cache to warm up
+     */
+    protected function warmCache(IRaptorCache $cache)
+    {
+        $this->cacheWarmer->warmUp($cache);
+    }
+
 } 

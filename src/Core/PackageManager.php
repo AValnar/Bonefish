@@ -79,7 +79,7 @@ class PackageManager
     }
 
     /**
-     * @return array
+     * @return \Bonefish\Core\Package[]
      */
     public function getAllPackages()
     {

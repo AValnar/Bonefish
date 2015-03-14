@@ -28,7 +28,7 @@ class Helper
     /**
      * @param string $suffix
      * @param \ReflectionClass $reflection
-     * @return array
+     * @return \ReflectionMethod[]
      */
     public function getSuffixMethods($suffix, \ReflectionClass $reflection)
     {
@@ -38,7 +38,7 @@ class Helper
     /**
      * @param $prefix
      * @param \ReflectionClass $reflection
-     * @return array
+     * @return \ReflectionMethod[]
      */
     public function getPrefixMethods($prefix, \ReflectionClass $reflection)
     {
@@ -48,7 +48,7 @@ class Helper
     /**
      * @param string $regEx
      * @param \ReflectionClass $reflection
-     * @return array
+     * @return \ReflectionMethod[]
      */
     public function getRegExMethods($regEx, \ReflectionClass $reflection)
     {

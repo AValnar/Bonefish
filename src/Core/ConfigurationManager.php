@@ -49,10 +49,10 @@ class ConfigurationManager
      * @return array
      * @throws \InvalidArgumentException
      */
-    public function getConfiguration($name,$path = FALSE)
+    public function getConfiguration($name, $path = FALSE)
     {
         if (!isset($this->configurations[$name])) {
-            $path = $this->getPath($name,$path);
+            $path = $this->getPath($name, $path);
             if (!file_exists($path)) {
                 throw new \InvalidArgumentException('Configuration does not exist!');
             }
@@ -68,12 +68,12 @@ class ConfigurationManager
      * @param bool $path
      * @throws \InvalidArgumentException
      */
-    public function writeConfiguration($name,$data,$path = FALSE)
+    public function writeConfiguration($name, $data, $path = FALSE)
     {
-        $path = $this->getPath($name,$path);
+        $path = $this->getPath($name, $path);
         $file = $this->neon->encode($data);
 
-        file_put_contents($path,$file);
+        file_put_contents($path, $file);
 
         if (isset($this->configurations[$name])) {
             $this->configurations[$name] = $data;
@@ -85,7 +85,7 @@ class ConfigurationManager
      * @param bool $path
      * @return string
      */
-    protected function getPath($name,$path)
+    protected function getPath($name, $path)
     {
         if (!$path) {
             return $this->environment->getFullConfigurationPath() . '/' . $name;

@@ -7,6 +7,7 @@ global:
 
 alias:
   \Bonefish\Auth\IAuth: \Bonefish\Auth\NoAuth
+  \Bonefish\CLI\Raptor\Cache\IRaptorCache: \Bonefish\CLI\Raptor\Cache\RaptorCache
 
 database:
   db_driver: mysql
