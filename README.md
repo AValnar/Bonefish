@@ -24,12 +24,12 @@ Features
 
 Installation
 ============
-This Package is automatically tested with PHP 5.4, 5.5 and 5.6 but also works with PHP 5.3
+This Package is automatically tested with PHP 5.4, 5.5 and 5.6.
+There are also builds for PHP 7.0 and hhvm, but these are not always working.
 
 Please use Composer to install this package.
 ```shell
 $ composer install
-$ composer update
 ```
 
 Usage
