@@ -87,8 +87,8 @@ class Printer extends \League\CLImate\CLImate
     }
 
     /**
-     * @param $parameter
-     * @param $key
+     * @param \ReflectionParameter $parameter
+     * @param integer $key
      * @param $annotations
      * @return string
      */
