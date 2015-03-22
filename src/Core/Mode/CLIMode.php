@@ -9,7 +9,7 @@
 namespace Bonefish\Core\Mode;
 
 
-class CLIMode extends DatabaseMode
+class CLIMode extends NetteCacheMode
 {
     /**
      * @var AutoloaderMode

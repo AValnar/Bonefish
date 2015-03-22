@@ -49,8 +49,11 @@ class NoAuth implements IAuth
         return $this->container->create('\Bonefish\ACL\Profiles\PublicProfile');
     }
 
+    /**
+     * @return bool
+     */
     public function logout()
     {
-
+        return true;
     }
 } 

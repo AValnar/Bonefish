@@ -71,11 +71,46 @@ class PackageManager
      */
     public function createPackage($vendor, $package)
     {
-        $packages = $this->getPackageStates();
-        if (!isset($packages[$vendor][$package])) {
+        if (!$this->isPackageInstalledByVendorAndPackageName($vendor, $package)) {
             throw new \InvalidArgumentException('Package is not set up or does not exist!');
         }
-        return $this->container->create('\Bonefish\Core\Package', array($vendor, $package, $packages[$vendor][$package]));
+        $configuration = $this->getPackageConfiguration($vendor, $package);
+        return $this->container->create('\Bonefish\Core\Package', array($vendor, $package, $configuration));
+    }
+
+    /**
+     * @param string $vendor
+     * @return bool
+     */
+    public function isPackageInstalledByVendor($vendor)
+    {
+        $state = $this->getPackageStates();
+
+        return isset($state[$vendor]);
+    }
+
+    /**
+     * @param string $vendor
+     * @param string $package
+     * @return bool
+     */
+    public function isPackageInstalledByVendorAndPackageName($vendor, $package)
+    {
+        $state = $this->getPackageStates();
+
+        return isset($state[$vendor][$package]);
+    }
+
+    /**
+     * @param string $vendor
+     * @param string $package
+     * @return bool
+     */
+    public function getPackageConfiguration($vendor, $package)
+    {
+        $state = $this->getPackageStates();
+
+        return isset($state[$vendor][$package]) ? $state[$vendor][$package] : array();
     }
 
     /**

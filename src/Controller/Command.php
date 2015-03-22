@@ -2,6 +2,8 @@
 
 namespace Bonefish\Controller;
 
+use Bonefish\CLI\Raptor\CLImateWrapper;
+
 /**
  * Copyright (C) 2014  Alexander Schmidt
  *
@@ -23,7 +25,7 @@ namespace Bonefish\Controller;
  * @date       2014-08-28
  * @package Bonefish\Controller
  */
-abstract class Command extends \League\CLImate\CLImate
+abstract class Command extends CLImateWrapper
 {
 
 } 

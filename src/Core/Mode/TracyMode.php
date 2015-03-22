@@ -9,7 +9,7 @@
 namespace Bonefish\Core\Mode;
 
 
-class TracyMode extends EnvironmentMode
+class TracyMode extends LoadAliasMode
 {
     const MODE = 'TracyMode';
 

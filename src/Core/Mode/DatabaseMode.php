@@ -9,8 +9,6 @@
 namespace Bonefish\Core\Mode;
 
 
-use Nette\Neon\Exception;
-
 class DatabaseMode extends NetteCacheMode
 {
     const MODE = 'DatabaseMode';

@@ -2,10 +2,10 @@
 
 
 namespace Bonefish\CLI\Raptor;
+
 use Bonefish\AbstractTraits\Parameters;
+use Bonefish\CLI\CLImateWrapper;
 use Bonefish\CLI\ICLI;
-use Bonefish\CLI\Raptor\Cache\IRaptorCache;
-use Bonefish\CLI\Raptor\Cache\RaptorCache;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -28,33 +28,23 @@ use Bonefish\CLI\Raptor\Cache\RaptorCache;
  * @date       2015-03-14
  * @package Bonefish\CLI\Raptor
  */
-class Raptor implements ICLI
+class Raptor extends CLImateWrapper implements ICLI
 {
     use Parameters;
 
     /**
-     * @var \Bonefish\CLI\Raptor\Cache\IRaptorCache
+     * @var \Bonefish\CLI\Raptor\Command\Generator
      * @inject
      */
-    public $cache;
-
-    /**
-     * @var \Bonefish\CLI\Raptor\Cache\IRaptorCacheWarmer
-     * @inject
-     */
-    public $cacheWarmer;
+    public $generator;
 
     /**
      * Main handler
      */
     public function run()
     {
-        $this->warmCache($this->cache);
-
-        if (!$this->cache->isReady())
-        {
-            throw new \RuntimeException('Raptor was not able to get/create it\'s cache data!');
-        }
+        $args = array_slice($this->getParameters(), 1);
+        $this->getCommandAndPrintOutput($args);
     }
 
     /**
@@ -66,7 +56,8 @@ class Raptor implements ICLI
      */
     public function execute($package, $action, $parameters = array())
     {
-        // TODO: Implement execute() method.
+        $args = array_merge(array('execute', $package->getVendor(), $package->getName(), $action), $parameters);
+        $this->getCommandAndPrintOutput($args);
     }
 
     /**
@@ -77,16 +68,43 @@ class Raptor implements ICLI
      */
     public function explain($package, $action)
     {
-        // TODO: Implement explain() method.
+        $args = array('execute', $package->getVendor(), $package->getName(), $action);
+        $this->getCommandAndPrintOutput($args);
     }
 
     /**
-     * Prepare Cache and create if it does not exist yet
-     * @param IRaptorCache $cache Cache to warm up
+     * Print output if there was any
+     *
+     * @param null $output
      */
-    protected function warmCache(IRaptorCache $cache)
+    protected function printOutput($output = NULL)
     {
-        $this->cacheWarmer->warmUp($cache);
+        if ($output == NULL) {
+            return;
+        }
+
+        if (is_array($output)) {
+            $this->table($output);
+            return;
+        }
+
+        $this->out($output);
+        return;
     }
 
+    /**
+     * @param array $args
+     */
+    protected function getCommandAndPrintOutput($args)
+    {
+        $this->generator->setParameters($args);
+
+        try {
+            $command = $this->generator->getCommand();
+            $output = $command->execute();
+            $this->printOutput($output);
+        } catch (\Exception $e) {
+            $this->red($e->getMessage());
+        }
+    }
 } 

@@ -1,12 +1,6 @@
 {
     "name": "av/bonefish",
     "description": "Bonefish Framework",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/AValnar/installers"
-        }
-    ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
@@ -26,7 +20,7 @@
         "av/bonefish-generator": "1.*"
     },
     "require-dev": {
-       "composer/composer": "dev-master"
+       "phpunit/phpunit": "4.5.*"
     },
     "autoload": {
         "psr-4": {

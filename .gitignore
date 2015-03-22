@@ -45,3 +45,5 @@ vendor
 # Bonefish #
 Packages
 Configuration/Configuration.neon
+configuration/Configuration.neon
+Cache

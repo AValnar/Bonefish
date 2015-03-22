@@ -71,7 +71,7 @@ class ConfigurationManager
     public function writeConfiguration($name, $data, $path = FALSE)
     {
         $path = $this->getPath($name, $path);
-        $file = $this->neon->encode($data);
+        $file = $this->neon->encode($data, 1);
 
         file_put_contents($path, $file);
 

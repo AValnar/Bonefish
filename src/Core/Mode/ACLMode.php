@@ -9,7 +9,7 @@
 namespace Bonefish\Core\Mode;
 
 
-class ACLMode extends DatabaseMode
+class ACLMode extends LoadAliasMode
 {
     const MODE = 'ACLMode';
 

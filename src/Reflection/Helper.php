@@ -57,7 +57,7 @@ class Helper
         foreach ($reflection->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
             preg_match($regEx, $method->getName(), $match);
             if (isset($match[1])) {
-                $return[] = $match[1];
+                $return[] = $method;
             }
         }
 

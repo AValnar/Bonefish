@@ -19,7 +19,9 @@ $cliMode = $container->create('\Bonefish\Core\Mode\CLIMode');
 $cliMode->setParameters(array('basePath' => $baseDir));
 $cliMode->init();
 
-$cli = $container->create('\Bonefish\CLI\DrunkenBear',array($argv));
+/** @var \Bonefish\CLI\ICLI $cli */
+$cli = $container->create('\Bonefish\CLI\ICLI');
+$cli->setParameters($argv);
 $cli->run();
 
 exit(0);

@@ -9,7 +9,7 @@
 namespace Bonefish\Core\Mode;
 
 
-class NetteCacheMode extends EnvironmentMode
+class NetteCacheMode extends LoadAliasMode
 {
     const MODE = 'NetteCacheMode';
 
