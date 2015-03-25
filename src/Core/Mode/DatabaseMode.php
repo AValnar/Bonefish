@@ -43,8 +43,7 @@ class DatabaseMode extends NetteCacheMode
         return new \Nette\Database\Connection(
             $dbConfig['database']['db_driver'] . ':host=' . $dbConfig['database']['db_host'] . ';dbname=' . $dbConfig['database']['db_name'],
             $dbConfig['database']['db_user'],
-            $dbConfig['database']['db_pw'],
-            array('lazy' => FALSE)
+            $dbConfig['database']['db_pw']
         );
     }
 
