@@ -71,4 +71,32 @@ class EntityCollection extends \YetORM\EntityCollection
         $this->keys = array_keys($this->data);
         reset($this->keys);
     }
+
+    /** @return Model */
+    public function current()
+    {
+        $key = current($this->keys);
+        return $key === FALSE ? FALSE : $this->data[$key];
+    }
+
+
+    /** @return mixed */
+    public function key()
+    {
+        return current($this->keys);
+    }
+
+
+    /** @return void */
+    public function next()
+    {
+        next($this->keys);
+    }
+
+
+    /** @return bool */
+    public function valid()
+    {
+        return current($this->keys) !== FALSE;
+    }
 } 
