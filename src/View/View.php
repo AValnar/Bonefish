@@ -81,15 +81,21 @@ class View
         $this->parameters[$name] = $value;
     }
 
-    public function render()
+    public function render($output = TRUE)
     {
         $this->loadDefaultMacros();
         $this->loadPackageMacros($this->environment->getPackage());
         $this->loadMacros();
-        $this->latte->render(
+        $content = $this->latte->renderToString(
             $this->environment->getPackage()->getPackagePath() . '/Layouts/' . $this->layout,
             $this->parameters
         );
+        
+        if ($output) {
+            echo $content;
+        }
+
+        return $content;
     }
 
     /**
