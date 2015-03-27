@@ -53,6 +53,10 @@ abstract class AbstractRouter
      */
     public $configurationManager;
 
+    const VALID_TYPES = array('get', 'post', 'put', 'delete', 'head');
+
+    const DEFAULT_TYPE = 'GET';
+
     /**
      * @param \League\Url\UrlImmutable $url
      */
@@ -90,5 +94,14 @@ abstract class AbstractRouter
             }
         }
         $this->parameter = $userParams;
+    }
+
+    public static function validateType($type)
+    {
+        if (!in_array(strtolower($type), AbstractRouter::VALID_TYPES)) {
+            $type = AbstractRouter::DEFAULT_TYPE;
+        }
+
+        return strtoupper($type);
     }
 } 

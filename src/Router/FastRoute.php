@@ -53,7 +53,7 @@ class FastRoute extends AbstractRouter
     {
         $dispatcher = $this->createCachedDispatcher();
 
-        $data = $dispatcher->dispatch('GET', '/' . urldecode($this->url->getPath()));
+        $data = $dispatcher->dispatch(AbstractRouter::validateType($_SERVER['REQUEST_METHOD']), '/' . urldecode($this->url->getPath()));
 
         if ($data[0] === \FastRoute\Dispatcher::FOUND) {
             $this->parameter = $data[2];
