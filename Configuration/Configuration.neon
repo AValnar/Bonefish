@@ -12,10 +12,10 @@ alias:
 
 database:
   db_driver: mysql
-  db_host: db1165.mydbserver.com
-  db_name: usr_p236456_1
-  db_user: p236456d1
-  db_pw: "okuVoxeb+136"
+  db_host: localhost
+  db_name: Bonefish
+  db_user: root
+  db_pw:
 
 route:
   default:

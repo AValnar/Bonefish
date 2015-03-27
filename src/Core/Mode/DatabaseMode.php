@@ -22,6 +22,11 @@ class DatabaseMode extends NetteCacheMode
 
         if ($this->isModeStarted(self::MODE)) return;
 
+        if ($this->basicConfiguration === NULL)
+        {
+            $this->basicConfiguration = $this->configurationManager->getConfiguration('Configuration.neon');
+        }
+
         $connection = $this->initDatabaseConnection();
 
         $storage = $this->container->get('\Nette\Caching\Storages\FileStorage');
@@ -39,11 +44,10 @@ class DatabaseMode extends NetteCacheMode
      */
     protected function initDatabaseConnection()
     {
-        $dbConfig = $this->configurationManager->getConfiguration('Configuration.neon');
         $connection = new \Nette\Database\Connection(
-            $dbConfig['database']['db_driver'] . ':host=' . $dbConfig['database']['db_host'] . ';dbname=' . $dbConfig['database']['db_name'],
-            $dbConfig['database']['db_user'],
-            $dbConfig['database']['db_pw'],
+            $this->basicConfiguration['database']['db_driver'] . ':host=' . $this->basicConfiguration['database']['db_host'] . ';dbname=' . $this->basicConfiguration['database']['db_name'],
+            $this->basicConfiguration['database']['db_user'],
+            $this->basicConfiguration['database']['db_pw'],
             array('lazy' => TRUE)
         );
         $this->container->add('\Nette\Database\Connection', $connection);

@@ -22,6 +22,11 @@ class LatteMode extends NetteCacheMode
 
         if ($this->isModeStarted(self::MODE)) return;
 
+        if ($this->basicConfiguration === NULL)
+        {
+            $this->basicConfiguration = $this->configurationManager->getConfiguration('Configuration.neon');
+        }
+
         /** @var \Latte\Engine $latte */
         $latte = $this->container->get('\Latte\Engine');
         $path = $this->environment->getFullCachePath() . $this->basicConfiguration['global']['lattePath'];
