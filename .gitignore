@@ -47,3 +47,4 @@ Packages
 Configuration/Configuration.neon
 Cache
 Log
+phpinfo.php
