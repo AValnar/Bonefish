@@ -40,11 +40,14 @@ class DatabaseMode extends NetteCacheMode
     protected function initDatabaseConnection()
     {
         $dbConfig = $this->configurationManager->getConfiguration('Configuration.neon');
-        return new \Nette\Database\Connection(
+        $connection = new \Nette\Database\Connection(
             $dbConfig['database']['db_driver'] . ':host=' . $dbConfig['database']['db_host'] . ';dbname=' . $dbConfig['database']['db_name'],
             $dbConfig['database']['db_user'],
-            $dbConfig['database']['db_pw']
+            $dbConfig['database']['db_pw'],
+            array('lazy' => TRUE)
         );
+        $this->container->add('\Nette\Database\Connection', $connection);
+        return $connection;
     }
 
     /**

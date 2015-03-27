@@ -68,10 +68,11 @@ class ExplainCommand extends CLImateWrapper implements ICommand
             ];
         }
 
-        $this->br();
-        $this->out('Parameters: ');
-        $this->table($table);
-
+        if (!empty($table)) {
+            $this->br();
+            $this->out('Parameters: ');
+            $this->table($table);
+        }
     }
 
     /**

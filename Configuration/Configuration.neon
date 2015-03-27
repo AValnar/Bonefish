@@ -1,8 +1,9 @@
 global:
-  baseUrl: http://example.com
+  baseUrl: http://p236456.webspaceconfig.de
   packagePath: /Packages
   cachePath: /Cache
   lattePath: /Latte
+  logPath: /Log
   develoment: yes
 
 alias:
@@ -11,10 +12,10 @@ alias:
 
 database:
   db_driver: mysql
-  db_host: my.db.host
-  db_name: databasename
-  db_user: databaseuser
-  db_pw: databaseuserpassword
+  db_host: db1165.mydbserver.com
+  db_name: usr_p236456_1
+  db_user: p236456d1
+  db_pw: "okuVoxeb+136"
 
 route:
   default:

@@ -47,6 +47,11 @@ class Environment
     protected $cachePath;
 
     /**
+     * @var string
+     */
+    protected $logPath;
+
+    /**
      * @var \Bonefish\DependencyInjection\Container
      * @inject
      */
@@ -142,6 +147,32 @@ class Environment
     public function getFullConfigurationPath()
     {
         return $this->basePath . $this->configurationPath;
+    }
+
+    /**
+     * @param string $logPath
+     * @return self
+     */
+    public function setLogPath($logPath)
+    {
+        $this->logPath = $logPath;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLogPath()
+    {
+        return $this->logPath;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullLogPath()
+    {
+        return $this->basePath . $this->logPath;
     }
 
     /**

@@ -30,13 +30,19 @@ class FullStackMode extends ACLMode
     public $latteMode;
 
     /**
+     * @var DatabaseMode
+     * @inject
+     */
+    public $dbMode;
+
+    /**
      * Init needed framework stack
      */
     public function init()
     {
         parent::init();
 
-        $initModes = array('autoLoaderMode', 'tracyMode', 'latteMode');
+        $initModes = array('autoLoaderMode', 'tracyMode', 'latteMode', 'dbMode');
 
         foreach($initModes as $mode)
         {

@@ -22,6 +22,11 @@ class LoadAliasMode extends EnvironmentMode
 
         if ($this->isModeStarted(self::MODE)) return;
 
+        if ($this->basicConfiguration === NULL)
+        {
+            $this->basicConfiguration = $this->configurationManager->getConfiguration('Configuration.neon');
+        }
+
         foreach ($this->basicConfiguration['alias'] as $class => $alias) {
             $this->container->alias($alias, $class);
         }

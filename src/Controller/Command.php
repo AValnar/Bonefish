@@ -2,7 +2,7 @@
 
 namespace Bonefish\Controller;
 
-use Bonefish\CLI\Raptor\CLImateWrapper;
+use Bonefish\CLI\CLImateWrapper;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt

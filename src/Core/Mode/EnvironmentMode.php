@@ -28,7 +28,7 @@ class EnvironmentMode extends AbstractMode
     /**
      * @var array
      */
-    protected $basicConfiguration;
+    protected $basicConfiguration = NULL;
 
     /**
      * Init needed framework stack
@@ -45,7 +45,8 @@ class EnvironmentMode extends AbstractMode
 
         $this->basicConfiguration = $this->configurationManager->getConfiguration('Configuration.neon');
         $this->environment->setPackagePath($this->basicConfiguration['global']['packagePath'])
-            ->setCachePath($this->basicConfiguration['global']['cachePath']);
+            ->setCachePath($this->basicConfiguration['global']['cachePath'])
+            ->setLogPath($this->basicConfiguration['global']['logPath']);
 
         $this->setModeStarted(self::MODE);
     }

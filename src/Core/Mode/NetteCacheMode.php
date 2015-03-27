@@ -32,14 +32,4 @@ class NetteCacheMode extends LoadAliasMode
 
         $this->setModeStarted(self::MODE);
     }
-
-    /**
-     * @param string $path
-     */
-    protected function createDir($path)
-    {
-        if (!file_exists($path)) {
-            mkdir($path);
-        }
-    }
 } 

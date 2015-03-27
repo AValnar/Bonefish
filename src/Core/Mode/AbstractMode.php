@@ -61,4 +61,13 @@ abstract class AbstractMode
         $this->setParameters($parameters);
     }
 
+    /**
+     * @param string $path
+     */
+    protected function createDir($path)
+    {
+        if (!file_exists($path)) {
+            mkdir($path);
+        }
+    }
 } 
