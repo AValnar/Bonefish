@@ -63,16 +63,16 @@
         },
         {
             "name": "av/bonefish-generator",
-            "version": "v1.0.1",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AValnar/Bonefish-Generator.git",
-                "reference": "3d87938e40dd5331c9fd4672044ab58397792e34"
+                "reference": "f82760a0df61481673466d4054003efd5c799e63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AValnar/Bonefish-Generator/zipball/3d87938e40dd5331c9fd4672044ab58397792e34",
-                "reference": "3d87938e40dd5331c9fd4672044ab58397792e34",
+                "url": "https://api.github.com/repos/AValnar/Bonefish-Generator/zipball/f82760a0df61481673466d4054003efd5c799e63",
+                "reference": "f82760a0df61481673466d4054003efd5c799e63",
                 "shasum": ""
             },
             "require": {
@@ -89,7 +89,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Bonefish Framework",
-            "time": "2015-03-27 07:46:27"
+            "time": "2015-03-27 16:49:16"
         },
         {
             "name": "av/bonefish-helloworld",
