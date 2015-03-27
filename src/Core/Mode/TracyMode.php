@@ -29,6 +29,7 @@ class TracyMode extends LoadAliasMode
         if ($this->isModeStarted(self::MODE)) return;
 
         $logPath = $this->environment->getFullLogPath();
+        $this->createDir($logPath);
 
         if ($this->basicConfiguration === NULL)
         {
