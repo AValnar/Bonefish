@@ -76,7 +76,7 @@ abstract class Repository extends \YetORM\Repository
             '\Bonefish\ORM\EntityCollection',
             array(
                 $selection,
-                $entity === NULL ? $this->entity : $entity,
+                $entity === NULL ? $this->getEntityClass() : $entity,
                 $refTable,
                 $refColumn
             )
