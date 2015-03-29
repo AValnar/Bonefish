@@ -85,11 +85,7 @@ class CLIPackageArguments implements Validator
      */
     protected function isValidPackage()
     {
-        if (!isset($this->arguments[2])) {
-            return !$this->isPackageRequired();
-        }
-
-        return $this->packageManager->isPackageInstalledByVendor($this->arguments[1], $this->arguments[2]);
+        return $this->isValidArgument(2, 'isPackageRequired', 'isPackageInstalledByVendorAndPackageName');
     }
 
     /**
@@ -97,10 +93,27 @@ class CLIPackageArguments implements Validator
      */
     protected function isValidVendor()
     {
-        if (!isset($this->arguments[1])) {
-            return !$this->isVendorRequired();
+        return $this->isValidArgument(1, 'isVendorRequired', 'isPackageInstalledByVendor');
+    }
+
+    /**
+     * @param int $index
+     * @param string $internalMethod
+     * @param string $packageManagerValidatorMethod
+     * @return bool
+     */
+    private function isValidArgument($index, $internalMethod, $packageManagerValidatorMethod)
+    {
+        if (!isset($this->arguments[$index])) {
+            return !$this->{$internalMethod}();
         }
 
-        return $this->packageManager->isPackageInstalledByVendor($this->arguments[1]);
+        $parameter = array();
+
+        for($i = 1; $i <= $index; $i++) {
+            $parameter[] = $this->arguments[$i];
+        }
+
+        return call_user_func_array(array($this->packageManager, $packageManagerValidatorMethod), $parameter);
     }
 } 
