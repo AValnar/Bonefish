@@ -42,7 +42,7 @@ class PackageTest extends \PHPUnit_Framework_TestCase
         $container = $this->getMock('\Bonefish\DependencyInjection\Container');
         $container->expects($this->once())
             ->method('get')
-            ->with('Bonefish\HelloWorld\Controller\Command');
+            ->with('\Bonefish\HelloWorld\Controller\Command');
         $this->package->container = $container;
         $this->package->getController(\Bonefish\Core\Package::TYPE_COMMAND);
     }
