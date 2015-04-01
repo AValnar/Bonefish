@@ -12,13 +12,13 @@ class ListCommand extends CLImateWrapper implements ICommand
 
     /**
      * @var \Bonefish\CLI\Raptor\Cache\ListCacheGenerator
-     * @inject
+     * @Bonefish\Inject
      */
     public $cacheGenerator;
 
     /**
      * @var \Bonefish\CLI\Raptor\Validator\CLIPackageArguments
-     * @inject
+     * @Bonefish\Inject
      */
     public $packageArgumentValidator;
 

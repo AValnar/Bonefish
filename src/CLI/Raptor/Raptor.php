@@ -34,7 +34,7 @@ class Raptor extends CLImateWrapper implements ICLI
 
     /**
      * @var \Bonefish\CLI\Raptor\Command\Generator
-     * @inject
+     * @Bonefish\Inject
      */
     public $generator;
 

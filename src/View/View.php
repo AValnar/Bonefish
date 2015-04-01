@@ -37,7 +37,7 @@ class View
 
     /**
      * @var Engine
-     * @inject
+     * @Bonefish\Inject
      */
     public $latte;
 
@@ -53,19 +53,19 @@ class View
 
     /**
      * @var Environment
-     * @inject
+     * @Bonefish\Inject
      */
     public $environment;
 
     /**
      * @var ConfigurationManager
-     * @inject
+     * @Bonefish\Inject
      */
     public $configurationManager;
 
     /**
      * @var IContainer
-     * @inject
+     * @Bonefish\Inject
      */
     public $container;
 

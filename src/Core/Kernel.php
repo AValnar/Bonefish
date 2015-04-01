@@ -32,19 +32,19 @@ class Kernel
 
     /**
      * @var IContainer
-     * @inject
+     * @Bonefish\Inject
      */
     public $container;
 
     /**
      * @var ConfigurationManager
-     * @inject
+     * @Bonefish\Inject
      */
     public $configurationManager;
 
     /**
      * @var Environment
-     * @inject
+     * @Bonefish\Inject
      */
     public $environment;
 

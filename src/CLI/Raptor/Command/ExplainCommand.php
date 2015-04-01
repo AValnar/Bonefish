@@ -19,13 +19,13 @@ class ExplainCommand extends CLImateWrapper implements ICommand
 
     /**
      * @var \Bonefish\CLI\Raptor\Validator\CLIPackageArguments
-     * @inject
+     * @Bonefish\Inject
      */
     public $packageArgumentValidator;
 
     /**
      * @var \Bonefish\Core\PackageManager
-     * @inject
+     * @Bonefish\Inject
      */
     public $packageManager;
 

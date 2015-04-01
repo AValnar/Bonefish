@@ -28,7 +28,7 @@ class FastRoute extends AbstractRouter
 
     /**
      * @var \Bonefish\Core\PackageManager
-     * @inject
+     * @Bonefish\Inject
      */
     public $packageManager;
 

@@ -27,7 +27,7 @@ class CLImateWrapper
 {
     /**
      * @var \League\CLImate\CLImate
-     * @inject
+     * @Bonefish\Inject
      */
     public $climate;
 

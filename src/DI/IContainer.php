@@ -74,4 +74,13 @@ interface IContainer
      * @return array
      */
     public function getSingletons();
+
+    /**
+     * Check if i singleton was already created
+     *
+     * @param string $className
+     * @return bool
+     */
+    public function exists($className);
+
 }

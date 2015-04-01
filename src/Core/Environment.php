@@ -54,7 +54,7 @@ class Environment
 
     /**
      * @var IContainer
-     * @inject
+     * @Bonefish\Inject
      */
     public $container;
 

@@ -30,19 +30,19 @@ abstract class Base
 {
     /**
      * @var View
-     * @inject
+     * @Bonefish\Inject
      */
     public $view;
 
     /**
      * @var IContainer
-     * @inject
+     * @Bonefish\Inject
      */
     public $container;
 
     /**
      * @var Environment
-     * @inject
+     * @Bonefish\Inject
      */
     public $environment;
 

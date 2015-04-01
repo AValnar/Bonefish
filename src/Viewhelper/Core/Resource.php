@@ -29,13 +29,13 @@ class Resource extends AbstractViewhelper
 {
     /**
      * @var \Bonefish\Core\Environment
-     * @inject
+     * @Bonefish\Inject
      */
     public $environment;
 
     /**
      * @var \Bonefish\Core\PackageManager
-     * @inject
+     * @Bonefish\Inject
      */
     public $packageManager;
 

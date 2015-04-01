@@ -33,13 +33,13 @@ class ConfigurationManager
 
     /**
      * @var \Bonefish\Core\Environment
-     * @inject
+     * @Bonefish\Inject
      */
     public $environment;
 
     /**
      * @var \Nette\Neon\Neon
-     * @inject
+     * @Bonefish\Inject
      */
     public $neon;
 

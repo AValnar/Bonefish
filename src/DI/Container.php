@@ -10,9 +10,10 @@ namespace Bonefish\DI;
 
 
 use Bonefish\DependencyInjection\Container as BaseContainer;
-use Bonefish\DependencyInjection\Proxy;
 use Nette\Reflection\AnnotationsParser;
 use Nette\Reflection\ClassType;
+use Nette\Reflection\Property;
+use Nette\Utils\ArrayHash;
 
 class Container extends BaseContainer implements IContainer
 {
@@ -28,13 +29,24 @@ class Container extends BaseContainer implements IContainer
 
     const FACTORY_NS_SUFFIX = 'Factory';
 
+    const INJECT_ANNOTATION = 'Bonefish\Inject';
+
     /**
      * @param string $className
      * @return bool
      */
     protected function injectSelf($className)
     {
-        return (ltrim($className, '\\') == Container::class);
+        return (ltrim($className, '\\') == get_class($this));
+    }
+
+    /**
+     * @param string $className
+     * @return bool
+     */
+    public function exists($className)
+    {
+        return isset($this->objects[$className]['']);
     }
 
     /**
@@ -50,32 +62,35 @@ class Container extends BaseContainer implements IContainer
             throw new \InvalidArgumentException('You can not add the Container!');
         }
 
-        if (isset($this->objects[$className])) {
+        if (isset($this->objects[$className][''])) {
             throw new \InvalidArgumentException('Duplicate entry for key ' . $className);
         }
 
-        $this->objects[$className] = $obj;
+        $this->objects[$className][''] = $obj;
     }
 
     /**
      * Get a singleton and create if needed
      *
      * @param string $className
+     * @param array $parameters
      * @return mixed
      */
-    public function get($className)
+    public function get($className, $parameters = array())
     {
         $className = $this->resolveClassName($className);
+
+        $implodedParameters = implode($parameters);
 
         if ($this->injectSelf($className)) {
             return $this;
         }
 
-        if (!isset($this->objects[$className])) {
-            $this->objects[$className] = $this->create($className);
+        if (!isset($this->objects[$className][$implodedParameters])) {
+            $this->objects[$className][$implodedParameters] = $this->create($className, $parameters);
         }
 
-        return $this->objects[$className];
+        return $this->objects[$className][$implodedParameters];
     }
 
     /**
@@ -110,7 +125,7 @@ class Container extends BaseContainer implements IContainer
         $class = array_pop($parts);
 
         $factoryName = $class . self::FACTORY_NS_SUFFIX;
-        return implode('\\', $parts) .'\\'.self::FACTORY_NS_SUFFIX.'\\'. $factoryName;
+        return implode('\\', $parts) . '\\' . self::FACTORY_NS_SUFFIX . '\\' . $factoryName;
     }
 
     /**
@@ -137,16 +152,49 @@ class Container extends BaseContainer implements IContainer
     }
 
     /**
+     * @param object $obj
+     * @param Property $property
+     * @param \Nette\Reflection\ClassType $r
+     * @throws \Exception
+     */
+    protected function processProperty($obj, Property $property, $r)
+    {
+        if ($property->hasAnnotation(self::INJECT_ANNOTATION)) {
+            if (!$property->hasAnnotation('var')) {
+                throw new \Exception('No @var tag found for property ' . $property->getName() . ' with @' . self::INJECT_ANNOTATION . ' tag');
+            }
+            $class = $property->getAnnotation('var');
+            $parameters = $this->getInjectParameters($property->getAnnotation(self::INJECT_ANNOTATION));
+            $eager = in_array('eagerly', $parameters);
+            $this->performDependencyInjection($obj, $property, $class, $eager, $r, $parameters);
+        }
+    }
+
+    protected function getInjectParameters($parameterValue)
+    {
+        $parameters = array();
+        if (is_string($parameterValue) || is_int($parameterValue)) {
+            $parameters[] = $parameterValue;
+        } elseif(is_object($parameterValue) && $parameterValue instanceof ArrayHash) {
+            foreach($parameterValue as $key => $val) {
+                $parameters[$key] = $val;
+            }
+        }
+
+        return $parameters;
+    }
+
+    /**
      * Perform lazy Dependency Injection
      *
      * @param mixed $parent
-     * @param \ReflectionProperty $property
+     * @param Property $property
      * @param string $className
      * @param bool $eager
+     * @param array $parameters
      * @param \Nette\Reflection\ClassType $r
      */
-
-    protected function performDependencyInjection($parent, \ReflectionProperty $property, $className, $eager, $r)
+    protected function performDependencyInjection($parent, Property $property, $className, $eager, $r, $parameters)
     {
         if ($property->getDeclaringClass()->getName() !== $r->getName()) {
             $r = $this->getReflection($property->getDeclaringClass()->getName());
@@ -157,10 +205,10 @@ class Container extends BaseContainer implements IContainer
         if ($this->injectSelf($className)) {
             $value = $this;
         } else {
-            if (!$eager && !isset($this->objects[$className])) {
-                $value = new Proxy($className, $property, $parent, $this);
+            if (!$eager && !isset($this->objects[$className][implode($parameters)])) {
+                $value = new Proxy($className, $property, $parent, $this, $parameters);
             } else {
-                $value = $this->get($className);
+                $value = $this->get($className, $parameters);
             }
         }
         $this->injectValueIntoProperty($parent, $property, $value);

@@ -29,13 +29,13 @@ class PackageManager
 
     /**
      * @var IContainer
-     * @inject
+     * @Bonefish\Inject
      */
     public $container;
 
     /**
      * @var \Bonefish\Core\ConfigurationManager
-     * @inject
+     * @Bonefish\Inject
      */
     public $configurationManager;
 

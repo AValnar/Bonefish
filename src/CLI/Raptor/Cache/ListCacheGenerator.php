@@ -17,19 +17,19 @@ class ListCacheGenerator
 {
     /**
      * @var \Bonefish\Core\PackageManager
-     * @inject
+     * @Bonefish\Inject
      */
     public $packageManager;
 
     /**
      * @var ICache
-     * @inject
+     * @Bonefish\Inject(key=Raptor)
      */
     public $cache;
 
     /**
      * @var \Bonefish\Reflection\Helper
-     * @inject
+     * @Bonefish\Inject
      */
     public $reflectorHelper;
 
@@ -39,7 +39,7 @@ class ListCacheGenerator
      */
     public function generate($key)
     {
-        $list = $this->cache->get($key);
+        $list = $this->cache->fetch($key);
 
         return ($list !== NULL) ? $list : $this->generateCache($key);
     }
@@ -58,7 +58,7 @@ class ListCacheGenerator
             $list[$package->getVendor()][$package->getName()] = $this->getPackageCommands($package);
         }
 
-        $this->cache->set($key, $list);
+        $this->cache->save($key, $list);
 
         return $list;
     }

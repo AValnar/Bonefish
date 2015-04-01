@@ -38,19 +38,19 @@ abstract class AbstractRouter
 
     /**
      * @var \Bonefish\Core\Environment
-     * @inject
+     * @Bonefish\Inject
      */
     public $environment;
 
     /**
      * @var IContainer
-     * @inject
+     * @Bonefish\Inject
      */
     public $container;
 
     /**
      * @var \Bonefish\Core\ConfigurationManager
-     * @inject
+     * @Bonefish\Inject
      */
     public $configurationManager;
 

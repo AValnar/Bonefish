@@ -44,25 +44,25 @@ class Package
 
     /**
      * @var \Bonefish\Core\Environment
-     * @inject
+     * @Bonefish\Inject
      */
     public $environment;
 
     /**
      * @var IContainer
-     * @inject
+     * @Bonefish\Inject
      */
     public $container;
 
     /**
      * @var \Bonefish\Autoloader\Autoloader
-     * @inject
+     * @Bonefish\Inject
      */
     public $autoloader;
 
     /**
      * @var \Bonefish\Core\ConfigurationManager
-     * @inject
+     * @Bonefish\Inject
      */
     public $configurationManager;
 

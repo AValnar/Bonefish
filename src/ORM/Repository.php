@@ -29,13 +29,13 @@ abstract class Repository extends \YetORM\Repository
 
     /**
      * @var \Nette\Database\Context
-     * @inject eagerly
+     * @Bonefish\Inject eagerly
      */
     public $context;
 
     /**
      * @var IContainer
-     * @inject
+     * @Bonefish\Inject
      */
     public $container;
 

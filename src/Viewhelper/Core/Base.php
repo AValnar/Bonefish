@@ -29,7 +29,7 @@ class Base extends AbstractViewhelper
 {
     /**
      * @var \Bonefish\Core\ConfigurationManager
-     * @inject
+     * @Bonefish\Inject
      */
     public $configurationManager;
 

@@ -28,7 +28,7 @@ abstract class Model extends \YetORM\Entity
 {
     /**
      * @var IContainer
-     * @inject
+     * @Bonefish\Inject
      */
     public $container;
 

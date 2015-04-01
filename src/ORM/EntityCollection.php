@@ -32,7 +32,7 @@ class EntityCollection extends \YetORM\EntityCollection
 
     /**
      * @var IContainer
-     * @inject
+     * @Bonefish\Inject
      */
     public $container;
 

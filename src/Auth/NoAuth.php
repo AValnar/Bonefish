@@ -28,7 +28,7 @@ class NoAuth implements IAuth
 {
     /**
      * @var IContainer
-     * @inject
+     * @Bonefish\Inject
      */
     public $container;
 

@@ -17,7 +17,7 @@ class EnvironmentFactory implements IFactory
 {
     /**
      * @var \Bonefish\Core\ConfigurationManager
-     * @inject
+     * @Bonefish\Inject
      */
     public $configurationManager;
 

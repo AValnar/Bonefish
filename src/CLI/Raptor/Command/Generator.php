@@ -18,7 +18,7 @@ class Generator
 
     /**
      * @var IContainer
-     * @inject
+     * @Bonefish\Inject
      */
     public $container;
 
