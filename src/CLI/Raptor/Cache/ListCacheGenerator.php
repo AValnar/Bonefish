@@ -9,6 +9,7 @@
 namespace Bonefish\CLI\Raptor\Cache;
 
 
+use Bonefish\Cache\ICache;
 use Bonefish\CLI\Raptor\Command\ICommand;
 use Bonefish\Core\Package;
 
@@ -21,7 +22,7 @@ class ListCacheGenerator
     public $packageManager;
 
     /**
-     * @var \Nette\Caching\Cache
+     * @var ICache
      * @inject
      */
     public $cache;
@@ -38,7 +39,7 @@ class ListCacheGenerator
      */
     public function generate($key)
     {
-        $list = $this->cache->load($key);
+        $list = $this->cache->get($key);
 
         return ($list !== NULL) ? $list : $this->generateCache($key);
     }
@@ -57,7 +58,7 @@ class ListCacheGenerator
             $list[$package->getVendor()][$package->getName()] = $this->getPackageCommands($package);
         }
 
-        $this->cache->save($key, $list);
+        $this->cache->set($key, $list);
 
         return $list;
     }

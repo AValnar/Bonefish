@@ -54,7 +54,7 @@ class ConfigurationManager
         if (!isset($this->configurations[$name])) {
             $path = $this->getPath($name, $path);
             if (!file_exists($path)) {
-                throw new \InvalidArgumentException('Configuration does not exist!');
+                throw new \InvalidArgumentException('Configuration ' . $name . ' does not exist!');
             }
             $config = file_get_contents($path);
             $this->configurations[$name] = $this->neon->decode($config);

@@ -11,6 +11,7 @@ namespace Bonefish\Tests\Auth;
 
 use Bonefish\Auth\NoAuth;
 use Bonefish\DependencyInjection\Container;
+use Bonefish\DI\IContainer;
 
 class NoAuthTest extends \PHPUnit_Framework_TestCase {
 
@@ -20,7 +21,7 @@ class NoAuthTest extends \PHPUnit_Framework_TestCase {
     public $sut;
 
     /**
-     * @var Container|\PHPUnit_Framework_MockObject_MockObject
+     * @var IContainer|\PHPUnit_Framework_MockObject_MockObject
      */
     protected $container;
 

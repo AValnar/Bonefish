@@ -1,6 +1,7 @@
 <?php
 
 namespace Bonefish\ORM;
+use Bonefish\DI\IContainer;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -33,7 +34,7 @@ abstract class Repository extends \YetORM\Repository
     public $context;
 
     /**
-     * @var \Bonefish\DependencyInjection\Container
+     * @var IContainer
      * @inject
      */
     public $container;

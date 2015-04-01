@@ -1,14 +1,12 @@
 global:
   baseUrl: http://p236456.webspaceconfig.de
-  packagePath: /Packages
-  cachePath: /Cache
   lattePath: /Latte
-  logPath: /Log
   develoment: yes
 
-alias:
+implementations:
   \Bonefish\Auth\IAuth: \Bonefish\Auth\NoAuth
   \Bonefish\CLI\ICLI: \Bonefish\CLI\Raptor\Raptor
+  \Bonefish\Cache\ICache: \Bonefish\Cache\Cache
 
 database:
   db_driver: mysql
@@ -21,15 +19,15 @@ route:
   default:
     vendor: Bonefish
     package: HelloWorld
-    controller: Bonefish\HelloWorld\Controller\Controller
+    controller: \Bonefish\HelloWorld\Controller\Controller
     action: index
   notfound:
     vendor: Bonefish
     package: HelloWorld
-    controller: Bonefish\HelloWorld\Controller\Controller
+    controller: \Bonefish\HelloWorld\Controller\Controller
     action: index
   notallowed:
     vendor: Bonefish
     package: HelloWorld
-    controller: Bonefish\HelloWorld\Controller\Controller
+    controller: \Bonefish\HelloWorld\Controller\Controller
     action: index

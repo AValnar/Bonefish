@@ -1,7 +1,6 @@
 <?php
 
-namespace Bonefish\ORM;
-use Bonefish\DI\IContainer;
+namespace Bonefish\AbstractTraits;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -19,36 +18,20 @@ use Bonefish\DI\IContainer;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @author     Alexander Schmidt <mail@story75.com>
- * @copyright  Copyright (c) 2014, Alexander Schmidt
+ * @copyright  Copyright (c) 2015, Alexander Schmidt
  * @version    1.0
- * @date       2014-09-07
- * @package Bonefish\ORM
+ * @date       2015-01-28
+ * @package Bonefish\AbstractTraits
  */
-abstract class Model extends \YetORM\Entity
+trait DirectoryCreator
 {
     /**
-     * @var IContainer
-     * @inject
+     * @param string $path
      */
-    public $container;
-
-    /**
-     * @param  \Nette\Database\Table\Selection $selection
-     * @param  string|callable $entity
-     * @param  string $refTable
-     * @param  string $refColumn
-     * @return EntityCollection
-     */
-    protected function createCollection($selection, $entity, $refTable = NULL, $refColumn = NULL)
+    protected function createDir($path)
     {
-        return $this->container->create(
-            '\Bonefish\ORM\EntityCollection',
-            array(
-                $selection,
-                $entity,
-                $refTable,
-                $refColumn
-            )
-        );
+        if (!file_exists($path)) {
+            mkdir($path);
+        }
     }
 } 

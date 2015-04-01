@@ -1,6 +1,9 @@
 <?php
 
 namespace Bonefish\Controller;
+use Bonefish\Core\Environment;
+use Bonefish\DI\IContainer;
+use Bonefish\View\View;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -26,19 +29,19 @@ namespace Bonefish\Controller;
 abstract class Base
 {
     /**
-     * @var \Bonefish\View\View
+     * @var View
      * @inject
      */
     public $view;
 
     /**
-     * @var \Bonefish\DependencyInjection\Container
+     * @var IContainer
      * @inject
      */
     public $container;
 
     /**
-     * @var \Bonefish\Core\Environment
+     * @var Environment
      * @inject
      */
     public $environment;

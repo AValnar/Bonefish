@@ -10,13 +10,14 @@ namespace Bonefish\CLI\Raptor\Command;
 
 
 use Bonefish\AbstractTraits\Parameters;
+use Bonefish\DI\IContainer;
 
 class Generator
 {
     use Parameters;
 
     /**
-     * @var \Bonefish\DependencyInjection\Container
+     * @var IContainer
      * @inject
      */
     public $container;

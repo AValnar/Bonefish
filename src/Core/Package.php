@@ -1,6 +1,7 @@
 <?php
 
 namespace Bonefish\Core;
+use Bonefish\DI\IContainer;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -48,7 +49,7 @@ class Package
     public $environment;
 
     /**
-     * @var \Bonefish\DependencyInjection\Container
+     * @var IContainer
      * @inject
      */
     public $container;
@@ -176,7 +177,7 @@ class Package
      */
     public function getController($name)
     {
-        $class = $this->vendor . '\\' . $this->name . '\Controller\\' . $name;
+        $class = '\\'.$this->vendor . '\\' . $this->name . '\Controller\\' . $name;
         return $this->container->get($class);
     }
 

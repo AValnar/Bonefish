@@ -1,6 +1,7 @@
 <?php
 
 namespace Bonefish\Core;
+use Bonefish\DI\IContainer;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -27,7 +28,7 @@ class PackageManager
 {
 
     /**
-     * @var \Bonefish\DependencyInjection\Container
+     * @var IContainer
      * @inject
      */
     public $container;

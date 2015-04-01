@@ -13,11 +13,14 @@ if (!file_exists($composerAutoload))
 
 require $baseDir . '/vendor/autoload.php';
 
-$container = new Bonefish\DependencyInjection\Container();
-/** @var \Bonefish\Core\Mode\CLIMode $cliMode */
-$cliMode = $container->create('\Bonefish\Core\Mode\CLIMode');
-$cliMode->setParameters(array('basePath' => $baseDir));
-$cliMode->init();
+\Bonefish\Core\Kernel::setBaseDir($baseDir);
+
+$container = new Bonefish\DI\Container();
+$container->setInterfaceImplementation('\Bonefish\DI\Container', '\Bonefish\DI\IContainer');
+
+/** @var \Bonefish\Core\Kernel $kernel */
+$kernel = $container->get('\Bonefish\Core\Kernel');
+$kernel->registerImplementations();
 
 /** @var \Bonefish\CLI\ICLI $cli */
 $cli = $container->create('\Bonefish\CLI\ICLI');

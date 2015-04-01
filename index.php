@@ -29,9 +29,20 @@ if (!file_exists($composerAutoload))
 
 require $baseDir . '/vendor/autoload.php';
 session_start();
-$container = new Bonefish\DependencyInjection\Container();
+
+\Bonefish\Core\Kernel::setBaseDir($baseDir);
+
+$container = new Bonefish\DI\Container();
+$container->setInterfaceImplementation('\Bonefish\DI\Container', '\Bonefish\DI\IContainer');
+
 /** @var \Bonefish\Core\Kernel $kernel */
-$kernel = $container->create('\Bonefish\Core\Kernel',array($baseDir));
+$kernel = $container->get('\Bonefish\Core\Kernel');
+$kernel->registerImplementations();
+$kernel->startTracy();
+
+
+$container->get('\Bonefish\Cache\ICache');
+
 $kernel->start();
 
 

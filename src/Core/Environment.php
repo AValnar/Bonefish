@@ -1,6 +1,7 @@
 <?php
 
 namespace Bonefish\Core;
+use Bonefish\DI\IContainer;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -34,25 +35,25 @@ class Environment
     /**
      * @var string
      */
-    protected $packagePath;
+    protected $packagePath = '\Packages';
 
     /**
      * @var string
      */
-    protected $configurationPath;
+    protected $configurationPath = '\Configuration';
 
     /**
      * @var string
      */
-    protected $cachePath;
+    protected $cachePath = '\Cache';
 
     /**
      * @var string
      */
-    protected $logPath;
+    protected $logPath  = '\Log';
 
     /**
-     * @var \Bonefish\DependencyInjection\Container
+     * @var IContainer
      * @inject
      */
     public $container;
@@ -66,18 +67,6 @@ class Environment
      * @var array
      */
     protected $packageState = array();
-
-    /**
-     * @var \Bonefish\Core\ConfigurationManager
-     * @inject
-     */
-    public $configurationManager;
-
-    /**
-     * @var \Bonefish\Core\PackageManager
-     * @inject
-     */
-    public $packageManager;
 
     /**
      * @param string $basePath
@@ -217,45 +206,5 @@ class Environment
     public function getPackage()
     {
         return $this->currentPackage;
-    }
-
-    /**
-     * @param array $packageState
-     * @return self
-     * @deprecated Use Bonefish\Core\PackageManager instead
-     */
-    public function setPackageStates($packageState)
-    {
-        $this->packageManager->setPackageStates($packageState);
-        return $this;
-    }
-
-    /**
-     * @return array
-     * @deprecated Use Bonefish\Core\PackageManager instead
-     */
-    public function getPackageStates()
-    {
-        return $this->packageManager->getPackageStates();
-    }
-
-    /**
-     * @param string $vendor
-     * @param string $package
-     * @return \Bonefish\Core\Package
-     * @deprecated Use Bonefish\Core\PackageManager instead
-     */
-    public function createPackage($vendor, $package)
-    {
-        return $this->packageManager->createPackage($vendor, $package);
-    }
-
-    /**
-     * @return array
-     * @deprecated Use Bonefish\Core\PackageManager instead
-     */
-    public function getAllPackages()
-    {
-        return $this->packageManager->getAllPackages();
     }
 }

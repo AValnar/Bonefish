@@ -2,7 +2,12 @@
 
 namespace Bonefish\View;
 
+use Bonefish\AbstractTraits\DirectoryCreator;
+use Bonefish\Core\ConfigurationManager;
+use Bonefish\Core\Environment;
+use Bonefish\DI\IContainer;
 use Bonefish\Viewhelper\AbstractViewhelper;
+use Latte\Engine;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -28,8 +33,10 @@ use Bonefish\Viewhelper\AbstractViewhelper;
 class View
 {
 
+    use DirectoryCreator;
+
     /**
-     * @var \Latte\Engine
+     * @var Engine
      * @inject
      */
     public $latte;
@@ -45,19 +52,19 @@ class View
     protected $layout;
 
     /**
-     * @var \Bonefish\Core\Environment
+     * @var Environment
      * @inject
      */
     public $environment;
 
     /**
-     * @var \Bonefish\Core\ConfigurationManager
+     * @var ConfigurationManager
      * @inject
      */
     public $configurationManager;
 
     /**
-     * @var \Bonefish\DependencyInjection\Container
+     * @var IContainer
      * @inject
      */
     public $container;
@@ -83,6 +90,11 @@ class View
 
     public function render($output = TRUE)
     {
+        $basicConfiguration = $this->configurationManager->getConfiguration('Configuration.neon');
+        $path = $this->environment->getFullCachePath() . $basicConfiguration['global']['lattePath'];
+        $this->createDir($path);
+        $this->latte->setTempDirectory($path);
+
         $this->loadDefaultMacros();
         $this->loadPackageMacros($this->environment->getPackage());
         $this->loadMacros();

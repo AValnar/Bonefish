@@ -1,6 +1,7 @@
 <?php
 
 namespace Bonefish\ORM;
+use Bonefish\DI\IContainer;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -30,7 +31,7 @@ class EntityCollection extends \YetORM\EntityCollection
     protected $keys;
 
     /**
-     * @var \Bonefish\DependencyInjection\Container
+     * @var IContainer
      * @inject
      */
     public $container;

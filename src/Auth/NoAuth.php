@@ -1,6 +1,7 @@
 <?php
 
 namespace Bonefish\Auth;
+use Bonefish\DI\IContainer;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -26,7 +27,7 @@ namespace Bonefish\Auth;
 class NoAuth implements IAuth
 {
     /**
-     * @var \Bonefish\DependencyInjection\Container
+     * @var IContainer
      * @inject
      */
     public $container;

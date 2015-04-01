@@ -1,6 +1,7 @@
 <?php
 
 namespace Bonefish\Router;
+use Bonefish\DI\IContainer;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -42,7 +43,7 @@ abstract class AbstractRouter
     public $environment;
 
     /**
-     * @var \Bonefish\DependencyInjection\Container
+     * @var IContainer
      * @inject
      */
     public $container;

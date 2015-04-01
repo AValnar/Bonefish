@@ -1,7 +1,9 @@
 <?php
 
 namespace Bonefish\Core;
-use Bonefish\Core\Mode\FullStackMode;
+
+use Bonefish\AbstractTraits\DirectoryCreator;
+use Bonefish\DI\IContainer;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -26,41 +28,93 @@ use Bonefish\Core\Mode\FullStackMode;
  */
 class Kernel
 {
+    use DirectoryCreator;
+
     /**
-     * @var \Bonefish\DependencyInjection\Container
+     * @var IContainer
      * @inject
      */
     public $container;
 
     /**
-     * @var FullStackMode
+     * @var ConfigurationManager
      * @inject
      */
-    public $fullStackMode;
+    public $configurationManager;
+
+    /**
+     * @var Environment
+     * @inject
+     */
+    public $environment;
 
     /**
      * @var string
      */
-    private $baseDir;
+    protected static $baseDir;
+
+    /**
+     * @var array
+     */
+    protected $basicConfiguration = NULL;
+
+    /**
+     * @return array
+     */
+    public function getBasicConfiguration()
+    {
+        if ($this->basicConfiguration === NULL)
+        {
+            $this->basicConfiguration = $this->configurationManager->getConfiguration('Configuration.neon');
+        }
+
+        return $this->basicConfiguration;
+    }
+
+    /**
+     * @return string
+     */
+    public static function getBaseDir()
+    {
+        return self::$baseDir;
+    }
 
     /**
      * @param string $baseDir
      */
-    public function __construct($baseDir)
+    public static function setBaseDir($baseDir)
     {
-        $this->baseDir = $baseDir;
+        self::$baseDir = $baseDir;
     }
 
-    public function __init()
+    public function registerImplementations()
     {
-        $this->fullStackMode->setParameters(array('basePath' => $this->baseDir));
-        $this->fullStackMode->init();
+        $basicConfiguration = $this->getBasicConfiguration();
+
+        foreach ($basicConfiguration['implementations'] as $interface => $implementation) {
+            $this->container->setInterfaceImplementation($implementation, $interface);
+        }
+    }
+
+    public function startTracy()
+    {
+        $logPath = $this->environment->getFullLogPath();
+        $this->createDir($logPath);
+
+        if ($this->basicConfiguration['global']['develoment']) {
+            \Tracy\Debugger::enable(\Tracy\Debugger::DEVELOPMENT, $logPath);
+        } else {
+            \Tracy\Debugger::enable(\Tracy\Debugger::PRODUCTION, $logPath);
+        }
+
+        \Tracy\Debugger::$strictMode = TRUE;
     }
 
     public function start()
     {
         $server = $_SERVER;
         $url = \League\Url\UrlImmutable::createFromServer($server);
+        /** @var \Bonefish\Router\FastRoute $router */
         $router = $this->container->create('\Bonefish\Router\FastRoute', array($url));
         $this->container->add('\Bonefish\Router\FastRoute', $router);
         $router->route();
