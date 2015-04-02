@@ -37,14 +37,13 @@ ehthumbs.db
 Thumbs.db
 
 phpunit-lts.phar
-.idea
+/.idea
 
 # Composer #
-vendor
+/vendor
 
 # Bonefish #
-Packages
-Configuration/Configuration.neon
-Cache
-Log
-phpinfo.php
+/Packages
+/Cache
+/Log
+/phpinfo.php
