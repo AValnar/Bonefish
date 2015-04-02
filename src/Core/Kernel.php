@@ -3,6 +3,7 @@
 namespace Bonefish\Core;
 
 use Bonefish\AbstractTraits\DirectoryCreator;
+use Bonefish\Autoloader\Autoloader;
 use Bonefish\DI\IContainer;
 
 /**
@@ -49,6 +50,12 @@ class Kernel
     public $environment;
 
     /**
+     * @var Autoloader
+     * @Bonefish\Inject
+     */
+    public $autoloader;
+
+    /**
      * @var string
      */
     protected static $baseDir;
@@ -87,6 +94,13 @@ class Kernel
         self::$baseDir = $baseDir;
     }
 
+    public function lowLevelBoot()
+    {
+        $this->registerImplementations();
+        $this->startAutoloader();
+        $this->container->get('\Bonefish\Cache\ICache');
+    }
+
     public function registerImplementations()
     {
         $basicConfiguration = $this->getBasicConfiguration();
@@ -108,6 +122,11 @@ class Kernel
         }
 
         \Tracy\Debugger::$strictMode = TRUE;
+    }
+
+    public function startAutoloader()
+    {
+        $this->autoloader->register();
     }
 
     public function start()

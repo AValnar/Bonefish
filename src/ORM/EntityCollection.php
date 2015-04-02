@@ -61,7 +61,7 @@ class EntityCollection extends \YetORM\EntityCollection
         $class = $this->entity;
         $container = $this->container;
         return function ($record) use ($class, $container) {
-            return $container->create($class, array($record));
+            return $container->create('\\'.ltrim($class, '\\'), array($record));
         };
     }
 

@@ -37,11 +37,8 @@ $container->setInterfaceImplementation('\Bonefish\DI\Container', '\Bonefish\DI\I
 
 /** @var \Bonefish\Core\Kernel $kernel */
 $kernel = $container->get('\Bonefish\Core\Kernel');
-$kernel->registerImplementations();
+$kernel->lowLevelBoot();
 $kernel->startTracy();
-
-
-$container->get('\Bonefish\Cache\ICache');
 
 $kernel->start();
 

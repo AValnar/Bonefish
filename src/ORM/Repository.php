@@ -28,7 +28,7 @@ abstract class Repository extends \YetORM\Repository
 {
 
     /**
-     * @var \Nette\Database\Context
+     * @var Context
      * @Bonefish\Inject eagerly
      */
     public $context;

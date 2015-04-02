@@ -20,7 +20,7 @@ $container->setInterfaceImplementation('\Bonefish\DI\Container', '\Bonefish\DI\I
 
 /** @var \Bonefish\Core\Kernel $kernel */
 $kernel = $container->get('\Bonefish\Core\Kernel');
-$kernel->registerImplementations();
+$kernel->lowLevelBoot();
 
 /** @var \Bonefish\CLI\ICLI $cli */
 $cli = $container->create('\Bonefish\CLI\ICLI');

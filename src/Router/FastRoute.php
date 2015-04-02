@@ -87,7 +87,7 @@ class FastRoute extends AbstractRouter
     {
         $package = $this->packageManager->createPackage($dto->getVendor(), $dto->getPackage());
         $this->environment->setPackage($package);
-        $controller = $this->container->get($dto->getController());
+        $controller = $this->container->get('\\'.ltrim($dto->getController(), '\\'));
         $action = $dto->getAction() . 'Action';
         $execute = $this->callBeforeExecute($controller,$action);
         if ($execute) {
