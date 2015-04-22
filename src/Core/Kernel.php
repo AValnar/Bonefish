@@ -5,6 +5,7 @@ namespace Bonefish\Core;
 use Bonefish\AbstractTraits\DirectoryCreator;
 use Bonefish\Autoloader\Autoloader;
 use Bonefish\DI\IContainer;
+use Nette\Reflection\AnnotationsParser;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -96,9 +97,11 @@ class Kernel
 
     public function lowLevelBoot()
     {
+        $basicConfiguration = $this->getBasicConfiguration();
         $this->registerImplementations();
         $this->startAutoloader();
         $this->container->get('\Bonefish\Cache\ICache');
+        AnnotationsParser::$autoRefresh = $basicConfiguration['global']['develoment'];
     }
 
     public function registerImplementations()
@@ -112,10 +115,11 @@ class Kernel
 
     public function startTracy()
     {
+        $basicConfiguration = $this->getBasicConfiguration();
         $logPath = $this->environment->getFullLogPath();
         $this->createDir($logPath);
 
-        if ($this->basicConfiguration['global']['develoment']) {
+        if ($basicConfiguration['global']['develoment']) {
             \Tracy\Debugger::enable(\Tracy\Debugger::DEVELOPMENT, $logPath);
         } else {
             \Tracy\Debugger::enable(\Tracy\Debugger::PRODUCTION, $logPath);

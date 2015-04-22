@@ -1,9 +1,14 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Alexander
+ * Date: 22.04.2015
+ * Time: 09:53
+ */
+namespace Bonefish\View;
 
-namespace Bonefish\Controller;
-use Bonefish\Core\Environment;
-use Bonefish\DI\IContainer;
-use Bonefish\View\IView;
+use Bonefish\Viewhelper\AbstractViewhelper;
+
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -23,48 +28,32 @@ use Bonefish\View\IView;
  * @author     Alexander Schmidt <mail@story75.com>
  * @copyright  Copyright (c) 2014, Alexander Schmidt
  * @version    1.0
- * @date       2014-08-28
- * @package Bonefish\Controller
+ * @date       2014-09-04
+ * @package Bonefish\View
  */
-abstract class Base
+interface IView
 {
     /**
-     * @var IView
-     * @Bonefish\Inject
+     * @param string $name
+     * @param mixed $value
      */
-    public $view;
+    public function assign($name, $value);
+
+    public function render($output = TRUE);
 
     /**
-     * @var IContainer
-     * @Bonefish\Inject
+     * @param string $layout
+     * @return self
      */
-    public $container;
+    public function setLayout($layout);
 
     /**
-     * @var Environment
-     * @Bonefish\Inject
+     * @return string
      */
-    public $environment;
-
-    public function getConfiguration()
-    {
-        return $this->environment->getPackage()->getConfiguration();
-    }
-
-    public function indexAction()
-    {
-
-    }
+    public function getLayout();
 
     /**
-     * @param string $route
+     * @param AbstractViewhelper $helper
      */
-    protected function redirect($route)
-    {
-        $route = $this->container->create($route);
-        $dto = $route->getDTO();
-        /** @var \Bonefish\Router\FastRoute $router */
-        $router = $this->container->get('\Bonefish\Router\FastRoute');
-        $router->callControllerDTO($dto);
-    }
-} 
+    public function addMacro(AbstractViewhelper $helper);
+}

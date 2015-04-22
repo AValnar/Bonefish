@@ -54,7 +54,7 @@ abstract class AbstractRouter
      */
     public $configurationManager;
 
-    const VALID_TYPES = array('get', 'post', 'put', 'delete', 'head');
+    public static $validTypes = array('get', 'post', 'put', 'delete', 'head');
 
     const DEFAULT_TYPE = 'GET';
 
@@ -99,7 +99,7 @@ abstract class AbstractRouter
 
     public static function validateType($type)
     {
-        if (!in_array(strtolower($type), AbstractRouter::VALID_TYPES)) {
+        if (!in_array(strtolower($type), AbstractRouter::$validTypes)) {
             $type = AbstractRouter::DEFAULT_TYPE;
         }
 

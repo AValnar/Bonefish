@@ -30,7 +30,7 @@ use Latte\Engine;
  * @date       2014-09-04
  * @package Bonefish\View
  */
-class View
+class View implements IView
 {
 
     use DirectoryCreator;

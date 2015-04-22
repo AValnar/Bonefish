@@ -1,12 +1,14 @@
 global:
-  baseUrl: http://p236456.webspaceconfig.de
+  baseUrl: http://127.0.0.1
   lattePath: /Latte
+  logPath: /Log
   develoment: yes
 
 implementations:
   \Bonefish\Auth\IAuth: \Bonefish\Auth\NoAuth
   \Bonefish\CLI\ICLI: \Bonefish\CLI\Raptor\Raptor
   \Bonefish\Cache\ICache: \Bonefish\Cache\Cache
+  \Bonefish\View\IView: \Bonefish\View\View
 
 database:
   db_driver: mysql
