@@ -92,6 +92,36 @@
             "time": "2015-03-27 16:49:16"
         },
         {
+                    "name": "av/raptor",
+                    "version": "v1.0.1",
+                    "source": {
+                        "type": "git",
+                        "url": "https://github.com/AValnar/Raptor.git",
+                        "reference": "9d59c5901c584272fdadbbd403c3007d2db651b2"
+                    },
+                    "dist": {
+                        "type": "zip",
+                        "url": "https://api.github.com/repos/AValnar/Raptor/zipball/9d59c5901c584272fdadbbd403c3007d2db651b2",
+                        "reference": "9d59c5901c584272fdadbbd403c3007d2db651b2",
+                        "shasum": ""
+                    },
+                    "require": {
+                        "composer/installers": "*"
+                    },
+                    "type": "bonefish-package",
+                    "autoload": {
+                        "psr-4": {
+                            "Bonefish\\Raptor\\": [
+                                "",
+                                "src"
+                            ]
+                        }
+                    },
+                    "notification-url": "https://packagist.org/downloads/",
+                    "description": "Bonefish command-line implementation",
+                    "time": "2015-04-22 11:00:16"
+                },
+        {
             "name": "av/bonefish-helloworld",
             "version": "v1.0",
             "source": {

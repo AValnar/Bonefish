@@ -6,7 +6,7 @@ global:
 
 implementations:
   \Bonefish\Auth\IAuth: \Bonefish\Auth\NoAuth
-  \Bonefish\CLI\ICLI: \Bonefish\CLI\Raptor\Raptor
+  \Bonefish\CLI\ICLI: \Bonefish\Raptor\Raptor
   \Bonefish\Cache\ICache: \Bonefish\Cache\Cache
   \Bonefish\View\IView: \Bonefish\View\View
 
