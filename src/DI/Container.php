@@ -13,7 +13,6 @@ use Bonefish\DependencyInjection\Container as BaseContainer;
 use Nette\Reflection\AnnotationsParser;
 use Nette\Reflection\ClassType;
 use Nette\Reflection\Property;
-use Nette\Utils\ArrayHash;
 
 class Container extends BaseContainer implements IContainer
 {
@@ -29,7 +28,7 @@ class Container extends BaseContainer implements IContainer
 
     const FACTORY_NS_SUFFIX = 'Factory';
 
-    const INJECT_ANNOTATION = 'Bonefish\Inject';
+    protected static $defaultInjectAnnotations = array('Bonefish\Inject', 'inject');
 
     /**
      * @param string $className
@@ -159,14 +158,17 @@ class Container extends BaseContainer implements IContainer
      */
     protected function processProperty($obj, Property $property, $r)
     {
-        if ($property->hasAnnotation(self::INJECT_ANNOTATION)) {
-            if (!$property->hasAnnotation('var')) {
-                throw new \Exception('No @var tag found for property ' . $property->getName() . ' with @' . self::INJECT_ANNOTATION . ' tag');
+        foreach(self::$defaultInjectAnnotations as $annotation) {
+            if ($property->hasAnnotation($annotation)) {
+                if (!$property->hasAnnotation('var')) {
+                    throw new \Exception('No @var tag found for property ' . $property->getName() . ' with @' . self::INJECT_ANNOTATION . ' tag');
+                }
+                $class = $property->getAnnotation('var');
+                $parameters = $this->getInjectParameters($property->getAnnotation($annotation));
+                $eager = in_array('eagerly', $parameters);
+                $this->performDependencyInjection($obj, $property, $class, $eager, $r, $parameters);
+                break;
             }
-            $class = $property->getAnnotation('var');
-            $parameters = $this->getInjectParameters($property->getAnnotation(self::INJECT_ANNOTATION));
-            $eager = in_array('eagerly', $parameters);
-            $this->performDependencyInjection($obj, $property, $class, $eager, $r, $parameters);
         }
     }
 
@@ -175,7 +177,7 @@ class Container extends BaseContainer implements IContainer
         $parameters = array();
         if (is_string($parameterValue) || is_int($parameterValue)) {
             $parameters[] = $parameterValue;
-        } elseif(is_object($parameterValue) && $parameterValue instanceof ArrayHash) {
+        } elseif(is_object($parameterValue) && $parameterValue instanceof \ArrayAccess) {
             foreach($parameterValue as $key => $val) {
                 $parameters[$key] = $val;
             }
