@@ -1,4 +1,0 @@
-global:
-  - "\\Bonefish\\Viewhelper\\Core\\Base"
-  - "\\Bonefish\\Viewhelper\\Core\\Link"
-  - "\\Bonefish\\Viewhelper\\Core\\Resource"
