@@ -244,16 +244,16 @@
         },
         {
             "name": "av/raptor",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AValnar/Raptor.git",
-                "reference": "4dd3fe9ce5557157b7201449e36e57ed19a73c0f"
+                "reference": "b861e6fab1e8e6875a2612780d7f6f248e90dc07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AValnar/Raptor/zipball/4dd3fe9ce5557157b7201449e36e57ed19a73c0f",
-                "reference": "4dd3fe9ce5557157b7201449e36e57ed19a73c0f",
+                "url": "https://api.github.com/repos/AValnar/Raptor/zipball/b861e6fab1e8e6875a2612780d7f6f248e90dc07",
+                "reference": "b861e6fab1e8e6875a2612780d7f6f248e90dc07",
                 "shasum": ""
             },
             "require": {
@@ -266,12 +266,15 @@
                     "Bonefish\\Raptor\\": [
                         "",
                         "src"
+                    ],
+                    "Bonefish\\Tests\\Raptor\\": [
+                        "tests"
                     ]
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Bonefish command-line implementation",
-            "time": "2015-04-24 07:26:05"
+            "time": "2015-04-24 07:49:49"
         },
         {
             "name": "composer/installers",
