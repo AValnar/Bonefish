@@ -2,8 +2,6 @@
 
 namespace Bonefish\Controller;
 
-use Bonefish\CLI\CLImateWrapper;
-
 /**
  * Copyright (C) 2014  Alexander Schmidt
  *
@@ -25,7 +23,10 @@ use Bonefish\CLI\CLImateWrapper;
  * @date       2014-08-28
  * @package Bonefish\Controller
  */
-abstract class Command extends CLImateWrapper
+abstract class Command
 {
-
+    public function out($text)
+    {
+        echo $text;
+    }
 } 
