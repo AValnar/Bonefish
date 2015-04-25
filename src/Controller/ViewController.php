@@ -19,7 +19,7 @@ class ViewController extends Base
     public function beforeExecute($action)
     {
         $action = str_replace('Action', '', $action);
-        $this->view->setLayout(ucfirst($action) . '.latte');
+        $this->view->setLayout(get_class($this) . '/' . ucfirst($action) . '.latte');
         return TRUE;
     }
 
