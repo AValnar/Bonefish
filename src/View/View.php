@@ -76,7 +76,9 @@ class View implements IView
 
     public function __init()
     {
-        $this->setLayout('Default.latte');
+        if ($this->layout === NULL) {
+            $this->setLayout('Default.latte');
+        }
     }
 
     /**

@@ -124,7 +124,7 @@ class Package
     public function getPath()
     {
         if (!isset($this->config['path'])) {
-            return $this->vendor . DIRECTORY_SEPARATOR . $this->name;
+            return $this->vendor . '/' . $this->name;
         }
         return $this->config['path'];
     }

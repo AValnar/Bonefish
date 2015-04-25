@@ -35,22 +35,22 @@ class Environment
     /**
      * @var string
      */
-    protected $packagePath = '\Packages';
+    protected $packagePath = '/Packages';
 
     /**
      * @var string
      */
-    protected $configurationPath = '\Configuration';
+    protected $configurationPath = '/Configuration';
 
     /**
      * @var string
      */
-    protected $cachePath = '\Cache';
+    protected $cachePath = '/Cache';
 
     /**
      * @var string
      */
-    protected $logPath  = '\Log';
+    protected $logPath  = '/Log';
 
     /**
      * @var IContainer

@@ -57,7 +57,7 @@ class PackageTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(__DIR__));
         $this->package->environment = $enviormentMock;
         $path = $this->package->getPackageUrlPath();
-        $this->assertThat($path,$this->equalTo(__DIR__.'/Bonefish'.DIRECTORY_SEPARATOR.'HelloWorld'));
+        $this->assertThat($path,$this->equalTo(__DIR__.'/Bonefish/HelloWorld'));
     }
 
     public function testNoConfiguration()
