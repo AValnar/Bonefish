@@ -27,6 +27,6 @@ abstract class Command
 {
     public function out($text)
     {
-        echo $text;
+        echo $text.PHP_EOL;
     }
 } 
