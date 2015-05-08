@@ -69,6 +69,29 @@ class Environment
     protected $packageState = array();
 
     /**
+     * @var bool
+     */
+    protected $devMode;
+
+    /**
+     * @return boolean
+     */
+    public function isDevMode()
+    {
+        return $this->devMode;
+    }
+
+    /**
+     * @param boolean $devMode
+     * @return self
+     */
+    public function setDevMode($devMode)
+    {
+        $this->devMode = $devMode;
+        return $this;
+    }
+
+    /**
      * @param string $basePath
      * @return self
      */

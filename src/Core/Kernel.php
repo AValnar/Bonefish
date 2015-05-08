@@ -6,6 +6,7 @@ use Bonefish\AbstractTraits\DirectoryCreator;
 use Bonefish\Autoloader\Autoloader;
 use Bonefish\DI\IContainer;
 use Nette\Reflection\AnnotationsParser;
+use Tracy\Debugger;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -97,11 +98,10 @@ class Kernel
 
     public function lowLevelBoot()
     {
-        $basicConfiguration = $this->getBasicConfiguration();
         $this->registerImplementations();
         $this->startAutoloader();
         $this->container->get('\Bonefish\Cache\ICache');
-        AnnotationsParser::$autoRefresh = $basicConfiguration['global']['develoment'];
+        AnnotationsParser::$autoRefresh = $this->environment->isDevMode();
     }
 
     public function registerImplementations()
@@ -115,17 +115,16 @@ class Kernel
 
     public function startTracy()
     {
-        $basicConfiguration = $this->getBasicConfiguration();
         $logPath = $this->environment->getFullLogPath();
         $this->createDir($logPath);
 
-        if ($basicConfiguration['global']['develoment']) {
-            \Tracy\Debugger::enable(\Tracy\Debugger::DEVELOPMENT, $logPath);
+        if ($this->environment->isDevMode()) {
+            Debugger::enable(Debugger::DEVELOPMENT, $logPath);
         } else {
-            \Tracy\Debugger::enable(\Tracy\Debugger::PRODUCTION, $logPath);
+            Debugger::enable(Debugger::PRODUCTION, $logPath);
         }
 
-        \Tracy\Debugger::$strictMode = TRUE;
+        Debugger::$strictMode = TRUE;
     }
 
     public function startAutoloader()

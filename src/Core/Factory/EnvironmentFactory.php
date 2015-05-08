@@ -29,8 +29,11 @@ class EnvironmentFactory implements IFactory
      */
     public function create(array $parameters = array())
     {
+        $configuration = $this->configurationManager->getConfiguration('Configuration.neon');
+
         $environment = new Environment();
         $environment->setBasePath(Kernel::getBaseDir());
+        $environment->setDevMode($configuration['global']['develoment']);
         return $environment;
     }
 }
