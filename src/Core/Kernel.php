@@ -101,6 +101,8 @@ class Kernel
         $this->registerImplementations();
         $this->startAutoloader();
         $this->container->get('\Bonefish\Cache\ICache');
+        $basicConfiguration = $this->getBasicConfiguration();
+        $this->environment->setDevMode($basicConfiguration['global']['develoment']);
         AnnotationsParser::$autoRefresh = $this->environment->isDevMode();
     }
 

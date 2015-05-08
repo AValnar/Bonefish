@@ -79,7 +79,7 @@ class Container extends BaseContainer implements IContainer
     {
         $className = $this->resolveClassName($className);
 
-        $implodedParameters = implode($parameters);
+        $implodedParameters = implode(',', $parameters);
 
         if ($this->injectSelf($className)) {
             return $this;
@@ -112,7 +112,8 @@ class Container extends BaseContainer implements IContainer
         $factoryClassName = $this->getFactoryClassName($className);
         if (class_exists($factoryClassName)) {
             $factory = $this->get($factoryClassName);
-            return $factory->create($parameters);
+            $obj = $factory->create($parameters);
+            return $this->finalizeObject($obj);
         }
 
         return $this->finalizeObject($className, TRUE, $parameters);
@@ -207,7 +208,7 @@ class Container extends BaseContainer implements IContainer
         if ($this->injectSelf($className)) {
             $value = $this;
         } else {
-            if (!$eager && !isset($this->objects[$className][implode($parameters)])) {
+            if (!$eager && !isset($this->objects[$className][implode(',', $parameters)])) {
                 $value = new Proxy($className, $property, $parent, $this, $parameters);
             } else {
                 $value = $this->get($className, $parameters);

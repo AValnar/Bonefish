@@ -16,12 +16,6 @@ use Bonefish\Factory\IFactory;
 class EnvironmentFactory implements IFactory
 {
     /**
-     * @var \Bonefish\Core\ConfigurationManager
-     * @Bonefish\Inject
-     */
-    public $configurationManager;
-
-    /**
      * Return an object with fully injected dependencies
      *
      * @param array $parameters
@@ -29,11 +23,8 @@ class EnvironmentFactory implements IFactory
      */
     public function create(array $parameters = array())
     {
-        $configuration = $this->configurationManager->getConfiguration('Configuration.neon');
-
         $environment = new Environment();
         $environment->setBasePath(Kernel::getBaseDir());
-        $environment->setDevMode($configuration['global']['develoment']);
         return $environment;
     }
 }
