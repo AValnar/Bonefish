@@ -5,6 +5,7 @@ namespace Bonefish\Core;
 use Bonefish\AbstractTraits\DirectoryCreator;
 use Bonefish\Autoloader\Autoloader;
 use Bonefish\DI\IContainer;
+use Bonefish\Router\FastRoute;
 use Nette\Reflection\AnnotationsParser;
 use Tracy\Debugger;
 
@@ -58,6 +59,12 @@ class Kernel
     public $autoloader;
 
     /**
+     * @var FastRoute
+     * @Bonefish\Inject
+     */
+    public $router;
+
+    /**
      * @var string
      */
     protected static $baseDir;
@@ -100,7 +107,6 @@ class Kernel
     {
         $this->registerImplementations();
         $this->startAutoloader();
-        $this->container->get('\Bonefish\Cache\ICache');
         $basicConfiguration = $this->getBasicConfiguration();
         $this->environment->setDevMode($basicConfiguration['global']['develoment']);
         AnnotationsParser::$autoRefresh = $this->environment->isDevMode();
@@ -138,10 +144,8 @@ class Kernel
     {
         $server = $_SERVER;
         $url = \League\Url\UrlImmutable::createFromServer($server);
-        /** @var \Bonefish\Router\FastRoute $router */
-        $router = $this->container->create('\Bonefish\Router\FastRoute', array($url));
-        $this->container->add('\Bonefish\Router\FastRoute', $router);
-        $router->route();
+        $this->router->setUrl($url);
+        $this->router->route();
     }
 
 } 

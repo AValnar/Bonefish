@@ -2,6 +2,7 @@
 
 namespace Bonefish\Router;
 use Bonefish\DI\IContainer;
+use League\Url\AbstractUrl;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -59,9 +60,17 @@ abstract class AbstractRouter
     const DEFAULT_TYPE = 'GET';
 
     /**
-     * @param \League\Url\UrlImmutable $url
+     * @return AbstractUrl
      */
-    public function __construct($url)
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param AbstractUrl $url
+     */
+    public function setUrl(AbstractUrl $url)
     {
         $this->url = $url;
     }
