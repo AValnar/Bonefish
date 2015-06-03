@@ -2,7 +2,7 @@
 
 namespace Bonefish\View;
 
-use Bonefish\AbstractTraits\DirectoryCreator;
+use Bonefish\Traits\DirectoryCreator;
 use Bonefish\Core\ConfigurationManager;
 use Bonefish\Core\Environment;
 use Bonefish\DI\IContainer;

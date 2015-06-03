@@ -2,7 +2,7 @@
 
 namespace Bonefish\Core;
 
-use Bonefish\AbstractTraits\DirectoryCreator;
+use Bonefish\Traits\DirectoryCreator;
 use Bonefish\Autoloader\Autoloader;
 use Bonefish\DI\IContainer;
 use Bonefish\Router\FastRoute;
