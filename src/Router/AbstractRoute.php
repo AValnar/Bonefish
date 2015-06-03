@@ -2,6 +2,8 @@
 
 namespace Bonefish\Router;
 
+use Bonefish\Utility\ConfigurationManager;
+
 /**
  * Copyright (C) 2014  Alexander Schmidt
  *
@@ -35,7 +37,7 @@ abstract class AbstractRoute
     protected $type;
 
     /**
-     * @var \Bonefish\Core\ConfigurationManager
+     * @var ConfigurationManager
      * @Bonefish\Inject
      */
     public $configurationManager;

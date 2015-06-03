@@ -1,7 +1,11 @@
 <?php
 
 namespace Bonefish\Core;
+
 use Bonefish\DI\IContainer;
+use Bonefish\Utility\Environment;
+use Bonefish\Utility\ConfigurationManager;
+
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -43,7 +47,7 @@ class Package
     protected $config;
 
     /**
-     * @var \Bonefish\Core\Environment
+     * @var Environment
      * @Bonefish\Inject
      */
     public $environment;
@@ -61,7 +65,7 @@ class Package
     public $autoloader;
 
     /**
-     * @var \Bonefish\Core\ConfigurationManager
+     * @var ConfigurationManager
      * @Bonefish\Inject
      */
     public $configurationManager;

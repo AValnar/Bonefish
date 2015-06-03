@@ -8,9 +8,15 @@
 
 namespace Bonefish\Controller;
 
+use Bonefish\View\IView;
 
 class ViewController extends Base
 {
+    /**
+     * @var IView
+     * @Bonefish\Inject
+     */
+    public $view;
 
     /**
      * @param string $action

@@ -2,6 +2,9 @@
 
 namespace Bonefish\Router;
 
+use Bonefish\Core\PackageManager;
+use \League\Url\UrlImmutable;
+
 /**
  * Copyright (C) 2014  Alexander Schmidt
  *
@@ -27,17 +30,16 @@ class FastRoute extends AbstractRouter
 {
 
     /**
-     * @var \Bonefish\Core\PackageManager
+     * @var PackageManager
      * @Bonefish\Inject
      */
     public $packageManager;
 
-    /**
-     * @throws \Exception
-     */
     public function route()
     {
-        if ($this->url->getPath() == '') {
+        $url = $this->getUrl();
+
+        if ($url->getPath() == '') {
             $dto = $this->getRouteDTO('\Bonefish\Router\Routes\DefaultRoute');
         } else {
             $dto = $this->dispatch();

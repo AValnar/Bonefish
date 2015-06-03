@@ -2,6 +2,7 @@
 
 namespace Bonefish\Core;
 use Bonefish\DI\IContainer;
+use Bonefish\Utility\ConfigurationManager;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -34,7 +35,7 @@ class PackageManager
     public $container;
 
     /**
-     * @var \Bonefish\Core\ConfigurationManager
+     * @var ConfigurationManager
      * @Bonefish\Inject
      */
     public $configurationManager;

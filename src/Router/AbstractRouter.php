@@ -3,6 +3,8 @@
 namespace Bonefish\Router;
 use Bonefish\DI\IContainer;
 use League\Url\AbstractUrl;
+use Bonefish\Utility\Environment;
+use Bonefish\Utility\ConfigurationManager;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -35,10 +37,10 @@ abstract class AbstractRouter
     /**
      * @var \League\Url\AbstractUrl
      */
-    protected $url;
+    protected $url = null;
 
     /**
-     * @var \Bonefish\Core\Environment
+     * @var Environment
      * @Bonefish\Inject
      */
     public $environment;
@@ -50,7 +52,7 @@ abstract class AbstractRouter
     public $container;
 
     /**
-     * @var \Bonefish\Core\ConfigurationManager
+     * @var ConfigurationManager
      * @Bonefish\Inject
      */
     public $configurationManager;
@@ -59,11 +61,20 @@ abstract class AbstractRouter
 
     const DEFAULT_TYPE = 'GET';
 
+    abstract public function route();
+
     /**
      * @return AbstractUrl
      */
     public function getUrl()
     {
+        if ($this->url === null)
+        {
+            $server = $_SERVER;
+            $url = UrlImmutable::createFromServer($server);
+            $this->setUrl($url);
+        }
+
         return $this->url;
     }
 

@@ -3,8 +3,8 @@
 namespace Bonefish\View;
 
 use Bonefish\Traits\DirectoryCreator;
-use Bonefish\Core\ConfigurationManager;
-use Bonefish\Core\Environment;
+use Bonefish\Utility\Environment;
+use Bonefish\Utility\ConfigurationManager;
 use Bonefish\DI\IContainer;
 use Bonefish\Viewhelper\AbstractViewhelper;
 use Latte\Engine;

@@ -1,9 +1,8 @@
 <?php
 
 namespace Bonefish\Controller;
-use Bonefish\Core\Environment;
+use Bonefish\Utility\Environment;
 use Bonefish\DI\IContainer;
-use Bonefish\View\IView;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -28,12 +27,6 @@ use Bonefish\View\IView;
  */
 abstract class Base
 {
-    /**
-     * @var IView
-     * @Bonefish\Inject
-     */
-    public $view;
-
     /**
      * @var IContainer
      * @Bonefish\Inject
