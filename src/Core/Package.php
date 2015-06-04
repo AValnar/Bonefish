@@ -82,7 +82,7 @@ class Package
      * @param string $name
      * @param array $config
      */
-    public function __construct($vendor, $name, $config = array())
+    public function __construct($vendor, $name, $config = [])
     {
         $this->vendor = $vendor;
         $this->name = $name;
@@ -190,7 +190,7 @@ class Package
      */
     public function getControllers()
     {
-        $return = array();
+        $return = [];
         $iterator = new \DirectoryIterator($this->getPackagePath() . '/Controller');
         foreach ($iterator as $file) {
             if ($this->isControllerPossibleController($file)) {

@@ -44,7 +44,7 @@ class View implements IView
     /**
      * @var array
      */
-    protected $parameters = array();
+    protected $parameters = [];
 
     /**
      * @var string
@@ -72,7 +72,7 @@ class View implements IView
     /**
      * @var array
      */
-    protected $macros = array();
+    protected $macros = [];
 
     public function __init()
     {
@@ -146,13 +146,13 @@ class View implements IView
             if ($macro->getHasEnd()) {
                 $macroSet->addMacro(
                     $macro->getName(),
-                    array($macro, 'getStart'),
-                    array($macro, 'getEnd')
+                    [$macro, 'getStart'],
+                    [$macro, 'getEnd']
                 );
             } else {
                 $macroSet->addMacro(
                     $macro->getName(),
-                    array($macro, 'getStart')
+                    [$macro, 'getStart']
                 );
             }
         }

@@ -104,7 +104,7 @@ class PackageTest extends \PHPUnit_Framework_TestCase
 
     public function testAutoload()
     {
-        $package = new Package('test','test',array('autoload' => true));
+        $package = new Package('test','test', ['autoload' => true]);
         $autoloader = $this->getMockBuilder('\Bonefish\Autoloader\Autoloader')
             ->disableOriginalConstructor()
             ->getMock();
@@ -124,11 +124,11 @@ class PackageTest extends \PHPUnit_Framework_TestCase
 
     public function getterAndSetterProvider()
     {
-        return array(
-            array('getName', 'setName', 'foo'),
-            array('getPath', 'setPath', 'foo'),
-            array('getVendor', 'setVendor', 'foo')
-        );
+        return [
+            ['getName', 'setName', 'foo'],
+            ['getPath', 'setPath', 'foo'],
+            ['getVendor', 'setVendor', 'foo']
+        ];
     }
 }
  

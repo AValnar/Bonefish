@@ -32,7 +32,7 @@ abstract class AbstractRouter
     /**
      * @var array
      */
-    protected $parameter = array();
+    protected $parameter = [];
 
     /**
      * @var \League\Url\AbstractUrl
@@ -57,7 +57,7 @@ abstract class AbstractRouter
      */
     public $configurationManager;
 
-    public static $validTypes = array('get', 'post', 'put', 'delete', 'head');
+    public static $validTypes = ['get', 'post', 'put', 'delete', 'head'];
 
     const DEFAULT_TYPE = 'GET';
 
@@ -92,9 +92,10 @@ abstract class AbstractRouter
      */
     protected function callControllerAction($action, $controller)
     {
-        if (is_callable(array($controller, $action))) {
+        $callable = [$controller, $action];
+        if (is_callable($callable)) {
             $this->sortParameters($controller, $action);
-            call_user_func_array(array($controller, $action), $this->parameter);
+            call_user_func_array($callable, $this->parameter);
         } else {
             $controller->indexAction();
         }
@@ -107,7 +108,7 @@ abstract class AbstractRouter
     protected function sortParameters($controller, $action)
     {
         $r = \Nette\Reflection\Method::from($controller, $action);
-        $userParams = array();
+        $userParams = [];
         $methodParams = $r->getParameters();
         foreach ($methodParams as $key => $parameter) {
             if (isset($this->parameter[$parameter->getName()])) {

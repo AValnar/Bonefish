@@ -43,7 +43,7 @@ class PackageManager
     /**
      * @var array
      */
-    protected $packageState = array();
+    protected $packageState = [];
 
     /**
      * @param array $packageState
@@ -77,7 +77,7 @@ class PackageManager
             throw new \InvalidArgumentException('Package is not set up or does not exist!');
         }
         $configuration = $this->getPackageConfiguration($vendor, $package);
-        return $this->container->create('\Bonefish\Core\Package', array($vendor, $package, $configuration));
+        return $this->container->create('\Bonefish\Core\Package', [$vendor, $package, $configuration]);
     }
 
     /**
@@ -112,7 +112,7 @@ class PackageManager
     {
         $state = $this->getPackageStates();
 
-        return isset($state[$vendor][$package]) ? $state[$vendor][$package] : array();
+        return isset($state[$vendor][$package]) ? $state[$vendor][$package] : [];
     }
 
     /**
@@ -121,7 +121,7 @@ class PackageManager
     public function getAllPackages()
     {
         $states = $this->getPackageStates();
-        $return = array();
+        $return = [];
         foreach ($states as $vendor => $packages) {
             foreach ($packages as $package => $config) {
                 $return[] = $this->createPackage($vendor, $package);

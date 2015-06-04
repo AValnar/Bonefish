@@ -48,7 +48,7 @@ class DTO
     /**
      * @var array
      */
-    protected $parameter = array();
+    protected $parameter = [];
 
     /**
      * @param string $vendor
@@ -57,7 +57,7 @@ class DTO
      * @param string $action
      * @param array $parameter
      */
-    public function __construct($vendor, $package, $controller, $action, $parameter = array())
+    public function __construct($vendor, $package, $controller, $action, $parameter = [])
     {
         $this->vendor = $vendor;
         $this->package = $package;

@@ -4,6 +4,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
+        "php": ">=5.6.0",
         "composer/installers": "dev-master",
         "av/bonefish-autoloader": "1.*",
         "nette/neon": "2.3.*",
