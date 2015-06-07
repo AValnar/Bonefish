@@ -36,6 +36,8 @@ interface CLIInterface
     // Error codes
     const INVALID_PARAMETER_AMOUNT = 1;
     const INVALID_COMMAND_TYPE = 2;
+    const INVALID_COMMAND_PARAMETERS = 3;
+    const COMMAND_EXECUTE_FAILED = 666;
 
     /**
      * Method to accept $argv array and save the supplied arguments for the runtime
