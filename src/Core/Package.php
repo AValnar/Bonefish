@@ -2,7 +2,7 @@
 
 namespace Bonefish\Core;
 
-use Bonefish\DI\IContainer;
+use Bonefish\Injection\ContainerInterface;
 use Bonefish\Utility\Environment;
 use Bonefish\Utility\ConfigurationManager;
 
@@ -42,27 +42,16 @@ class Package
     protected $name;
 
     /**
-     * @var array
-     */
-    protected $config;
-
-    /**
      * @var Environment
      * @Bonefish\Inject
      */
     public $environment;
 
     /**
-     * @var IContainer
+     * @var ContainerInterface
      * @Bonefish\Inject
      */
     public $container;
-
-    /**
-     * @var \Bonefish\Autoloader\Autoloader
-     * @Bonefish\Inject
-     */
-    public $autoloader;
 
     /**
      * @var ConfigurationManager
@@ -71,27 +60,20 @@ class Package
     public $configurationManager;
 
     /**
-     * @var false|array|null
+     * @var false|array
      */
-    protected $configuration = NULL;
+    protected $configuration = null;
 
     const TYPE_COMMAND = 'Command';
 
     /**
      * @param string $vendor
      * @param string $name
-     * @param array $config
      */
-    public function __construct($vendor, $name, $config = [])
+    public function __construct($vendor, $name)
     {
         $this->vendor = $vendor;
         $this->name = $name;
-        $this->config = $config;
-    }
-
-    public function __init()
-    {
-        $this->autoload();
     }
 
     /**
@@ -112,25 +94,13 @@ class Package
         return $this->name;
     }
 
-    /**
-     * @param string $path
-     * @return self
-     */
-    public function setPath($path)
-    {
-        $this->config['path'] = $path;
-        return $this;
-    }
 
     /**
      * @return string
      */
     public function getPath()
     {
-        if (!isset($this->config['path'])) {
-            return $this->vendor . '/' . $this->name;
-        }
-        return $this->config['path'];
+        return $this->vendor . '/' . $this->name;
     }
 
     /**
@@ -167,21 +137,16 @@ class Package
         return $this->environment->getPackagePath() . '/' . $this->getPath();
     }
 
-    protected function autoload()
-    {
-        if (isset($this->config['autoload']) && $this->config['autoload']) {
-            $this->autoloader->addNamespace($this->vendor . '\\' . $this->name, $this->getPackagePath());
-            $this->autoloader->addNamespace($this->vendor . '\\' . $this->name, $this->getPackagePath() . '/src');
-        }
-    }
 
     /**
      * @param string $name
+     * @param bool $returnObject
      * @return mixed
      */
-    public function getController($name)
+    public function getController($name, $returnObject = true)
     {
         $class = '\\'.$this->vendor . '\\' . $this->name . '\Controller\\' . $name;
+        if (!$returnObject) return $class;
         return $this->container->get($class);
     }
 

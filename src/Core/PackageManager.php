@@ -1,7 +1,8 @@
 <?php
 
 namespace Bonefish\Core;
-use Bonefish\DI\IContainer;
+
+use Bonefish\Injection\ContainerInterface;
 use Bonefish\Utility\ConfigurationManager;
 
 /**
@@ -29,7 +30,7 @@ class PackageManager
 {
 
     /**
-     * @var IContainer
+     * @var ContainerInterface
      * @Bonefish\Inject
      */
     public $container;
@@ -43,7 +44,7 @@ class PackageManager
     /**
      * @var array
      */
-    protected $packageState = [];
+    protected $packageState = null;
 
     /**
      * @param array $packageState
@@ -60,7 +61,7 @@ class PackageManager
      */
     public function getPackageStates()
     {
-        if (empty($this->packageState)) {
+        if ($this->packageState === null) {
             $this->packageState = $this->configurationManager->getConfiguration('Packages.neon');
         }
         return $this->packageState;
@@ -70,14 +71,15 @@ class PackageManager
      * @param string $vendor
      * @param string $package
      * @return \Bonefish\Core\Package
+     * @throws \InvalidArgumentException
      */
     public function createPackage($vendor, $package)
     {
         if (!$this->isPackageInstalledByVendorAndPackageName($vendor, $package)) {
             throw new \InvalidArgumentException('Package is not set up or does not exist!');
         }
-        $configuration = $this->getPackageConfiguration($vendor, $package);
-        return $this->container->create('\Bonefish\Core\Package', [$vendor, $package, $configuration]);
+
+        return $this->container->get('\Bonefish\Core\Package', [$vendor, $package]);
     }
 
     /**
@@ -101,18 +103,6 @@ class PackageManager
         $state = $this->getPackageStates();
 
         return isset($state[$vendor][$package]);
-    }
-
-    /**
-     * @param string $vendor
-     * @param string $package
-     * @return bool
-     */
-    public function getPackageConfiguration($vendor, $package)
-    {
-        $state = $this->getPackageStates();
-
-        return isset($state[$vendor][$package]) ? $state[$vendor][$package] : [];
     }
 
     /**
