@@ -1,8 +1,6 @@
 <?php
 
 namespace Bonefish\Controller;
-use Bonefish\Utility\Environment;
-use Bonefish\DI\IContainer;
 
 /**
  * Copyright (C) 2014  Alexander Schmidt
@@ -27,37 +25,5 @@ use Bonefish\DI\IContainer;
  */
 abstract class Base
 {
-    /**
-     * @var IContainer
-     * @Bonefish\Inject
-     */
-    public $container;
 
-    /**
-     * @var Environment
-     * @Bonefish\Inject
-     */
-    public $environment;
-
-    public function getConfiguration()
-    {
-        return $this->environment->getPackage()->getConfiguration();
-    }
-
-    public function indexAction()
-    {
-
-    }
-
-    /**
-     * @param string $route
-     */
-    protected function redirect($route)
-    {
-        $route = $this->container->create($route);
-        $dto = $route->getDTO();
-        /** @var \Bonefish\Router\FastRoute $router */
-        $router = $this->container->get('\Bonefish\Router\FastRoute');
-        $router->callControllerDTO($dto);
-    }
 } 
