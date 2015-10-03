@@ -18,3 +18,54 @@
  * @copyright  Copyright (c) 2015, Alexander Schmidt
  * @date       03.10.2015
  */
+
+$basePath = dirname(__FILE__);
+
+require_once $basePath . '/vendor/autoload.php';
+
+// Create EventDispatcher
+$eventDispatcher = new \AValnar\EventDispatcher\EventDispatcherImpl();
+/** @var \Bonefish\Injection\Container\Container $container */
+$container = null;
+
+// Create Event to trigger ready state
+$ready = function($events = []) use (&$container) {
+    /** @var \AValnar\EventStrap\Event\ObjectCreatedEvent $containerEvent */
+    $containerEvent = array_pop($events);
+    $container = $containerEvent->getObject();
+};
+$eventDispatcher->addListener($ready, 2, 'bonefish.containerCreated');
+
+// Bootstrap app
+$eventStrap = new \AValnar\EventStrap\EventStrap($eventDispatcher);
+
+$decoder = new \Nette\Neon\Neon();
+$configurator = new \AValnar\EventStrap\Configurator\NeonConfigurator($decoder);
+$configurator->setConfiguration($basePath . '/configuration/bootstrap.neon');
+
+$eventStrap->configure($configurator->getConfiguration());
+$eventStrap->bootstrap();
+
+// Setup Container
+$interfaceResolver = new \Bonefish\Injection\Resolver\InterfaceResolver();
+$interfaceResolver->addImplementation(
+    \Bonefish\Reflection\ClassNameResolverInterface::class,
+    \Bonefish\Reflection\ClassNameResolver::class
+);
+$interfaceResolver->addImplementation(
+    \Bonefish\Router\Request\RequestHandlerInterface::class,
+    \Bonefish\Router\Request\FastRouteRequestHandler::class
+);
+$interfaceResolver->addImplementation(
+    \Bonefish\Router\Collectors\RouteCollector::class,
+    \Bonefish\Router\Collectors\CombinedRouteCollector::class
+);
+$container->addResolver($interfaceResolver);
+
+$classNameResolver = $container->get(\Bonefish\Injection\Resolver\ClassNameResolver::class);
+
+/** @var \Bonefish\Router\Request\RequestHandlerInterface $requestHandler */
+$requestHandler = $container->get(\Bonefish\Router\Request\RequestHandlerInterface::class);
+$request = new \Bonefish\Router\Request\Request('GET', '/');
+
+$requestHandler->handleRequest($request);

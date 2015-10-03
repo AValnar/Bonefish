@@ -1,0 +1,28 @@
+firstEvent: bonefish.boot
+
+singleEvents:
+    bonefish.boot:
+        - \AValnar\EventStrap\Listener\SimpleClassCreator(
+            class = Doctrine\Common\Cache\ApcCache
+            event = bonefish.cacheCreated
+        )
+    bonefish.cacheCreated:
+        - \Bonefish\Bootstrap\AnnotationReaderFactoryListener(
+            event = bonefish.annotationReaderCreated
+        )
+    bonefish.reflectionServiceCreated:
+        - \AValnar\EventStrap\Listener\DependencyClassCreator(
+            class = Bonefish\Injection\Container\Container
+            event = bonefish.containerCreated
+        )
+
+
+multiEvents:
+    - AValnar\EventStrap\MultiListener(
+        events = [bonefish.cacheCreated, bonefish.annotationReaderCreated]
+        listener = \AValnar\EventStrap\Listener\DependencyClassCreator(
+            class = Bonefish\Reflection\ReflectionService
+            event = bonefish.reflectionServiceCreated
+        )
+        state = 2
+    )
