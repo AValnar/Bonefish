@@ -1,9 +1,6 @@
 <?php
-
-namespace Bonefish\Controller;
-
 /**
- * Copyright (C) 2014  Alexander Schmidt
+ * Copyright (C) 2015  Alexander Schmidt
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,15 +15,6 @@ namespace Bonefish\Controller;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @author     Alexander Schmidt <mail@story75.com>
- * @copyright  Copyright (c) 2014, Alexander Schmidt
- * @version    1.0
- * @date       2014-08-28
- * @package Bonefish\Controller
+ * @copyright  Copyright (c) 2015, Alexander Schmidt
+ * @date       03.10.2015
  */
-abstract class Command
-{
-    public function out($text)
-    {
-        echo $text . PHP_EOL;
-    }
-} 
