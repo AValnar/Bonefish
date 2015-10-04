@@ -36,16 +36,16 @@
         },
         {
             "name": "av/bonefish-injection",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AValnar/Bonefish-Injection.git",
-                "reference": "d34ceda7efd624e5aa81e56703e07317aa7a8afd"
+                "reference": "447e5d7ae6a7c11376a27495ba029238f0b969cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AValnar/Bonefish-Injection/zipball/d34ceda7efd624e5aa81e56703e07317aa7a8afd",
-                "reference": "d34ceda7efd624e5aa81e56703e07317aa7a8afd",
+                "url": "https://api.github.com/repos/AValnar/Bonefish-Injection/zipball/447e5d7ae6a7c11376a27495ba029238f0b969cd",
+                "reference": "447e5d7ae6a7c11376a27495ba029238f0b969cd",
                 "shasum": ""
             },
             "require": {
@@ -67,7 +67,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Dependency Injection Container",
-            "time": "2015-09-20 17:56:45"
+            "time": "2015-10-04 10:29:00"
         },
         {
             "name": "av/bonefish-reflections",

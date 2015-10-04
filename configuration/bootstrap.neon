@@ -4,25 +4,50 @@ singleEvents:
     bonefish.boot:
         - \AValnar\EventStrap\Listener\SimpleClassCreator(
             class = Doctrine\Common\Cache\ApcCache
-            event = bonefish.cacheCreated
+            event = bonefish.cache.created
         )
-    bonefish.cacheCreated:
+        - \Bonefish\Bootstrap\TracyListener(
+            mode = false
+            event = bonefish.tracy.created
+        )
+    bonefish.cache.created:
         - \Bonefish\Bootstrap\AnnotationReaderFactoryListener(
-            event = bonefish.annotationReaderCreated
+            event = bonefish.annotationReader.created
         )
-    bonefish.reflectionServiceCreated:
+    bonefish.reflectionService.created:
         - \AValnar\EventStrap\Listener\DependencyClassCreator(
             class = Bonefish\Injection\Container\Container
-            event = bonefish.containerCreated
+            event = bonefish.container.created
+        )
+    bonefish.container.created:
+        - \Bonefish\Bootstrap\ContainerSetupListener(
+            config = /home/aschmidt/git/Bonefish/configuration/interfaces.neon
+            event = bonefish.container.setup
         )
 
+    bonefish.container.setup:
+        - \Bonefish\Bootstrap\RequestListener(
+            event = bonefish.request.created
+        )
+        - \Bonefish\Bootstrap\ContainerObjectCreator(
+            class = \Bonefish\Router\Request\RequestHandlerInterface
+            event = bonefish.requestHandler.created
+        )
 
 multiEvents:
     - AValnar\EventStrap\MultiListener(
-        events = [bonefish.cacheCreated, bonefish.annotationReaderCreated]
+        events = [bonefish.cache.created, bonefish.annotationReader.created]
         listener = \AValnar\EventStrap\Listener\DependencyClassCreator(
             class = Bonefish\Reflection\ReflectionService
-            event = bonefish.reflectionServiceCreated
+            event = bonefish.reflectionService.created
+        )
+        state = 2
+    )
+    - AValnar\EventStrap\MultiListener(
+        events = [bonefish.request.created, bonefish.requestHandler.created]
+        listener = \Bonefish\Bootstrap\RequestHandlerListener(
+            beforeEvent = bonefish.request.beforeHandle
+            event = bonefish.request.afterHandle
         )
         state = 2
     )

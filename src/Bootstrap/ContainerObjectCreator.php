@@ -16,22 +16,36 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @author     Alexander Schmidt <mail@story75.com>
  * @copyright  Copyright (c) 2015, Alexander Schmidt
- * @date       03.10.2015
+ * @date       04.10.2015
  */
 
-$basePath = dirname(__FILE__);
+namespace Bonefish\Bootstrap;
 
-require_once $basePath . '/vendor/autoload.php';
 
-// Create EventDispatcher
-$eventDispatcher = new \AValnar\EventDispatcher\EventDispatcherImpl();
+use AValnar\EventDispatcher\Event;
 
-// Bootstrap app
-$eventStrap = new \AValnar\EventStrap\EventStrap($eventDispatcher);
+final class ContainerObjectCreator extends ContainerListener
+{
+    /**
+     * @var string
+     */
+    private $class;
 
-$decoder = new \Nette\Neon\Neon();
-$configurator = new \AValnar\EventStrap\Configurator\NeonConfigurator($decoder);
-$configurator->setConfiguration($basePath . '/configuration/bootstrap.neon');
+    /**
+     * @param array $options
+     */
+    public function __construct($options)
+    {
+        $this->class = $options['class'];
+    }
 
-$eventStrap->configure($configurator->getConfiguration());
-$eventStrap->bootstrap();
+    /**
+     * @param Event[] $events
+     */
+    public function onEventFired(array $events = [])
+    {
+        $container = $this->getContainer($events);
+
+        $this->emit($container->get($this->class));
+    }
+}

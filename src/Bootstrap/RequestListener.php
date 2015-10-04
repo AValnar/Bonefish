@@ -16,22 +16,38 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @author     Alexander Schmidt <mail@story75.com>
  * @copyright  Copyright (c) 2015, Alexander Schmidt
- * @date       03.10.2015
+ * @date       04.10.2015
  */
 
-$basePath = dirname(__FILE__);
+namespace Bonefish\Bootstrap;
 
-require_once $basePath . '/vendor/autoload.php';
+use AValnar\EventDispatcher\Event;
+use AValnar\EventStrap\Listener\AbstractEventStrapListener;
+use Bonefish\Router\Request\Request;
 
-// Create EventDispatcher
-$eventDispatcher = new \AValnar\EventDispatcher\EventDispatcherImpl();
+final class RequestListener extends AbstractEventStrapListener
+{
 
-// Bootstrap app
-$eventStrap = new \AValnar\EventStrap\EventStrap($eventDispatcher);
 
-$decoder = new \Nette\Neon\Neon();
-$configurator = new \AValnar\EventStrap\Configurator\NeonConfigurator($decoder);
-$configurator->setConfiguration($basePath . '/configuration/bootstrap.neon');
+    /**
+     * @param array $options
+     */
+    public function __construct($options)
+    {
 
-$eventStrap->configure($configurator->getConfiguration());
-$eventStrap->bootstrap();
+    }
+
+    /**
+     * @param Event[] $events
+     */
+    public function onEventFired(array $events = [])
+    {
+        if (!isset($_SERVER['REQUEST_METHOD'])) {
+            $request = new Request('GET', '/');
+        } else {
+            $request = Request::fromServer();
+        }
+
+        $this->emit($request);
+    }
+}

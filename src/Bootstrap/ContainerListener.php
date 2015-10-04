@@ -16,41 +16,35 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @author     Alexander Schmidt <mail@story75.com>
  * @copyright  Copyright (c) 2015, Alexander Schmidt
- * @date       03.10.2015
+ * @date       04.10.2015
  */
 
 namespace Bonefish\Bootstrap;
 
 
-use AValnar\Doctrine\Factory\AnnotationReaderFactory;
-use AValnar\EventDispatcher\Event;
 use AValnar\EventStrap\Event\ObjectCreatedEvent;
 use AValnar\EventStrap\Listener\AbstractEventStrapListener;
+use Bonefish\Injection\Container\ContainerInterface;
 
-final class AnnotationReaderFactoryListener extends AbstractEventStrapListener
+abstract class ContainerListener extends AbstractEventStrapListener
 {
-
     /**
-     * @param array $options
+     * @param array $events
+     * @return ContainerInterface
      */
-    public function __construct($options)
+    public function getContainer(array $events)
     {
-
-    }
-
-    /**
-     * @param Event[] $events
-     */
-    public function onEventFired(array $events = [])
-    {
-        $annotationReaderFactory = new AnnotationReaderFactory();
-
-        $options = [];
+        $container = null;
         $event = array_pop($events);
         if ($event instanceof ObjectCreatedEvent) {
-            $options['cache'] = $event->getObject();
+            /** @var ContainerInterface $container */
+            $container = $event->getObject();
         }
 
-        $this->emit($annotationReaderFactory->create($options));
+        if (!$container instanceof ContainerInterface) {
+            throw new \RuntimeException('Could not retrieve container instance from event!');
+        }
+
+        return $container;
     }
 }

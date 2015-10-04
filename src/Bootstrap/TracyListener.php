@@ -16,26 +16,51 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @author     Alexander Schmidt <mail@story75.com>
  * @copyright  Copyright (c) 2015, Alexander Schmidt
- * @date       03.10.2015
+ * @date       04.10.2015
  */
 
 namespace Bonefish\Bootstrap;
 
 
-use AValnar\Doctrine\Factory\AnnotationReaderFactory;
 use AValnar\EventDispatcher\Event;
-use AValnar\EventStrap\Event\ObjectCreatedEvent;
 use AValnar\EventStrap\Listener\AbstractEventStrapListener;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Tracy\Debugger;
 
-final class AnnotationReaderFactoryListener extends AbstractEventStrapListener
+class TracyListener extends AbstractEventStrapListener
 {
+    /**
+     * @var string
+     */
+    private $mode;
+
+    /**
+     * @var string
+     */
+    private $directory;
+
+    /**
+     * @var string
+     */
+    private $email;
 
     /**
      * @param array $options
      */
     public function __construct($options)
     {
+        $optionsResolver = new OptionsResolver();
+        $optionsResolver->setDefaults([
+            'mode' => null,
+            'directory' => null,
+            'email' => null
+        ]);
 
+        $options = $optionsResolver->resolve($options);
+
+        $this->mode = $options['mode'];
+        $this->directory = $options['directory'];
+        $this->email = $options['email'];
     }
 
     /**
@@ -43,14 +68,8 @@ final class AnnotationReaderFactoryListener extends AbstractEventStrapListener
      */
     public function onEventFired(array $events = [])
     {
-        $annotationReaderFactory = new AnnotationReaderFactory();
+        Debugger::enable($this->mode, $this->directory, $this->email);
 
-        $options = [];
-        $event = array_pop($events);
-        if ($event instanceof ObjectCreatedEvent) {
-            $options['cache'] = $event->getObject();
-        }
-
-        $this->emit($annotationReaderFactory->create($options));
+        $this->emit(null);
     }
 }

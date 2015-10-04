@@ -16,41 +16,47 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @author     Alexander Schmidt <mail@story75.com>
  * @copyright  Copyright (c) 2015, Alexander Schmidt
- * @date       03.10.2015
+ * @date       04.10.2015
  */
 
 namespace Bonefish\Bootstrap;
 
-
-use AValnar\Doctrine\Factory\AnnotationReaderFactory;
 use AValnar\EventDispatcher\Event;
 use AValnar\EventStrap\Event\ObjectCreatedEvent;
 use AValnar\EventStrap\Listener\AbstractEventStrapListener;
+use Bonefish\Router\Request\Request;
+use Bonefish\Router\Request\RequestHandlerInterface;
 
-final class AnnotationReaderFactoryListener extends AbstractEventStrapListener
+final class RequestHandlerListener extends AbstractEventStrapListener
 {
+
+    /**
+     * @var string
+     */
+    private $beforeHandleEvent;
 
     /**
      * @param array $options
      */
     public function __construct($options)
     {
-
+        $this->beforeHandleEvent = $options['beforeEvent'];
     }
 
     /**
-     * @param Event[] $events
+     * @param ObjectCreatedEvent[] $events
      */
     public function onEventFired(array $events = [])
     {
-        $annotationReaderFactory = new AnnotationReaderFactory();
+        /** @var RequestHandlerInterface $requestHandler */
+        $requestHandler = $events['bonefish.requestHandler.created']->getObject();
+        /** @var Request $request */
+        $request = $events['bonefish.request.created']->getObject();
 
-        $options = [];
-        $event = array_pop($events);
-        if ($event instanceof ObjectCreatedEvent) {
-            $options['cache'] = $event->getObject();
-        }
+        $this->eventDispatcher->dispatch($this->beforeHandleEvent, new ObjectCreatedEvent($request));
 
-        $this->emit($annotationReaderFactory->create($options));
+        $requestHandler->handleRequest($request);
+
+        $this->emit(null);
     }
 }
