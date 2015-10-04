@@ -2,13 +2,13 @@ firstEvent: bonefish.boot
 
 singleEvents:
     bonefish.boot:
+        - \Bonefish\Bootstrap\TracyListener(
+                mode = false
+                event = bonefish.tracy.created
+            )
         - \AValnar\EventStrap\Listener\SimpleClassCreator(
             class = Doctrine\Common\Cache\ApcCache
             event = bonefish.cache.created
-        )
-        - \Bonefish\Bootstrap\TracyListener(
-            mode = false
-            event = bonefish.tracy.created
         )
     bonefish.cache.created:
         - \Bonefish\Bootstrap\AnnotationReaderFactoryListener(

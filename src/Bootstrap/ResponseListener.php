@@ -63,7 +63,8 @@ final class ResponseListener extends AbstractEventStrapListener
 
         $response->headers->set('x-bonefish', true);
         $response->prepare($request);
-        $response->send();
+        $response->sendHeaders();
+        $response->sendContent();
 
         $this->eventDispatcher->dispatch($this->event, new RequestEvent($request, $response));
     }
