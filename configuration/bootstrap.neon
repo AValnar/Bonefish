@@ -33,6 +33,11 @@ singleEvents:
             class = \Bonefish\Router\Request\RequestHandlerInterface
             event = bonefish.requestHandler.created
         )
+    bonefish.request.afterHandle:
+        - \Bonefish\Bootstrap\ResponseListener(
+            beforeEvent = bonefish.response.beforeSend
+            event = bonefish.response.afterSend
+        )
 
 multiEvents:
     - AValnar\EventStrap\MultiListener(

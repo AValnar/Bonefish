@@ -10,7 +10,7 @@
         "av/eventdispatcher": "^1.0",
         "av/raptor": "^2.0",
         "av/bonefish-reflections": "^1.0",
-        "av/bonefish-router": "^1.0",
+        "av/bonefish-router": "^2.0",
         "av/bonefish-routecollectors": "^1.0",
         "av/bonefish-injection": "^1.0",
         "av/doctrine-annotations": "^1.0",

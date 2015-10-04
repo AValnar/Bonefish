@@ -22,9 +22,10 @@
 namespace Bonefish\Bootstrap;
 
 use AValnar\EventDispatcher\Event;
-use AValnar\EventStrap\Event\ObjectCreatedEvent;
+use Symfony\Component\HttpFoundation\Response;
 use AValnar\EventStrap\Listener\AbstractEventStrapListener;
-use Bonefish\Router\Request\Request;
+use Bonefish\Event\RequestEvent;
+use Symfony\Component\HttpFoundation\Request;
 use Bonefish\Router\Request\RequestHandlerInterface;
 
 final class RequestHandlerListener extends AbstractEventStrapListener
@@ -44,19 +45,27 @@ final class RequestHandlerListener extends AbstractEventStrapListener
     }
 
     /**
-     * @param ObjectCreatedEvent[] $events
+     * @param Event[] $events
      */
     public function onEventFired(array $events = [])
     {
         /** @var RequestHandlerInterface $requestHandler */
         $requestHandler = $events['bonefish.requestHandler.created']->getObject();
+
+        /** @var RequestEvent $requestEvent */
+        $requestEvent = $events['bonefish.request.created'];
+
         /** @var Request $request */
-        $request = $events['bonefish.request.created']->getObject();
+        $request = $requestEvent->getRequest();
 
-        $this->eventDispatcher->dispatch($this->beforeHandleEvent, new ObjectCreatedEvent($request));
+        $this->eventDispatcher->dispatch($this->beforeHandleEvent, $requestEvent);
 
-        $requestHandler->handleRequest($request);
+        $response = $requestHandler->handleRequest($request);
 
-        $this->emit(null);
+        if (!$response instanceof Response) {
+            $response = new Response($response);
+        }
+
+        $this->eventDispatcher->dispatch($this->event, new RequestEvent($request, $response));
     }
 }

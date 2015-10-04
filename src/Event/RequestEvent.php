@@ -19,31 +19,46 @@
  * @date       04.10.2015
  */
 
-namespace Bonefish\Bootstrap;
+namespace Bonefish\Event;
+
 
 use AValnar\EventDispatcher\Event;
-use AValnar\EventStrap\Listener\AbstractEventStrapListener;
-use Bonefish\Event\RequestEvent;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
-final class RequestListener extends AbstractEventStrapListener
+final class RequestEvent extends Event
 {
+    /**
+     * @var Request
+     */
+    private $request;
 
     /**
-     * @param array $options
+     * @var Response
      */
-    public function __construct($options)
+    private $response;
+
+    public function __construct(Request $request, Response $response = null)
     {
-        
+        $this->request = $request;
+        $this->response = $response;
     }
 
     /**
-     * @param Event[] $events
+     * @return Request
      */
-    public function onEventFired(array $events = [])
+    public function getRequest()
     {
-        $request = Request::createFromGlobals();
-
-        $this->eventDispatcher->dispatch($this->event, new RequestEvent($request, null));
+        return $this->request;
     }
+
+    /**
+     * @return Response
+     */
+    public function getResponse()
+    {
+        return $this->response;
+    }
+
+
 }
