@@ -26,9 +26,16 @@ singleEvents:
         )
 
     bonefish.container.setup:
+        - \Bonefish\Bootstrap\RouteCollectorListener(
+            collectors = [Bonefish\RouteCollectors\RestRouteCollector]
+            vendorDir = /home/aschmidt/git/Bonefish/vendor
+            packageDir = /home/aschmidt/git/Bonefish/Packages
+            event = bonefish.requestHandler.collectors.added
+        )
         - \Bonefish\Bootstrap\RequestListener(
             event = bonefish.request.created
         )
+    bonefish.requestHandler.collectors.added:
         - \Bonefish\Bootstrap\ContainerObjectCreator(
             class = \Bonefish\Router\Request\RequestHandlerInterface
             event = bonefish.requestHandler.created
