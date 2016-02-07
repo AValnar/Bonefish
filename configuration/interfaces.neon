@@ -1,3 +1,4 @@
 \Bonefish\Reflection\ClassNameResolverInterface: \Bonefish\Reflection\ClassNameResolver
 \Bonefish\Router\Request\RequestHandlerInterface: \Bonefish\Router\Request\FastRouteRequestHandler
 \Bonefish\Router\Collectors\RouteCollector: \Bonefish\Router\Collectors\CombinedRouteCollector
+\AValnar\EventDispatcher\EventDispatcher: \AValnar\EventDispatcher\EventDispatcherImpl

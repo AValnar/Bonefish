@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  * Copyright (C) 2015  Alexander Schmidt
  *
@@ -15,18 +16,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @author     Alexander Schmidt <mail@story75.com>
- * @copyright  Copyright (c) 2015, Alexander Schmidt
- * @date       04.10.2015
+ * @copyright  Copyright (c) 2016, Alexander Schmidt
+ * @date       07.02.16
  */
 
-namespace Bonefish\Event;
+namespace Bonefish\Request\Event;
 
 
 use AValnar\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-final class RequestEvent extends Event
+final class ResponseEvent extends Event
 {
     /**
      * @var Request
@@ -38,18 +39,15 @@ final class RequestEvent extends Event
      */
     private $response;
 
-    public function __construct(Request $request, Response $response = null)
+    /**
+     * RequestEvent constructor.
+     * @param Request $request
+     * @param Response $response
+     */
+    public function __construct(Request $request, Response $response)
     {
         $this->request = $request;
         $this->response = $response;
-    }
-
-    /**
-     * @return Request
-     */
-    public function getRequest()
-    {
-        return $this->request;
     }
 
     /**
@@ -60,5 +58,20 @@ final class RequestEvent extends Event
         return $this->response;
     }
 
+    /**
+     * @param Response $response
+     */
+    public function setResponse(Response $response)
+    {
+        $this->response = $response;
+    }
 
+
+    /**
+     * @return Request
+     */
+    public function getRequest()
+    {
+        return $this->request;
+    }
 }

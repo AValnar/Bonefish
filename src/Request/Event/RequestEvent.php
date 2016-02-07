@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  * Copyright (C) 2015  Alexander Schmidt
  *
@@ -15,42 +16,45 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @author     Alexander Schmidt <mail@story75.com>
- * @copyright  Copyright (c) 2015, Alexander Schmidt
- * @date       03.10.2015
+ * @copyright  Copyright (c) 2016, Alexander Schmidt
+ * @date       07.02.16
  */
 
-namespace Bonefish\Bootstrap;
+namespace Bonefish\Request\Event;
 
 
-use AValnar\Doctrine\Factory\AnnotationReaderFactory;
 use AValnar\EventDispatcher\Event;
-use AValnar\EventStrap\Event\ObjectCreatedEvent;
-use AValnar\EventStrap\Listener\AbstractEventStrapListener;
+use Symfony\Component\HttpFoundation\Request;
 
-final class AnnotationReaderFactoryListener extends AbstractEventStrapListener
+final class RequestEvent extends Event
 {
+    /**
+     * @var Request
+     */
+    private $request;
 
     /**
-     * @param array $options
+     * RequestEvent constructor.
+     * @param Request $request
      */
-    public function __construct($options)
+    public function __construct($request)
     {
-
+        $this->request = $request;
     }
 
     /**
-     * @param Event[] $events
+     * @param Request $request
      */
-    public function onEventFired(array $events = [])
+    public function setRequest($request)
     {
-        $annotationReaderFactory = new AnnotationReaderFactory();
+        $this->request = $request;
+    }
 
-        $options = [];
-        $event = array_pop($events);
-        if ($event instanceof ObjectCreatedEvent) {
-            $options['cache'] = $event->getObject();
-        }
-
-        $this->emit($annotationReaderFactory->create($options));
+    /**
+     * @return Request
+     */
+    public function getRequest()
+    {
+        return $this->request;
     }
 }

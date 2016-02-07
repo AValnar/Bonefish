@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  * Copyright (C) 2015  Alexander Schmidt
  *
@@ -15,37 +16,36 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @author     Alexander Schmidt <mail@story75.com>
- * @copyright  Copyright (c) 2015, Alexander Schmidt
- * @date       04.10.2015
+ * @copyright  Copyright (c) 2016, Alexander Schmidt
+ * @date       07.02.16
  */
 
-namespace Bonefish\Bootstrap;
+namespace Bonefish\Bootstrap\Event;
 
 
 use AValnar\EventDispatcher\Event;
 
-final class ContainerObjectCreator extends ContainerListener
+final class ObjectEvent extends Event
 {
     /**
-     * @var string
+     * @var object
      */
-    private $class;
+    private $object;
 
     /**
-     * @param array $options
+     * ObjectEvent constructor.
+     * @param object $object
      */
-    public function __construct($options)
+    public function __construct($object)
     {
-        $this->class = $options['class'];
+        $this->object = $object;
     }
 
     /**
-     * @param Event[] $events
+     * @return object
      */
-    public function onEventFired(array $events = [])
+    public function getObject()
     {
-        $container = $this->getContainer($events);
-
-        $this->emit($container->get($this->class));
+        return $this->object;
     }
 }

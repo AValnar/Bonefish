@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  * Copyright (C) 2015  Alexander Schmidt
  *
@@ -19,19 +20,22 @@
  * @date       03.10.2015
  */
 
-$basePath = dirname(__FILE__);
-
-require_once $basePath . '/vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/configuration/env.php';
 
 // Create EventDispatcher
 $eventDispatcher = new \AValnar\EventDispatcher\EventDispatcherImpl();
+$eventDispatcher->addSubscriber(new \Bonefish\Bootstrap\BootSubscriber($eventDispatcher));
 
-// Bootstrap app
-$eventStrap = new \AValnar\EventStrap\EventStrap($eventDispatcher);
+$eventDispatcher->addListener(
+    function ($events) use ($eventDispatcher) {
+        /** @var \Bonefish\Injection\Container\Container $container */
+        $container = $events[\Bonefish\Events::CONTAINER_SETUP]->getObject();
+        $eventDispatcher->addSubscriber($container->get(\Bonefish\Request\RequestSubscriber::class));
+        $eventDispatcher->dispatch(\Bonefish\Events::REQUEST_INIT);
+    },
+    \AValnar\EventDispatcher\EventDispatcher::USE_LAST,
+    \Bonefish\Events::CONTAINER_SETUP
+);
 
-$decoder = new \Nette\Neon\Neon();
-$configurator = new \AValnar\EventStrap\Configurator\NeonConfigurator($decoder);
-$configurator->setConfiguration($basePath . '/configuration/bootstrap.neon');
-
-$eventStrap->configure($configurator->getConfiguration());
-$eventStrap->bootstrap();
+$eventDispatcher->dispatch(\Bonefish\Events::BOOT_INIT);

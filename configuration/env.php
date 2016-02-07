@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  * Copyright (C) 2015  Alexander Schmidt
  *
@@ -15,35 +16,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @author     Alexander Schmidt <mail@story75.com>
- * @copyright  Copyright (c) 2015, Alexander Schmidt
- * @date       04.10.2015
+ * @copyright  Copyright (c) 2016, Alexander Schmidt
+ * @date       07.02.16
  */
 
-namespace Bonefish\Bootstrap;
-
-use AValnar\EventDispatcher\Event;
-use AValnar\EventStrap\Listener\AbstractEventStrapListener;
-use Bonefish\Event\RequestEvent;
-use Symfony\Component\HttpFoundation\Request;
-
-final class RequestListener extends AbstractEventStrapListener
-{
-
-    /**
-     * @param array $options
-     */
-    public function __construct($options)
-    {
-        
-    }
-
-    /**
-     * @param Event[] $events
-     */
-    public function onEventFired(array $events = [])
-    {
-        $request = Request::createFromGlobals();
-
-        $this->eventDispatcher->dispatch($this->event, new RequestEvent($request, null));
-    }
-}
+define('BONEFISH_BASE_PATH', __DIR__ . '/../');
+define('BONEFISH_PACKAGE_PATH', BONEFISH_BASE_PATH . '/Packages');
+define('BONEFISH_VENDOR_PATH', BONEFISH_BASE_PATH . '/vendor');
+define('BONEFISH_CONFIG_PATH', BONEFISH_BASE_PATH . '/configuration');
+define('BONEFISH_CACHE_TYPE', \Doctrine\Common\Cache\ApcuCache::class);
+define('BONEFISH_CACHE_PATH', BONEFISH_BASE_PATH . '/cache');
+define('BONEFISH_CACHE_OPTIONS', []);
+define('BONEFISH_LOG_PATH', BONEFISH_BASE_PATH . '/log');
+define('BONEFISH_ADMIN_MAIL', null);
+define('BONEFISH_DEV_MODE', true);
