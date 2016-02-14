@@ -24,9 +24,10 @@ define('BONEFISH_BASE_PATH', __DIR__ . '/../');
 define('BONEFISH_PACKAGE_PATH', BONEFISH_BASE_PATH . '/Packages');
 define('BONEFISH_VENDOR_PATH', BONEFISH_BASE_PATH . '/vendor');
 define('BONEFISH_CONFIG_PATH', BONEFISH_BASE_PATH . '/configuration');
-define('BONEFISH_CACHE_TYPE', \Doctrine\Common\Cache\ApcuCache::class);
 define('BONEFISH_CACHE_PATH', BONEFISH_BASE_PATH . '/cache');
 define('BONEFISH_CACHE_OPTIONS', []);
 define('BONEFISH_LOG_PATH', BONEFISH_BASE_PATH . '/log');
 define('BONEFISH_ADMIN_MAIL', null);
 define('BONEFISH_DEV_MODE', true);
+// Use \Doctrine\Common\Cache\FileCache::class if APCu is not installed
+define('BONEFISH_CACHE_TYPE', \Doctrine\Common\Cache\ApcuCache::class);

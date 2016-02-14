@@ -10,12 +10,16 @@ Bonefish is a dead simple near zero configuration php framework.
 
 Installation
 ============
-This Package needs PHP  >= 5.6 or hhvm.
+This Package requires PHP  >= 7 (or hhvm).
+You also have to configure your webserver to redirect all not found requests to index.php.
 
 To get it to work clone this repository and use composer install.
 ```shell
 $ git clone https://github.com/AValnar/Bonefish.git
 $ cd Bonefish
 $ composer install
-$ php bonefish-cli execute Bonefish Generator generate
+```
+or
+```shell
+$ composer create-project av/bonefish Bonefish dev-master
 ```

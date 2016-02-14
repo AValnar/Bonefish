@@ -6,7 +6,7 @@
     "require": {
         "php": ">=7.0",
 
-        "av/eventdispatcher": "^1.1",
+        "av/eventdispatcher": "^1.2",
         "av/raptor": "^2.0",
         "av/bonefish-reflections": "^1.0",
         "av/bonefish-router": "^2.0",
